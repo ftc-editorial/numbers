@@ -1,0 +1,23 @@
+{{# sections}}
+<section class="card__group" id="{{sectionId}}" data-card-theme="{{theme}}">
+
+  <div data-o-grid-container>
+    <div data-o-grid-row>
+
+      {{# card}}
+      <div class="card__group-item" data-o-grid-col>
+        {{# cardIndex?}}
+          {{> card-index}}
+        {{/ cardIndex?}}
+
+        {{# cardIndicator?}}
+          {{> card-indicator}}
+        {{/ cardIndicator?}}
+      </div>
+      {{/ card}}
+
+    </div><!-- data-o-grid-row -->        
+  </div><!-- data-o-grid-container-->        
+
+</section>
+{{/ sections}}

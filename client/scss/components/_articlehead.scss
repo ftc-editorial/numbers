@@ -1,0 +1,57 @@
+.articlehead {
+  box-sizing: border-box;
+  padding-top: $o-header-bottom-height;
+  font-size: 15px;
+  text-align: center;
+
+  @include oGridRespondTo(S) {
+  	font-size: 16px;
+  }
+
+  @include oGridRespondTo(M) {
+  	font-size: 18px;
+  }
+
+	&__headline,
+	&__lead,
+	&__byline {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0;
+		max-width: 960px;
+	}
+
+	&__headline {
+		font-weight: 400;
+		font-size: 2.25em;
+	}
+
+	&__lead {
+		font-size: 1.12em;
+		line-height: 1.4;
+		a {
+			color: inherit;
+			border: 0;
+		}
+	}
+
+	&__byline {
+		font-size: 1em;
+		font-weight: 400;
+
+		a {
+			text-decoration: none;
+			color: #2e6e9e;
+			transition: color 0.3s;
+
+			&:hover {
+				color: #000;
+				transition: color 0s;
+			}
+		}
+	}
+}
+
+

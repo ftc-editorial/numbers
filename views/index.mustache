@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head> 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preload" type="application/javascript" as="script" href="https://h2.ft.com/polyfill/v2/polyfill.min.js">
+  <link rel="preload" type="text/css" as="style" href="https://ig.ft.com/graphics/bloomberg-economics/chart-style.css">
+
+  <meta name="description" content="{{article.description}}" />
+  <meta name="copyright" content="FT中文网">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="FTC Interactive Graphics">
+  <meta property="og:site_name" content="{{article.ogSiteName}}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="{{article.ogTitle}}"/>
+  <meta property="og:description" content="{{article.descritpion}}" />
+  <meta property="og:image" content="{{{article.ogImage}}}"/>
+    
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" /> 
+  <link rel="apple-touch-icon" sizes="180x180" href="{{{article.assetsPath}}}favicons/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{{article.assetsPath}}}favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{{article.assetsPath}}}favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{{article.assetsPath}}}favicons/apple-touch-icon-76x76.png">
+  <link href="{{{article.assetsPath}}}favicons/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+  <title>{{article.articleHeadline}} - FT中文网</title>
+  
+  <!-- smoosh-->
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <!-- endsmoosh -->
+{{#analytics}}
+{{> partials/analytics}}
+{{/analytics}}
+
+</head>
+
+<body>
+
+{{> header/main}}
+
+{{# article}}
+  <article class="article" role="main">
+  {{> article/header}}
+  {{> article/card-group}}
+  </article>
+{{/ article}}
+
+{{# footer}}
+  {{> footer/main}}
+{{/ footer}}
+<a href="#top" class="back-to-top" title="返回顶部"></a>
+
+<!-- smoosh -->
+<script src="scripts/bundle.js"></script>
+<!-- endsmoosh -->
+
+<!-- build:log -->
+<script src=""></script>
+<!-- endbuild -->
+</body>
+
+
+</html>

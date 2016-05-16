@@ -1,0 +1,73 @@
+.card--index,
+.card__header {
+  [data-card-theme="pink"] & {
+    background-color: $ft-color-pink;
+  }
+  [data-card-theme="teal"] & {
+    background-color: $ft-color-teal;
+  }
+  [data-card-theme="orange"] & {
+    background-color: $ft-color-orange;
+  }
+  [data-card-theme="green"] & {
+    background-color: $ft-color-green;
+  }
+  [data-card-theme="dusk"] & {
+    background-color: $ft-color-dusk;
+  }
+  [data-card-theme="purple"] & {
+    background-color: $ft-color-purple;
+  }
+  [data-card-theme="brown"] & {
+    background-color: $ft-color-brown;
+  }
+  [data-card-theme="grey"] & {
+    background-color: $ft-color-grey;
+  }
+  [data-card-theme="blue"] & {
+    background-color: $ft-color-blue;
+  }
+  [data-card-theme="cyan"] & {
+    background-color: $ft-color-cyan;
+  }
+}
+
+.bdr--teal {
+  border-left: 5px solid $ft-color-teal;
+}
+
+.bdr--pink {
+  border-left: 5px solid $ft-color-pink;
+}
+
+.bdr--orange {
+  border-left: 5px solid $ft-color-orange;
+}
+
+.bdr--green {
+  border-left: 5px solid $ft-color-green;
+}
+
+.bdr--dusk {
+  border-left: 5px solid $ft-color-dusk;
+}
+
+.bdr--purple {
+  border-left: 5px solid $ft-color-purple;
+}
+
+.bdr--brown {
+  border-left: 5px solid $ft-color-brown;
+}
+
+.bdr--grey {
+  border-left: 5px solid $ft-color-grey;
+}
+
+.bdr--blue {
+  border-left: 5px solid $ft-color-blue;
+}
+
+.bdr--cyan {
+  border-left: 5px solid $ft-color-cyan;
+}

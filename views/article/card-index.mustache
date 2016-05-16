@@ -1,0 +1,26 @@
+<section class="card card--index">
+  <div class="card__header">
+    <h2 class="card__title">{{title}}</h2>
+  </div>
+  <div class="card__body">
+    {{# text}}
+    <p>{{.}}</p>
+    {{/ text}}
+    
+    {{# bigNum?}}
+    <div class="card-num card-num--big">
+      <div class="card-num__heading">{{heading}}</div>
+      <div class="card-num__value">{{{text}}}</div>
+    </div>
+    {{/ bigNum?}}
+
+    {{# smallNum?}}
+    <div class="card-num card-num--small">
+      <div class="card-num__heading">{{heading}}</div>
+      <div class="card-num__value">{{{text}}}</div>
+    </div>
+    {{/ smallNum?}}
+
+  </div>
+  <div class="card__footer"></div>
+</section>

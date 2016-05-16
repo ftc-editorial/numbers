@@ -1,0 +1,68 @@
+body {
+  font-family: "Helvetica Neue", "Lucida Grande", Verdana, "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Heiti SC", "Heiti TC", "WenQuanYi Micro Hei", "Microsoft YaHei", "Microsoft JhengHei", STHeiti, sans-serif;
+  margin: 0;
+  padding: 0;
+  @include oColorsFor(page);
+}
+
+.back-to-top {
+  box-sizing: border-box;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(164,170,180,.3);;
+  border-radius: 5px;
+  &:hover {
+    background-color: rgb(164,170,180);
+  }
+  &:hover:after {
+    background-color: #000;
+  }
+  &:hover:before {
+    border-bottom-color: #000;
+  }
+  @include arrowUpwards(36, rgba(0,0,0,.2));
+}
+
+// Simplified version of `o-grid` layout.
+[data-o-grid-container] {
+  position: relative;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: $o-grid-min-width;
+  max-width: $_o-grid-max-width;
+  padding-left: oGridGutter();
+  padding-right: oGridGutter();
+
+  @include oGridTargetIE8 {
+    padding-left: oGridGutter($o-grid-fixed-layout);
+    padding-right: oGridGutter($o-grid-fixed-layout);
+    width: oGridGetMaxWidthForLayout($o-grid-fixed-layout, $grid-mode: 'fixed');
+  }
+}
+
+[data-o-grid-row] {
+  //display: table;
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-left: -1 * oGridGutter();
+
+  @include oGridTargetIE8 {
+    margin-left: -1 * oGridGutter($o-grid-fixed-layout);
+  }
+}
+
+[data-o-grid-col] {
+  position: relative;
+  box-sizing: border-box;
+  flex: 1 1 0%;
+  padding-left: oGridGutter();
+
+  @include oGridTargetIE8 {
+    padding-left: oGridGutter($o-grid-fixed-layout);
+  }
+}
