@@ -3,6 +3,7 @@
 		"d3": "http://interactive.ftchinese.com/bower_components/d3/d3.min.js",
 	    "log": "http://static.ftchinese.com/js/log.js?v=6"
 	},
+	"demo": "../ft-interact/",
 	"deploy": {
 		"index": "../channel/",
 		"assets": "../ig/"

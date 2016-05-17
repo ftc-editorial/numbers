@@ -205,12 +205,14 @@ gulp.task('serve:dist', function() {
 
 /* demo */
 gulp.task('demo', gulp.series('mustache', 'styles', 'js', function() {
+  const dest = path.resolve(__dirname, config.demo, 'numbers');
+  console.log('Copying demo to: ' + dest);
   return gulp.src(['.tmp/**/*.*', 'client/**/*.{svg,png,jpg,jpeg,gif}'])
     .pipe($.size({
       gzip: true,
       showFiles: true
     }))
-    .pipe(gulp.dest(config.deploy.assets + projectName));
+    .pipe(gulp.dest(dest));
 }));
 
 /* build */
