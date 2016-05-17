@@ -50,3 +50,14 @@ function getFilePaths(body) {
 exports.urlToFilename = urlToFilename;
 exports.getSvgLinks = getSvgLinks;
 exports.getFilePaths = getFilePaths;
+
+if (require.main === module) {
+  fs.readFile('ig.ft.com/autograph/graphics/sources-of-china-s-growth.svg', function(err, data) {
+    const $ = cheerio.load(data, {
+      decodeEntities:false,
+      xmlMode: true
+    });
+
+    console.log($.html());
+  });
+}

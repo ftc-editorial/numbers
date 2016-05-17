@@ -53,9 +53,11 @@ function getTranslatedContents(contents, textObj) {
 
       if ( elTagName === 'text') {
         el.text(textValue);
+        el.removeAttr('font-family');
       } else {
         el.find('text').each(function(i) {
-          $(this).text(textValue[i])
+          $(this).text(textValue[i]);
+          $(this).removeAttr('font-family');
         });
       }        
     }
