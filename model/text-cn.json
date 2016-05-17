@@ -11,7 +11,7 @@
 	},
 	"articleHeadline": "中国经济一图览",
 	"articleLead": "英国《金融时报》中文网对中国关键经济数据的一站式概览，包括 <a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>。",
-	"articleByline": "By <a href=\"https://twitter.com/gabewildau\" rel=\"nofollow\">Gabriel Wildau</a> , <a href=\"https://twitter.com/ecadman\" rel=\"nofollow\">Emily Cadman</a> , <a href=\"https://twitter.com/yuanfenyang\" rel=\"nofollow\">Yuan Yang</a> and <a href=\"https://twitter.com/lukekavanagh_\" rel=\"nofollow\">Luke Kavanagh</a>",
+	"articleByline": "制作：<a href=\"https://twitter.com/gabewildau\" rel=\"nofollow\">吳佳柏</a>，<a href=\"https://twitter.com/ecadman\" rel=\"nofollow\">艾蜜莉•卡德曼</a>，<a href=\"https://twitter.com/yuanfenyang\" rel=\"nofollow\">杨缘</a>，<a href=\"https://twitter.com/lukekavanagh_\" rel=\"nofollow\">路克•卡瓦纳</a>，<a href=\"https://twitter.com/silvashih\" rel=\"nofollow\">史书华</a>，倪卫国",
 	"sections": [
 		{
 			"sectionId":"gdp",
@@ -80,10 +80,10 @@
 				},
 				{
 					"cardIndicator?": {
-						"title": "另类增长指标",
+						"title": "替代增长指标",
 						"svg": "graphics/li-keqiang-index.svg",
 						"text": [
-							"该另类增长指标由三项活动指标构成：耗电量、铁路货运量和银行贷款发放量。然而，该项指标未能反映服务业的增长，服务业是目前经济中增长最快的领域。"
+							"该替代增长指标由三项活动指标构成：耗电量、铁路货运量和银行贷款发放量。然而，该项指标未能反映服务业的增长，服务业是目前经济中增长最快的领域。"
 						]
 					}
 				},
