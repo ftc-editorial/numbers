@@ -7,7 +7,7 @@
 
 <text class="chart-subtitle" fill="#74736C" font-size="15" y="42">50以上的指数表示环比增长</text>
 
-<text class="chart-source" font-size="10" fill-opacity="0.4" y="269">Source: FT Confidential Research, Februrary 2, 2016</text>
+<text class="chart-source" font-size="10" fill-opacity="0.4" y="269">来源: FT Confidential Research, 2016/2/2日</text>
 
 <g transform="translate(1,62)">
 	<g transform="translate(0,152)" class="x axis">

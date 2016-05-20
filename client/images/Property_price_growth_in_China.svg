@@ -7,7 +7,7 @@
 
 <text class="chart-subtitle" fill="#74736C" font-size="15" y="34">年同比变化%</text>
 
-<text class="chart-source" font-size="10" fill-opacity="0.4" y="269">Source: Thomson Reuters Datastream, February 2016</text>
+<text class="chart-source" font-size="10" fill-opacity="0.4" y="269">来源: Thomson Reuters Datastream, 2016/2</text>
 
 <g transform="translate(1,62)">
 	<g transform="translate(0,152)" class="x axis">
