@@ -24,48 +24,64 @@ const knownOptions = {
 const argv = minimist(process.argv.slice(2), knownOptions);
 
 const taskName = argv._[0];
-const dataFile = argv.i;
+const articleDataFile = path.resolve(__dirname, 'model', argv.i);
+const footerDataFile = path.resolve(__dirname, 'model/footer.json');
+// const projectName = path.basename(argv.i, '.json');
 const projectName = 'numbers-china';
+
+function readFilePromisified(filename) {
+  return new Promise(
+    function(resolve, reject) {
+      fs.readFile(filename, 'utf8', function(err, data) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    }
+  );
+}
 
 gulp.task('mustache', function () {
   const DEST = '.tmp';
 
-  try {
-    const article = JSON.parse(fs.readFileSync('model/' + dataFile));
-  } catch (e) {
-    console.log(`Cannot read your data file: models/${dataFile}`);
-    return e;
-  }
-  
-  const theme = article.lightTheme;
-
-  const footer = JSON.parse(fs.readFileSync('model/footer.json'));
-
   const analytics = false;
 
   if (taskName === 'build' || taskName === 'deploy') {
-// include analytics patial at compile time in `build` and `deploy task`.
+// include analytics patial at compile time in `build` and `deploy` task`.
     analytics = true;
 // change assets path dynamically.
     article.assetsPath = 'http://static.ftchinese.com/ftc-icons/';   
   }
 
-  return gulp.src('views/index.mustache')
-    .pipe($.changed(DEST))
-    .pipe($.mustache({
-      lightTheme: theme,
-      analytics: analytics,
-      article: article,
-      footer: footer
-    }, {
-      extension: '.html'
-    }))
-    .pipe($.size({
-      gzip: true,
-      showFiles: true
-    }))
-    .pipe(gulp.dest(DEST))
-    .pipe(browserSync.stream({once: true}));
+  const dataFiles = [articleDataFile, footerDataFile];
+
+  const promisedData = dataFiles.map(readFilePromisified);
+
+  return Promise.all(promisedData)
+    .then(function(contents) {
+      return contents.map(JSON.parse);
+    })
+    .then(function(contents){
+      gulp.src('views/index.mustache')
+        .pipe($.mustache({
+          analytics: analytics,
+          article: contents[0],
+          footer: contents[1]
+        }, {
+          extension: '.html'
+        }))
+        .pipe($.size({
+          gzip: true,
+          showFiles: true
+        }))
+        .pipe(gulp.dest(DEST))
+        .pipe(browserSync.stream({once: true}));
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 });
 
 gulp.task('styles', function styles() {
@@ -258,6 +274,10 @@ gulp.task('build', gulp.series('clean', gulp.parallel('mustache', 'styles', 'js'
 gulp.task('deploy:assets', function() {
   console.log('Deploying assets to: ' + path.resolve(__dirname, config.deploy.assets));
   return gulp.src(['dist/**/*.{csv,png,jpg,svg}'])
+    .pipe($.size({
+      gzip: true,
+      showFiles: true
+    }))
     .pipe(gulp.dest(config.deploy.assets))
 });
 
