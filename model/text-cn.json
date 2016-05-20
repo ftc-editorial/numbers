@@ -2,14 +2,15 @@
 	"lightTheme": true,
 	"assetsPath": "/bower_components/ftc-icons/",
 	"description": "",
-	"ogSiteName": "",
 	"ogTitle": "",
+	"ogType": "article",
 	"ogImage": "",
+	"ogUrl": "http://www.ftchinese.com/channel/numbers-china.html",
 	"englishEdition": {
 		"text": "English",
 		"href": "https://ig.ft.com/sites/numbers/economies/china"
 	},
-	"articleHeadline": "中国经济一图览",
+	"articleHead": "中国经济一图览",
 	"articleLead": "英国《金融时报》中文网对中国关键经济数据的一站式概览，包括 <a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>。",
 	"articleByline": "制作：<a href=\"https://twitter.com/gabewildau\" rel=\"nofollow\">吳佳柏</a>，<a href=\"https://twitter.com/ecadman\" rel=\"nofollow\">艾蜜莉•卡德曼</a>，<a href=\"https://twitter.com/yuanfenyang\" rel=\"nofollow\">杨缘</a>，<a href=\"https://twitter.com/lukekavanagh_\" rel=\"nofollow\">路克•卡瓦纳</a>，<a href=\"https://twitter.com/silvashih\" rel=\"nofollow\">史书华</a>，倪卫国",
 	"sections": [
