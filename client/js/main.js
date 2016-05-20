@@ -10,12 +10,12 @@ const helper = require('./helper');
 const leadEl = document.querySelector('.articlehead__lead');
 
 const leadElPos = helper.getElementPosition(leadEl);
-console.log(leadElPos);
+// console.log(leadElPos);
 
 const headerEl = document.querySelector('[data-o-component=o-header]');
 new Sticky(headerEl, {
-	start: leadElPos.yBottom,
-	debug: true
+	start: leadElPos.yBottom/*,
+	debug: true*/
 });
 
 

@@ -264,7 +264,9 @@ gulp.task('deploy:assets', function() {
 gulp.task('deploy:html', function() {
   console.log('Deploying HTML file to: ' + path.resolve(__dirname, config.deploy.index));
   return gulp.src('dist/index.html')
-    .pipe($.prefix(config.prefixUrl))
+    .pipe($.prefix(config.prefixUrl, [
+      { match: "object[data]", attr: "data" }
+    ]))
     .pipe($.rename({
       basename: projectName,
       extname: '.html'
@@ -281,6 +283,7 @@ gulp.task('deploy:html', function() {
       showFiles: true
     }))
     .pipe(gulp.dest(config.deploy.index));
+    // .pipe(gulp.dest('.'));
 });
 
 
