@@ -3,9 +3,9 @@
 	 viewBox="0 0 300 276">
 <title>Property price growth in China</title>
 <desc>Annual % change</desc>
-<text class="chart-title" fill="#43423e" font-size="20" y="18">Property price growth in China</text>
+<text class="chart-title" fill="#43423e" font-size="20" y="18">中国房价增幅</text>
 
-<text class="chart-subtitle" fill="#74736C" font-size="15" y="34">Annual % change</text>
+<text class="chart-subtitle" fill="#74736C" font-size="15" y="34">年同比变化%</text>
 
 <text class="chart-source" font-size="10" fill-opacity="0.4" y="269">Source: Thomson Reuters Datastream, February 2016</text>
 
