@@ -12,6 +12,7 @@ const babelify = require('babelify');
 const cssnext = require('postcss-cssnext');
 const $ = require('gulp-load-plugins')();
 const minimist = require('minimist');
+process.env.NODE_ENV = 'development';
 
 const config = require('./config.json');
 
@@ -46,14 +47,12 @@ function readFilePromisified(filename) {
 gulp.task('mustache', function () {
   const DEST = '.tmp';
 
-  const analytics = false;
+//   var analytics = false;
 
-  if (taskName === 'build' || taskName === 'deploy') {
-// include analytics patial at compile time in `build` and `deploy` task`.
-    analytics = true;
-// change assets path dynamically.
-    article.assetsPath = 'http://static.ftchinese.com/ftc-icons/';   
-  }
+//   if (taskName === 'build' || taskName === 'deploy') {
+// // include analytics patial at compile time in `build` and `deploy` task`.
+//     analytics = true; 
+//   }
 
   const dataFiles = [articleDataFile, footerDataFile];
 
@@ -64,6 +63,11 @@ gulp.task('mustache', function () {
       return contents.map(JSON.parse);
     })
     .then(function(contents){
+      var analytics = false;
+      if (process.env.NODE_ENV === 'production') {
+         analytics = true;
+         contents[0].assetsPath = 'http://static.ftchinese.com/ftc-icons/';
+      }  
       gulp.src('views/index.mustache')
         .pipe($.mustache({
           analytics: analytics,
@@ -109,19 +113,26 @@ gulp.task('styles', function styles() {
 });
 
 gulp.task('scripts', function() {
+  const DEST = '.tmp/scripts/';
+
+  var plugins = [];
+  if (process.env.NODE_ENV === 'development') {
+    plugins = [watchify];
+  }
   const b = browserify({
     entries: 'client/js/main.js',
     debug: true,
     cache: {},
     packageCache: {},
     transform: [debowerify, babelify],
-    plugin: [watchify]
+    // plugin: [watchify]
+    plugin: plugins
   });
 
   b.on('update', bundle);
   b.on('log', $.util.log);
 
-  bundle();
+  return bundle();
 
   function bundle(ids) {
     $.util.log('Compiling JS...');
@@ -138,32 +149,9 @@ gulp.task('scripts', function() {
       .pipe(buffer())
       .pipe($.sourcemaps.init({loadMaps: true}))
       .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest('.tmp/scripts'))
+      .pipe(gulp.dest(DEST))
       .pipe(browserSync.stream({once:true}));
   }
-});
-
-gulp.task('js', function() {
-  const DEST = '.tmp/scripts/';
-
-  const b = browserify({
-    entries: 'client/js/main.js',
-    debug: true,
-    cache: {},
-    packageCache: {},
-    transform: [babelify, debowerify]
-  });
-
-  return b.bundle()
-    .on('error', function(err) {
-      $.util.log(err.message);
-      this.emit('end')
-    })
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe($.sourcemaps.init({loadMaps: true}))
-    .pipe($.sourcemaps.write('./'))
-    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('lint', function() {
@@ -219,8 +207,38 @@ gulp.task('serve:dist', function() {
   });
 });
 
+gulp.task('clean', function() {
+  return del(['.tmp', 'dist']).then(()=>{
+    console.log('.tmp and dist deleted');
+  });
+});
+
+// Set NODE_ENV in gulp task.
+// Mainly used to produce different mustache results.
+// Any easy way to set it?
+gulp.task('dev', function() {
+  return Promise.resolve(process.env.NODE_ENV = 'development')
+    .then(function(value) {
+      console.log('NODE_ENV: ' + process.env.NODE_ENV);
+    });
+});
+
+gulp.task('prod', function() {
+  return Promise.resolve(process.env.NODE_ENV = 'production')
+    .then(function(value) {
+      console.log('NODE_ENV: ' + process.env.NODE_ENV);
+    });
+});
+
+gulp.task('noenv', function() {
+  return Promise.resolve(process.env.NODE_ENV = null)
+    .then(function(value) {
+      console.log('NODE_ENV: ' + process.env.NODE_ENV);
+    });
+});
+
 /* demo */
-gulp.task('demo', gulp.series('mustache', 'styles', 'js', function() {
+gulp.task('demo:copy', function() {
   const dest = path.resolve(__dirname, config.demo, 'numbers');
   console.log('Copying demo to: ' + dest);
   return gulp.src(['.tmp/**/*.*', 'client/**/*.{svg,png,jpg,jpeg,gif}'])
@@ -228,8 +246,10 @@ gulp.task('demo', gulp.series('mustache', 'styles', 'js', function() {
       gzip: true,
       showFiles: true
     }))
-    .pipe(gulp.dest(dest));
-}));
+    .pipe(gulp.dest(dest));  
+});
+
+gulp.task('demo', gulp.series('noenv', 'clean', 'styles', 'scripts', 'mustache', 'dev'));
 
 /* build */
 gulp.task('html', function() {
@@ -259,15 +279,7 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist'));
 });
 
-
-gulp.task('clean', function() {
-  return del(['.tmp', 'dist']).then(()=>{
-    console.log('.tmp and dist deleted');
-  });
-});
-
-gulp.task('build', gulp.series('clean', gulp.parallel('mustache', 'styles', 'js', 'images', 'extras'), 'html'));
-
+gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('mustache', 'styles', 'scripts', 'images', 'extras'), 'html', 'dev'));
 
 
 /**********deploy***********/
