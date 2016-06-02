@@ -1,6 +1,5 @@
 const fs= require('fs');
 const path = require('path');
-//const url = require('url');
 const mkdirp = require('mkdirp');
 
 const request = require('request');

@@ -37,8 +37,8 @@ co(function* () {
 
       const translatedSvg = helper.translate(svg.content, targetData[svg.filename]);
 
-      // const destPath = '../client/graphics/';
-      const destPath = './client/';
+      const destPath = '../client/graphics/';
+      // const destPath = './client/';
 
       const destFilename = path.resolve(__dirname, destPath,  svg.filename);
 
