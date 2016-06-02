@@ -13,11 +13,14 @@ function urlToFilename(uri) {
   var filename = path.join(parsedUrl.hostname, urlPath);
 
   if (!path.extname(filename)) {
-    filename = filename + '.html';
+    filename = filename + '/index.html';
   }
 
   return filename;
 }
+
+const link = 'https://ig.ft.com/sites/numbers/economies/china/'
+console.log(urlToFilename(link));
 
 function getSvgLinks(body) {
   const $ = cheerio.load(body, {
@@ -47,17 +50,47 @@ function getFilePaths(body) {
   return paths;
 }
 
+// parameter @object target
+// keys extracted from element's class name.
+// {
+//  "chart-title": "", 
+//  "chart-subtitle": "", 
+//  "chart-source": "", 
+//  "chart-key": []
+// }
+
+function translate(source, target) {
+
+  const keys = Object.keys(target);
+
+  const $ = cheerio.load(source, {
+    decodeEntities:false,
+    xmlMode: true
+  });
+
+  keys.forEach(function(key) {
+    const targetText = target[key];
+    const el = $('.' + key);     
+
+    if (el.length > 0) {
+      const elTagName = el[0].name.toLowerCase();
+
+      if ( elTagName === 'text') {
+        el.text(targetText);
+        el.removeAttr('font-family');
+      } else {
+        el.find('text').each(function(i) {
+          $(this).text(targetText[i]);
+          $(this).removeAttr('font-family');
+        });
+      }        
+    }
+  });
+
+  return $.html();  
+}
+
 exports.urlToFilename = urlToFilename;
 exports.getSvgLinks = getSvgLinks;
 exports.getFilePaths = getFilePaths;
-
-if (require.main === module) {
-  fs.readFile('ig.ft.com/autograph/graphics/sources-of-china-s-growth.svg', function(err, data) {
-    const $ = cheerio.load(data, {
-      decodeEntities:false,
-      xmlMode: true
-    });
-
-    console.log($.html());
-  });
-}
+exports.translate = translate;

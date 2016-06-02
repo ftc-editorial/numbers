@@ -10,29 +10,33 @@ SVG text in scraper/svg-text-cn.json
 
 **DO NOT** touch `model/footer.json`.
 
-## Scraper
+## Scrape
 
-Download all svg files into ig.ft.com/autograph/graphics folder, add translated text and procude new svg files.
+Switched scrape.js to scrape.sh.
+Use `wget` to download the site.
+
+**You need to install `wget` first on you system**. On Mac:
+
+```
+brew install wget
+```
 
 ### Usage
 Change directory to scraper:
 ```
 cd scraper 
+source scrape.sh
 ```
 
-Download svgs:
+### Extract Text from Orginal SVG:
 ```
-node scraper.js
+node extract.js
 ```
 
-Replace with chinese text:
+###
+Replace English Text in SVG with Chinese text:
 ```
 node translate.js
-```
-
-Extract svg text from the english version: (you may not need to run this command):
-```
-node extracter.js
 ```
 
 ## Note

@@ -47,7 +47,7 @@ function getSvgText(body) {
   return textObj;
 }
 
-const indexPage = 'ig.ft.com/sites/numbers/economies/china.html';
+const indexPage = 'ig.ft.com/sites/numbers/economies/china/index.html';
 
 readFilePromisified(indexPage)
 // value is an object {filename: , content: }

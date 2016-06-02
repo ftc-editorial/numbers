@@ -7,7 +7,7 @@ const request = require('request');
 
 const helper = require('./helper');
 
-const page = 'https://ig.ft.com/sites/numbers/economies/china';
+const page = 'https://ig.ft.com/sites/numbers/economies/china/';
 
 
 function spider(url, nesting, callback) {
