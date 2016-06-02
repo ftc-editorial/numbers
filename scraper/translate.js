@@ -1,62 +1,59 @@
 const fs= require('fs');
 const path = require('path');
 const url = require('url');
-const async = require('async');
+const co = require('co');
 const request = require('request');
 const cheerio = require('cheerio');
 const helper = require('./helper');
 
+const indexPage = 'ig.ft.com/sites/numbers/economies/china.html';
 
-function translateAndSave(filepath, translatedData, callback) {
-  fs.readFile(filepath, 'utf8', function(err, contents) {
 
-    if (err) { 
-      return callback(err); 
+function readFilePromisified(file) {
+  return new Promise(
+    function(resolve, reject) {
+      fs.readFile(file, 'utf8', function(err, data) {
+        if (err) {
+          reject(err);
+        } else {
+          const filename = path.basename(file);
+          resolve({filename: filename, content: data});
+        }
+      });
     }
-
-    const destPath = '../client/graphics/';
-
-    const filename = path.basename(filepath);
-    console.log('Translating file ' + filename);
-
-    const textObj = translatedData[filename];
-    const destFilename = path.resolve(__dirname, destPath,  filename);  
-
-    if (!textObj) {
-      console.log('Translation text for ' + filename + 'does not exist.');
-      return;
-    }
-
-    const newContents = getTranslatedContents(contents, textObj);
-    console.log('Saving: ' + destFilename);
-
-    const ws = fs.createWriteStream(destFilename);
-
-    ws.write(newContents);
-  });
+  );
 }
 
-function getTranslatedContents(contents, textObj) {
-  const textKeys = Object.keys(textObj);
+// parameter @object target
+// keys extracted from element's class name.
+// {
+//  "chart-title": "", 
+//  "chart-subtitle": "", 
+//  "chart-source": "", 
+//  "chart-key": []
+// }
+function translate(source, target) {
 
-  const $ = cheerio.load(contents, {
+  const keys = Object.keys(target);
+
+  const $ = cheerio.load(source, {
     decodeEntities:false,
     xmlMode: true
   });
 
-  textKeys.forEach(function(textKey) {
-    const textValue = textObj[textKey];
-    const el = $('.'+textKey);     
+  keys.forEach(function(key) {
+    const targetText = target[key];
+    const el = $('.' + key);     
 
     if (el.length > 0) {
       const elTagName = el[0].name.toLowerCase();
 
       if ( elTagName === 'text') {
-        el.text(textValue);
+        el.text(targetText);
         el.removeAttr('font-family');
       } else {
         el.find('text').each(function(i) {
-          $(this).text(textValue[i]);
+          $(this).text(targetText[i]);
           $(this).removeAttr('font-family');
         });
       }        
@@ -66,53 +63,36 @@ function getTranslatedContents(contents, textObj) {
   return $.html();  
 }
 
-function translate(index, translation, callback) {
-  async.waterfall([
-    function(callback) {
-      fs.readFile(index, 'utf8', function(err, body) {
-        if (err) { 
-          return callback(err); 
-        }
-        
-        const filePaths = helper.getFilePaths(body);
+co(function* () {
+  try {
+    const [index, json] = yield Promise.all([
+      readFilePromisified(indexPage),
+      readFilePromisified('svg-text-cn.json')
+    ])
 
-        callback(null, filePaths);
-      });
-    },
+    const svgFiles = helper.getFilePaths(index.content);
+    const targetData = JSON.parse(json.content);
 
-    function(filePaths, callback) {
-      fs.readFile(translation, 'utf8', function(err, cnData) {
-        if (err) {
-          return callback(err);
-        }
-        const parsedData = JSON.parse(cnData);
-        callback(null, filePaths, parsedData);
-      });
-    },
+    const svgContents = yield Promise.all(svgFiles.map(readFilePromisified));
 
-    function(filePaths, parsedData, callback) {
+    svgContents.forEach(function(svg) {
+      console.log('Translating file: ' + svg.filename);
 
-      async.each(filePaths, function(filepath, callback) {
+      const translatedSvg = translate(svg.content, targetData[svg.filename]);
 
-        translateAndSave(filepath, parsedData, callback);
-      });
-    },
-    function(callback) {
-      callback(null, 'done');
-    }
-  ], function(err, result) {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
+      const destPath = '../client/graphics/';
+      // const destPath = './client/';
 
-const indexPage = 'ig.ft.com/sites/numbers/economies/china.html';
-const svgTextCn = 'svg-text-cn.json';
+      const destFilename = path.resolve(__dirname, destPath,  svg.filename);
 
-translate(indexPage, svgTextCn, function(err, result) {
-  if (err) {
-    console.log(err)
+      console.log('Writing translated file to: ' + destFilename);
+      
+      const ws = fs.createWriteStream(destFilename);
+      ws.write(translatedSvg);
+
+    });
+
+  } catch(e) {
+    console.log('Failure to read: ' + e);
   }
-  console.log(result);
 });

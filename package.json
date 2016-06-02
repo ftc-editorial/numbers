@@ -38,6 +38,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "cheerio": "^0.20.0",
+    "co": "^4.6.0",
     "mkdirp": "^0.5.1",
     "request": "^2.72.0"
   }
