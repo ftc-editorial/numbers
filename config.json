@@ -6,7 +6,7 @@
 	"demo": "../ft-interact/",
 	"deploy": {
 		"index": "../channel/",
-		"assets": "../ig/"
+		"assets": "../interative-grapphics/"
 	},
 	"prefixUrl": "http://static.ftchinese.com/ig/"
 }
