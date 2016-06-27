@@ -51,12 +51,12 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "Renminbi vs US dollar",
         "chart-subtitle": "Rmb per $",
-        "chart-source": "Source: Bloomberg. 08 Jun 2016"
+        "chart-source": "Source: Bloomberg. 27 Jun 2016"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "China bond yields and spread",
         "chart-subtitle": "Spot rate, %",
-        "chart-source": "Source: CEIC/China Central Depositary. 12 Jun 2016",
+        "chart-source": "Source: CEIC/China Central Depositary. 24 Jun 2016",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -70,7 +70,7 @@
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "China's 7-day repo rate",
         "chart-subtitle": "%",
-        "chart-source": "Source: CEIC. 13 Jun 2016"
+        "chart-source": "Source: CEIC. 27 Jun 2016"
     },
     "chinese-inflation.svg": {
         "chart-title": "Chinese inflation",
@@ -85,12 +85,12 @@
     "china-s-unemployment-rate.svg": {
         "chart-title": "China's unemployment rate",
         "chart-subtitle": "% of labour force",
-        "chart-source": "Source: CEIC. 17 Feb 2016"
+        "chart-source": "Source: CEIC. 16 Jun 2016"
     },
     "china-s-trade-balance.svg": {
         "chart-title": "China's trade balance",
         "chart-subtitle": "$bn",
-        "chart-source": "Source: CEIC. 08 Jun 2016",
+        "chart-source": "Source: CEIC. 21 Jun 2016",
         "chart-key": [
             "Imports",
             "Exports"
@@ -104,11 +104,11 @@
     "floor-space-under-construction.svg": {
         "chart-title": "Floor space under construction",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 17 May 2016"
+        "chart-source": "Source: CEIC. 15 Jun 2016"
     },
     "floor-space-sold.svg": {
         "chart-title": "Floor space sold",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 13 Jun 2016"
+        "chart-source": "Source: CEIC. 16 Jun 2016"
     }
 }
