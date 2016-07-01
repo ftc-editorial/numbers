@@ -290,7 +290,7 @@ gulp.task('deploy:assets', function() {
       gzip: true,
       showFiles: true
     }))
-    .pipe(gulp.dest(config.deploy.assets))
+    .pipe(gulp.dest(config.assets))
 });
 
 gulp.task('deploy:html', function() {
@@ -314,7 +314,7 @@ gulp.task('deploy:html', function() {
       gzip: true,
       showFiles: true
     }))
-    .pipe(gulp.dest(config.deploy.index));
+    .pipe(gulp.dest(config.index));
     // .pipe(gulp.dest('.'));
 });
 

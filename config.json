@@ -4,9 +4,7 @@
 	    "log": "http://static.ftchinese.com/js/log.js?v=6"
 	},
 	"demo": "../ft-interact/",
-	"deploy": {
-		"index": "../channel/",
-		"assets": "../interative-grapphics/"
-	},
+	"index": "../channel/",
+	"assets": "../ig-assets/",
 	"prefixUrl": "http://static.ftchinese.com/ig/"
 }
