@@ -37,7 +37,7 @@
     "china-s-official-pmis.svg": {
         "chart-title": "中国官方采购经理指数(PMI)",
         "chart-subtitle": "",
-        "chart-source": "来源：CEIC，2016/06/01",
+        "chart-source": "来源：CEIC，2016/07/01",
         "chart-key": [
             "制造业",
             "非制造业"
@@ -46,7 +46,7 @@
     "shanghai-composite-index.svg": {
         "chart-title": "上证综指",
         "chart-subtitle": "",
-        "chart-source": "来源：CEIC，2016/05/31"
+        "chart-source": "来源：CEIC，2016/06/30"
     },
     "weighted-average-bank-loan-rate.svg": {
         "chart-title": "加权平均银行贷款利率",
@@ -56,17 +56,17 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "人民币对美元",
         "chart-subtitle": "1美元对人民币",
-        "chart-source": "来源：彭博，2016/06/27"
+        "chart-source": "来源：彭博，2016/06/30"
     },
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "7天回购利率",
         "chart-subtitle": "%",
-        "chart-source": "来源：CEIC，2016/06/27"
+        "chart-source": "来源：CEIC，2016/07/01"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "债券",
         "chart-subtitle": "中国债券收益率与收益率差%",
-        "chart-source": "来源：CEIC/中央国债登记结算，2016/06/24",
+        "chart-source": "来源：CEIC/中央国债登记结算，2016/06/30",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -99,7 +99,7 @@
     "china-s-current-account-balance.svg": {
         "chart-title": "中国经常账目余额",
         "chart-subtitle": "占GDP的比例％",
-        "chart-source": "来源：CEIC，2016/05/06"
+        "chart-source": "来源：CEIC，2016/06/30"
     },
     "floor-space-under-construction.svg": {
         "chart-title": "房屋施工面积",

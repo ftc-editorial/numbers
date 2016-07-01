@@ -37,7 +37,7 @@
     "china-s-official-pmis.svg": {
         "chart-title": "China's official PMIs",
         "chart-subtitle": "",
-        "chart-source": "Source: CEIC. 01 Jun 2016",
+        "chart-source": "Source: CEIC. 01 Jul 2016",
         "chart-key": [
             "Manufacturing",
             "Non-manufacturing"
@@ -46,17 +46,17 @@
     "shanghai-composite-index.svg": {
         "chart-title": "Shanghai Composite Index",
         "chart-subtitle": "",
-        "chart-source": "Source: CEIC. 31 May 2016"
+        "chart-source": "Source: CEIC. 30 Jun 2016"
     },
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "Renminbi vs US dollar",
         "chart-subtitle": "Rmb per $",
-        "chart-source": "Source: Bloomberg. 27 Jun 2016"
+        "chart-source": "Source: Bloomberg. 30 Jun 2016"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "China bond yields and spread",
         "chart-subtitle": "Spot rate, %",
-        "chart-source": "Source: CEIC/China Central Depositary. 24 Jun 2016",
+        "chart-source": "Source: CEIC/China Central Depositary. 30 Jun 2016",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -70,7 +70,7 @@
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "China's 7-day repo rate",
         "chart-subtitle": "%",
-        "chart-source": "Source: CEIC. 27 Jun 2016"
+        "chart-source": "Source: CEIC. 01 Jul 2016"
     },
     "chinese-inflation.svg": {
         "chart-title": "Chinese inflation",
@@ -99,7 +99,7 @@
     "china-s-current-account-balance.svg": {
         "chart-title": "China's current account balance",
         "chart-subtitle": "percentage of GDP (%)",
-        "chart-source": "Source: CEIC. 06 May 2016"
+        "chart-source": "Source: CEIC. 30 Jun 2016"
     },
     "floor-space-under-construction.svg": {
         "chart-title": "Floor space under construction",
