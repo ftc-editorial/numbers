@@ -284,7 +284,7 @@ gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('mustache', 'style
 
 /**********deploy***********/
 gulp.task('deploy:assets', function() {
-  console.log('Deploying assets to: ' + path.resolve(__dirname, config.deploy.assets));
+  console.log('Deploying assets to: ' + path.resolve(__dirname, config.assets));
   return gulp.src(['dist/**/*.{csv,png,jpg,svg}'])
     .pipe($.size({
       gzip: true,
@@ -294,7 +294,7 @@ gulp.task('deploy:assets', function() {
 });
 
 gulp.task('deploy:html', function() {
-  console.log('Deploying HTML file to: ' + path.resolve(__dirname, config.deploy.index));
+  console.log('Deploying HTML file to: ' + path.resolve(__dirname, config.index));
   return gulp.src('dist/index.html')
     .pipe($.prefix(config.prefixUrl, [
       { match: "object[data]", attr: "data" }
