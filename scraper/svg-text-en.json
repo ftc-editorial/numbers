@@ -22,12 +22,12 @@
     "li-keqiang-index.svg": {
         "chart-title": "Li Keqiang index",
         "chart-subtitle": "Annual % change",
-        "chart-source": "Source: Bloomberg. 11 Aug 2016"
+        "chart-source": "Source: Bloomberg. 02 Sep 2016"
     },
     "china-s-activity-indicators.svg": {
         "chart-title": "China's activity indicators",
         "chart-subtitle": "Annual growth (%), monthly",
-        "chart-source": "Source: CEIC. 12 Aug 2016",
+        "chart-source": "Source: CEIC. 13 Sep 2016",
         "chart-key": [
             "Fixed asset investment (ytd)",
             "Retail sales",
@@ -37,7 +37,7 @@
     "china-s-official-pmis.svg": {
         "chart-title": "China's official PMIs",
         "chart-subtitle": "",
-        "chart-source": "Source: CEIC. 01 Aug 2016",
+        "chart-source": "Source: CEIC. 01 Sep 2016",
         "chart-key": [
             "Manufacturing",
             "Non-manufacturing"
@@ -46,17 +46,17 @@
     "shanghai-composite-index.svg": {
         "chart-title": "Shanghai Composite Index",
         "chart-subtitle": "",
-        "chart-source": "Source: CEIC. 29 Jul 2016"
+        "chart-source": "Source: CEIC. 31 Aug 2016"
     },
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "Renminbi vs US dollar",
         "chart-subtitle": "Rmb per $",
-        "chart-source": "Source: Bloomberg. 15 Aug 2016"
+        "chart-source": "Source: Bloomberg. 12 Sep 2016"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "China bond yields and spread",
         "chart-subtitle": "Spot rate, %",
-        "chart-source": "Source: CEIC/China Central Depositary. 15 Aug 2016",
+        "chart-source": "Source: CEIC/China Central Depositary. 12 Sep 2016",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -70,12 +70,12 @@
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "China's 7-day repo rate",
         "chart-subtitle": "%",
-        "chart-source": "Source: CEIC. 16 Aug 2016"
+        "chart-source": "Source: CEIC. 13 Sep 2016"
     },
     "chinese-inflation.svg": {
         "chart-title": "Chinese inflation",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 09 Aug 2016"
+        "chart-source": "Source: CEIC. 09 Sep 2016"
     },
     "china-s-average-annual-wages.svg": {
         "chart-title": "China's average annual wages",
@@ -90,7 +90,7 @@
     "china-s-trade-balance.svg": {
         "chart-title": "China's trade balance",
         "chart-subtitle": "$bn",
-        "chart-source": "Source: CEIC. 08 Aug 2016",
+        "chart-source": "Source: CEIC. 08 Sep 2016",
         "chart-key": [
             "Imports",
             "Exports"
@@ -104,11 +104,11 @@
     "floor-space-under-construction.svg": {
         "chart-title": "Floor space under construction",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 19 Jul 2016"
+        "chart-source": "Source: CEIC. 16 Aug 2016"
     },
     "floor-space-sold.svg": {
         "chart-title": "Floor space sold",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 12 Aug 2016"
+        "chart-source": "Source: CEIC. 13 Sep 2016"
     }
 }
