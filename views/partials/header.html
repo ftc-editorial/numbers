@@ -1,0 +1,57 @@
+<svg style="display:none;">
+{% include "partials/cross.svg" %}
+{% include "partials/hamburger.svg" %}
+</svg>
+<header class="o-header o-header--{{header.theme}}" data-o-component="o-header">
+  <div class="o-header__bottom">
+    <div class="o-header__container">
+      <div class="o-header__left">
+        <div class="o-header__logo">
+          <a class="o-header__logo-link" href="http://www.ftchinese.com" target="_blank" title="前往FT中文网首页"><span>FT中文网</span><img src="{{iconsPath}}/svg/brand-square.svg" target="_blank"></a>
+        </div>        
+      </div>
+
+      <div class="o-header__center">
+        
+        <div class="o-header__title">
+          <span class="o-header__headline">{{articleHead}}</span>
+          {% if edition %}
+          <a class="o-header__edition" href="{{edition.href}}" target="_blank">{{edition.text}}</a>
+          {% endif %}          
+        </div>
+        
+        <a class="o-header__masthead" href="/"><img src="{{iconsPath}}/svg/brand-masthead.svg"></a>
+        
+      </div>
+
+      <nav class="o-header__right">
+
+        <button class="o-header__nav-toggle" data-o-component="o-toggle" data-o-toggle-target=".o-header__nav">
+          <span>目录</span>
+          <svg class="o-icons__hamburger">
+            <use xlink:href="#o-icons__hamburger"></use>
+          </svg>
+          <svg class="o-icons__cross">
+            <use xlink:href="#o-icons__cross"></use>
+          </svg>
+        </button>
+        
+        <ol class="o-header__nav">
+
+          {% for section in sections %}
+          <li class="o-header__nav-item">
+            <a class="o-header__nav-link bdr--{{section.theme}}" href="#{{section.id}}">{{section.name}}</a>
+          </li>
+          {% endfor %}
+
+          {% if edition %}
+          <li class="o-header__nav-item mobile">
+            <a class="o-header__edition" href="{{edition.href}}" target="_blank">{{edition.text}}</a>
+          {% endif %}
+          </li>
+        </ol>           
+      </nav>         
+    </div><!-- o-header__container -->    
+  </div><!-- o-header__bottom -->
+
+</header>

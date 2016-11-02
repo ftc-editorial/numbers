@@ -22,7 +22,8 @@ $o-share-icon-size: 32px;
 @import "components/colorcoding";
 @import "components/share";
 
-@import "footer/main";
+$o-footer-is-silent: false;
+@import "ftc-footer/main";
 
 
 

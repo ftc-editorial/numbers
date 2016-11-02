@@ -16,17 +16,34 @@
 	span {
 		vertical-align: middle;
 	}
-	&:after {
-		content: '';
-		margin-left: 5px;
-		@include oIconsGetSassvg(hamburger, $color: oColorsGetColorFor(o-header--light, text));
+	svg {
+		width: 40px;
+		height: 40px;
+		fill: oColorsGetColorFor(o-header, text);
+		display: inline-block;
+		vertical-align: middle;
 	}
-	
-	.icon-hamburger {
+
+	.o-header--theme-light & {
+		svg {
+			fill: oColorsGetColorFor(o-header--light, text);
+		}
+	}
+
+	.o-icons__hamburger {
 		display: inline-block;
 	}
-	.icon-cross {
+	.o-icons__cross {
 		display: none;
+	}
+
+	&[aria-expanded="true"] {
+		.o-icons__hamburger {
+			display: none;
+		}
+		.o-icons__cross {
+			display: inline-block;
+		}
 	}
 }
 
@@ -39,7 +56,7 @@
 
 	@include oColorsFor(o-header-nav, background);
 	
-	.o-header--light & {
+	.o-header--theme-light & {
 		@include oColorsFor(o-header-nav--light, background);
 	}
 
@@ -69,7 +86,7 @@
 		}
 	}
 
-	.o-header--light & {
+	.o-header--theme-light & {
 		margin-bottom: 4px;
 		border-bottom: 1px dotted oColorsGetColorFor(o-header-divider--light, border);
 	}
@@ -86,7 +103,7 @@
 
 	@include oColorsFor(o-header-item, text);
 
-	.o-header--light &{
+	.o-header--theme-light &{
 		@include oColorsFor(o-header-item--light, text);
 	}
 

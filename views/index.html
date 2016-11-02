@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="article" role="main">
+  <header class="articlehead">
+    <div data-o-grid-container>
+
+      <h1 class="articlehead__headline" id="main-title">{{articleHead}}</h1>
+
+      <p class="articlehead__lead">{{articleLead}}</p>
+      
+      <p class="articlehead__byline">{{articleByline}}</a>
+      </p>
+      
+      <div class="o-share o-share--{{share.theme}}" data-o-component="o-share"></div>
+    </div><!-- data-o-grid-container -->
+  </header>
+
+  {% for section in sections%}
+  <section class="card__group" id="{{section.id}}" data-card-theme="{{section.theme}}">
+
+    <div data-o-grid-container>
+      <div data-o-grid-row>
+
+      {% for card in section.cards %}
+        <div class="card__group-item" data-o-grid-col>          
+          {% include "partials/card.html" %}
+
+        </div>            
+      {% endfor %}
+
+      </div><!-- data-o-grid-row -->        
+    </div><!-- data-o-grid-container-->        
+
+  </section>
+  {% endfor %}
+
+</article>
+{% endblock %}

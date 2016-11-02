@@ -26,7 +26,7 @@
 	
 	@include oColorsFor(o-header, text background);
 
-	.o-header--light & {
+	.o-header--theme-light & {
 		@include oColorsFor(o-header--light, text background);
 		border-bottom: 1px solid oColorsGetColorFor(o-header-divider--light, border);
 	}

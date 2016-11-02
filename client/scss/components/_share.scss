@@ -1,6 +1,2 @@
 @include oShareBase;
-@include oShareIconTint;
-.o-share {
-	position: relative;
-	top: 20px;
-}
+@include oShareThemeTint;

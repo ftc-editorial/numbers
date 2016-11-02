@@ -1,21 +1,11 @@
-'use strict'
-const DomDelegate = require('dom-delegate');
-const oShare = require('ftc-share');
-oShare.init();
-const Sticky = require('./sticky');
-const oToggler = require('./toggler');
-oToggler.init();
-const helper = require('./helper');
+import Share from 'ftc-share';
+import {ToggleMenu} from 'ftc-toggle';
+import Sticky from './sticky';
 
-const leadEl = document.querySelector('.articlehead__lead');
+Share.init();
+new ToggleMenu('.o-header__right');
 
-const leadElPos = helper.getElementPosition(leadEl);
-// console.log(leadElPos);
-
-const headerEl = document.querySelector('[data-o-component=o-header]');
-new Sticky(headerEl, {
-	start: leadElPos.yBottom/*,
-	debug: true*/
+new Sticky('.o-header', {
+	relativeTo: '.articlehead__lead'
 });
-
 

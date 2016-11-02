@@ -1,92 +1,109 @@
-const fs = require('fs');
+const promisify = require('promisify-node')
+const fs = promisify('fs');
 const path = require('path');
-const gulp = require('gulp');
+const url = require('url');
+const isThere = require('is-there');
+const co = require('co');
+const mkdirp = require('mkdirp');
+const helper = require('./helper');
+const merge = require('deepmerge');
+
 const browserSync = require('browser-sync').create();
 const del = require('del');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const browserify = require('browserify');
-const watchify = require('watchify');
-const debowerify = require('debowerify');
-const babelify = require('babelify');
 const cssnext = require('postcss-cssnext');
+
+const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
+
 const minimist = require('minimist');
 process.env.NODE_ENV = 'development';
 
-const config = require('./config.json');
-
 const knownOptions = {
-  string: 'input',
-  default: {input: 'text-cn.json'},
-  alias: {i: 'input'}
+  string: ['input'],
+  boolean: 'all',
+  alias: {
+    i: 'input',
+    a: 'all'
+  },
+  default: {
+    input: 'numbers-china'
+  }, 
 };
 
 const argv = minimist(process.argv.slice(2), knownOptions);
 
-const taskName = argv._[0];
-const articleDataFile = path.resolve(__dirname, 'model', argv.i);
-const footerDataFile = path.resolve(__dirname, 'model/footer.json');
-// const projectName = path.basename(argv.i, '.json');
-const projectName = 'numbers-china';
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
 
-function readFilePromisified(filename) {
-  return new Promise(
-    function(resolve, reject) {
-      fs.readFile(filename, 'utf8', function(err, data) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    }
-  );
-}
+const footer = require('./bower_components/ftc-footer');
 
-gulp.task('mustache', function () {
-  const DEST = '.tmp';
+const config = require('./config.json');
 
-//   var analytics = false;
+const demoList = ['numbers-china'];
 
-//   if (taskName === 'build' || taskName === 'deploy') {
-// // include analytics patial at compile time in `build` and `deploy` task`.
-//     analytics = true; 
-//   }
+const projects = argv.a ? demoList : [argv.i];
 
-  const dataFiles = [articleDataFile, footerDataFile];
+const index = argv.a ? 'index.html' : `${argv.i}.html`;
 
-  const promisedData = dataFiles.map(readFilePromisified);
+const articleDataFile = path.resolve(__dirname, 'data', argv.i);
+const footerDataFile = path.resolve(__dirname, 'data/footer.json');
 
-  return Promise.all(promisedData)
-    .then(function(contents) {
-      return contents.map(JSON.parse);
-    })
-    .then(function(contents){
-      var analytics = false;
-      if (process.env.NODE_ENV === 'production') {
-         analytics = true;
-         contents[0].assetsPath = 'http://static.ftchinese.com/ftc-icons/';
-      }  
-      gulp.src('views/index.mustache')
-        .pipe($.mustache({
-          analytics: analytics,
-          article: contents[0],
-          footer: contents[1]
-        }, {
-          extension: '.html'
-        }))
-        .pipe($.size({
-          gzip: true,
-          showFiles: true
-        }))
-        .pipe(gulp.dest(DEST))
-        .pipe(browserSync.stream({once: true}));
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+const prodSetting = {
+  "production": true
+};
+
+const tmpDir = '.tmp';
+
+process.env.NODE_ENV = 'dev';
+// change NODE_ENV between tasks.
+gulp.task('prod', function(done) {
+  process.env.NODE_ENV = 'prod';
+  done();
 });
+
+gulp.task('dev', function(done) {
+  process.env.NODE_ENV = 'dev';
+  done();
+});
+
+gulp.task('html', () => {
+  return co(function *() {
+
+    if (!isThere(tmpDir)) {
+      mkdirp.sync(tmpDir);
+    }
+
+    const data = yield Promise.all(projects.map(project => {
+      const file = path.resolve(process.cwd(), `data/${project}.json`);
+      return helper.readJson(file);
+    }));
+
+    const renderResults = yield Promise.all(data.map(datum => {
+      const template = 'index.html';
+      console.log(`Using data file ${datum.name}.json`);
+
+      const context = merge({
+        footer: footer
+      }, datum.content);
+      
+      if (process.env.NODE_ENV === 'prod') {
+        Object.assign(context, prodSetting);
+      } 
+
+      return helper.render(template, context, datum.name);
+    }));
+
+    yield Promise.all(renderResults.map(result => {
+      return fs.writeFile(`${tmpDir}/${result.name}.html`, result.content, 'utf8');
+    }));      
+  })
+  .then(function(){
+    browserSync.reload('*.html');
+  }, function(err) {
+    console.error(err.stack);
+  });
+});
+
 
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
@@ -112,76 +129,39 @@ gulp.task('styles', function styles() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('scripts', function() {
-  const DEST = '.tmp/scripts/';
-
-  var plugins = [];
-  if (process.env.NODE_ENV === 'development') {
-    plugins = [watchify];
-  }
-  const b = browserify({
-    entries: 'client/js/main.js',
-    debug: true,
-    cache: {},
-    packageCache: {},
-    transform: [debowerify, babelify],
-    // plugin: [watchify]
-    plugin: plugins
-  });
-
-  b.on('update', bundle);
-  b.on('log', $.util.log);
-
-  return bundle();
-
-  function bundle(ids) {
-    $.util.log('Compiling JS...');
-    if (ids) {
-      console.log('Chnaged Files:\n' + ids);
-    }   
-    return b.bundle()
-      .on('error', function(err) {
-        $.util.log(err.message);
-        browserSync.notify('Browerify Error!')
-        this.emit('end')
-      })
-      .pipe(source('bundle.js'))
-      .pipe(buffer())
-      .pipe($.sourcemaps.init({loadMaps: true}))
-      .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest(DEST))
-      .pipe(browserSync.stream({once:true}));
-  }
+gulp.task('eslint', () => {
+  return gulp.src('client/js/*.js')
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());
 });
 
-gulp.task('lint', function() {
-  return gulp.src('client/**/*.js')
-    .pipe($.eslint({
-        extends: 'eslint:recommended',
-        globals: {
-          'd3': true,
-          'ga': true,
-          'fa': true
-        },
-        rules: {
-          semi: [2, "always"]
-        },
-        envs: [
-          'browser'
-        ]
+gulp.task('webpack', function(done) {
+  if (process.env.NODE_ENV === 'prod') {
+    delete webpackConfig.watch;
+  }
+  webpack(webpackConfig, function(err, stats) {
+    if (err) throw new $.util.PluginError('webpack', err);
+    $.util.log('[webpack]', stats.toString({
+      colors: $.util.colors.supportsColor,
+      chunks: false,
+      hash: false,
+      version: false
     }))
-    .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError());  
+    browserSync.reload('main.js');
+    done();
+  });
 });
 
 gulp.task('serve', 
   gulp.parallel(
-    'mustache', 'styles', 'scripts', 
+    'html', 'styles', 'webpack', 
 
     function serve() {
     browserSync.init({
       server: {
-        baseDir: ['.tmp', 'client'],
+        baseDir: [tmpDir, 'client'],
+        index: index,
         routes: {
           '/bower_components': 'bower_components'
         }
@@ -190,22 +170,10 @@ gulp.task('serve',
 
     gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
     gulp.watch('client/scss/**/*.scss', gulp.parallel('styles'));
-    gulp.watch(['views/**/**/*.mustache', 'model/*.json'], gulp.parallel('mustache'));
-    gulp.watch('client/js/*.js', gulp.parallel('scripts'));
-    //gulp.watch('client/**/*.js', gulp.parallel('lint'));
+    gulp.watch(['views/**/*.html', 'data/*.json'], gulp.parallel('html'));
   })
 );
 
-gulp.task('serve:dist', function() {
-  browserSync.init({
-    server: {
-      baseDir: ['dist'],
-      routes: {
-        '/bower_components': 'bower_components'
-      }
-    }
-  });
-});
 
 gulp.task('clean', function() {
   return del(['.tmp', 'dist']).then(()=>{
@@ -213,95 +181,32 @@ gulp.task('clean', function() {
   });
 });
 
-// Set NODE_ENV in gulp task.
-// Mainly used to produce different mustache results.
-// Any easy way to set it?
-gulp.task('dev', function() {
-  return Promise.resolve(process.env.NODE_ENV = 'development')
-    .then(function(value) {
-      console.log('NODE_ENV: ' + process.env.NODE_ENV);
-    });
-});
+gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'styles', 'webpack'), 'dev'));
 
-gulp.task('prod', function() {
-  return Promise.resolve(process.env.NODE_ENV = 'production')
-    .then(function(value) {
-      console.log('NODE_ENV: ' + process.env.NODE_ENV);
-    });
-});
+function addPrefix ($, file) {
+  $('object').each(function() {
+    var objectEl = $(this);
+    var href = objectEl.attr('data')
+    if (href) {
+      objectEl.attr('data', url.resolve(config.urlPrefix, href));
+    }    
+  });
+}
 
-gulp.task('noenv', function() {
-  return Promise.resolve(process.env.NODE_ENV = null)
-    .then(function(value) {
-      console.log('NODE_ENV: ' + process.env.NODE_ENV);
-    });
-});
+gulp.task('prefix', function() {
+  const DEST = path.resolve(__dirname, config.html);
 
-/* demo */
-gulp.task('demo:copy', function() {
-  const dest = path.resolve(__dirname, config.demo, 'numbers');
-  console.log('Copying demo to: ' + dest);
-  return gulp.src(['.tmp/**/*.*', 'client/**/*.{svg,png,jpg,jpeg,gif}'])
-    .pipe($.size({
-      gzip: true,
-      showFiles: true
+  console.log(`Deploying HTML file to: ${DEST}`);
+
+  return gulp.src('.tmp/*.html')
+    .pipe($.smoosher({
+      ignoreFilesNotFound: true
     }))
-    .pipe(gulp.dest(dest));  
-});
-
-gulp.task('demo', gulp.series('noenv', 'clean', 'styles', 'scripts', 'mustache', 'dev'));
-
-/* build */
-gulp.task('html', function() {
-  return gulp.src('.tmp/index.html')
-    // .pipe($.useref({searchPath: ['.', '.tmp']}))
-    // .pipe($.if('*.js', $.uglify()))
-    // .pipe($.if('*.css', $.cssnano()))
-    .pipe($.htmlReplace(config.static))
-    .pipe($.smoosher())
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('extras', function () {
-  return gulp.src('client/**/*.csv', {
-    dot: true
-  })
-  .pipe(gulp.dest('dist'));
-});
-
-gulp.task('images', function () {
-  return gulp.src('client/**/*.{svg,png,jpg,jpeg,gif}')
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{cleanupIDs: false}]
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('mustache', 'styles', 'scripts', 'images', 'extras'), 'html', 'dev'));
-
-
-/**********deploy***********/
-gulp.task('deploy:assets', function() {
-  console.log('Deploying assets to: ' + path.resolve(__dirname, config.assets));
-  return gulp.src(['dist/**/*.{csv,png,jpg,svg}'])
-    .pipe($.size({
-      gzip: true,
-      showFiles: true
-    }))
-    .pipe(gulp.dest(config.assets))
-});
-
-gulp.task('deploy:html', function() {
-  console.log('Deploying HTML file to: ' + path.resolve(__dirname, config.index));
-  return gulp.src('dist/index.html')
-    .pipe($.prefix(config.prefixUrl, [
-      { match: "object[data]", attr: "data" }
-    ]))
-    .pipe($.rename({
-      basename: projectName,
-      extname: '.html'
+    .pipe($.cheerio({
+      run: addPrefix,
+      parserOptions: {
+        decodeEntities: false
+      }
     }))
     .pipe($.htmlmin({
       removeComments: true,
@@ -310,13 +215,19 @@ gulp.task('deploy:html', function() {
       minifyJS: true,
       minifyCSS: true
     }))
-    .pipe($.size({
-      gzip: true,
-      showFiles: true
-    }))
-    .pipe(gulp.dest(config.index));
-    // .pipe(gulp.dest('.'));
+    .pipe(gulp.dest(DEST));
 });
 
+gulp.task('images', function () {
+  const DEST = path.resolve(__dirname, config.assets);
+  console.log(`Copying images to ${DEST}`)
+  return gulp.src('client/**/*.{svg,png,jpg,jpeg,gif}')
+    .pipe($.imagemin({
+      progressive: true,
+      interlaced: true,
+      svgoPlugins: [{cleanupIDs: false}]
+    }))
+    .pipe(gulp.dest(DEST));
+});
 
-gulp.task('deploy', gulp.series('build', gulp.parallel('deploy:assets', 'deploy:html')));
+gulp.task('deploy', gulp.series('build', gulp.parallel('prefix', 'images')));

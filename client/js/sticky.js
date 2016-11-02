@@ -1,77 +1,97 @@
-// @param options = {
-// 	start: ,
-//  end: ,
-// 	containerEl: ,
-// 	debug: false
-// }
+/* eslint-disable no-console */
+class Sticky {
+	/**
+	* Create a sticky instance
+	* param { String | HTMLElement } rootEl - The sticky element's container
+	* param { Object } config
+	* param { String | HTMLElement } config.relativeTo - The element to which the rootEl is relative
+	*/
+	constructor(rootEl, config) {
 
-function Sticky(fixedEl, options={start: 0}) {
-	const oSticky = this;
-	const rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60) }
+		if (!Sticky._stickies) {
+			Sticky._stickies = [];
+		}
 
-
-	function init() {
-
-		if (typeof options.start !== 'number') {
-			console.log('Start position must be a number');
+		if (!rootEl) {
 			return;
+		} else if (!(rootEl instanceof HTMLElement)) {
+			rootEl = document.querySelector(rootEl);
 		}
-		if (options.end && typeof options.end !== 'nubmer') {
-			console.log('End position must be a number');
+
+		this.rootEl = rootEl;
+		console.log(this.rootEl);
+
+		if (!config.relativeTo) {
 			return;
+		} else if (!(config.relativeTo instanceof HTMLElement)) {
+			this.refEl = config.relativeTo;
 		}
-		oSticky.lastPosition = -1;
-		oSticky.start = options.start;
-		oSticky.end = options.end;
-		if (!(fixedEl instanceof HTMLElement)) {
-			fixedEl = document.querySelector(fixedEl);
+
+		if (!(this.refEl instanceof HTMLElement)) {
+			this.refEl = document.querySelector(this.refEl);
 		}
-		oSticky.fixedEl = fixedEl;
-		loop();
+
+
+		this.distance = this.getDistance();
+
+		this.sticky = false;
+
+		this.updatePosition();
+		this.rootEl.setAttribute('data-o-sticky--js', 'true');
+
+		Sticky._stickies.push(this);
+/*
+ *{Boolean} _listenerAdded - Flag to prevent event added multiple time on window. 
+ */
+		if (!Sticky._listenerAdded) {
+			console.log('Add scroll event on window');
+			window.addEventListener('scroll', Sticky._winScroll);
+
+			window.addEventListener('unload', function() {
+				window.removeEventListener('scroll', Sticky._winScroll);
+			});	
+
+			Sticky._listenerAdded = true;
+		}		
 	}
 
-	function loop(){
-	    // Avoid calculations if not needed
-	    const scrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-
-	    if (oSticky.lastPosition == scrollY) {
-	        rAF(loop);
-	        return false;
-	    } else {
-	    	oSticky.lastPosition = scrollY;
-	    }
-
-	    const abovePeak = oSticky.lastPosition < oSticky.start;
-	    var belowTrough = false;
-
-	    if (typeof oSticky.end === 'number') {
-	    	belowTrough = oSticky.lastPosition > oSticky.end;
-	    }
-
-	    const between = !abovePeak && !belowTrough;
-
-	    if (options.debug) {
-	    	console.log('abovePeak: ' + abovePeak + ', between: ' + between + ', belowTrough: ' + belowTrough);
-	    }
-
-	    var sticked = oSticky.fixedEl.getAttribute('aria-sticky');
-	    var troughed = oSticky.fixedEl.getAttribute('aria-troughed');
-
-	    if (between && !sticked) {
-	    	oSticky.fixedEl.setAttribute('aria-sticky', 'true');
-	    } else if (!between && sticked) {
-	    	oSticky.fixedEl.removeAttribute('aria-sticky');
-	    }
-
-	    if (belowTrough && !troughed) {
-	    	oSticky.fixedEl.setAttribute('aria-troughed', 'true');
-	    } else if (!belowTrough && troughed) {
-	    	oSticky.fixedEl.removeAttribute('aria-troughed');
-	    }
-
-	    rAF( loop );
+	getDistance() {
+		return this.refEl.getBoundingClientRect().bottom - this.rootEl.getBoundingClientRect().bottom;
 	}
-	init();
+
+	setDistance() {
+		this.distance = this.getDistance();
+	}
+
+/**
+ * @param { String } newState - `top`, `fixed` or `bottom`
+ */
+	setSticky(state) {
+		if (state !== this.sticky) {
+			this.rootEl.setAttribute('aria-sticky', state);
+			this.sticky = state;
+		}
+	}
+
+// Since updatePosition will be executed in scroll event, avoid calculation dynamically.
+	updatePosition() {
+// displacement changes on every scroll. Reset it every time.
+		this.setDistance();
+		if (this.distance > 0) {
+			this.setSticky(false);
+		} else {
+			this.setSticky(true)
+		}
+	}
+
+	static _winScroll() {
+		Sticky._stickies.forEach((sticky) => {
+			if (sticky.rootEl.hasAttribute('data-o-sticky--js')) {
+				sticky.updatePosition();
+			}
+		});
+	}
+
 }
 
-module.exports = Sticky;
+export default Sticky;
