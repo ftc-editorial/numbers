@@ -2,5 +2,6 @@
 	"demo": "../ft-interact/",
 	"html": "../channel/",
 	"assets": "../ig-assets/",
-	"urlPrefix": "http://static.ftchinese.com/ig/"
+	"urlPrefix": "http://static.ftchinese.com/ig/",
+	"widgets": "../widgets/"
 }

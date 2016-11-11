@@ -16,7 +16,7 @@ const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
 const minimist = require('minimist');
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'dev';
 
 const knownOptions = {
   string: ['input'],
@@ -45,9 +45,6 @@ const projects = argv.a ? demoList : [argv.i];
 
 const index = argv.a ? 'index.html' : `${argv.i}.html`;
 
-const articleDataFile = path.resolve(__dirname, 'data', argv.i);
-const footerDataFile = path.resolve(__dirname, 'data/footer.json');
-
 const prodSetting = {
   "production": true
 };
@@ -66,6 +63,17 @@ gulp.task('dev', function(done) {
   done();
 });
 
+function urlPrefix (data, prefix) {
+  data.sections.forEach(section => {
+    section.cards.forEach(card => {
+      if (card.svg) {
+        card.svg = `${prefix}${card.svg}`
+      }
+    });
+  });
+  return data; 
+}
+
 gulp.task('html', () => {
   return co(function *() {
 
@@ -78,19 +86,21 @@ gulp.task('html', () => {
       return helper.readJson(file);
     }));
 
-    const renderResults = yield Promise.all(data.map(datum => {
+    const renderResults = yield Promise.all(data.map(d => {
       const template = 'index.html';
-      console.log(`Using data file ${datum.name}.json`);
+      console.log(`Using data file ${d.name}.json`);
+
+      if (process.env.NODE_ENV === 'prod') {
+        d.content = urlPrefix(d.content, config.urlPrefix);
+        Object.assign(d.content, prodSetting);
+      } 
 
       const context = merge({
         footer: footer
-      }, datum.content);
-      
-      if (process.env.NODE_ENV === 'prod') {
-        Object.assign(context, prodSetting);
-      } 
+      }, d.content);
 
-      return helper.render(template, context, datum.name);
+      
+      return helper.render(template, context, d.name);
     }));
 
     yield Promise.all(renderResults.map(result => {
@@ -105,10 +115,44 @@ gulp.task('html', () => {
 });
 
 
+// generate partial html files to be used on homepage widget.
+gulp.task('widgets', () => {
+  return co(function *() {
+
+    if (!isThere(tmpDir)) {
+      mkdirp.sync(tmpDir);
+    }
+
+    const json = yield fs.readFile(`data/${argv.i}.json`, 'utf8');
+    var data = JSON.parse(json);
+    
+    if (process.env.NODE_ENV === 'prod') {
+         data = urlPrefix(data, config.urlPrefix);
+    } 
+   
+// loop over each section. Each section corresponds to an html file. Take `section.id` as file name.
+    const renderResults = yield Promise.all(data.sections.map(section => {
+      const template = 'widget.html';
+      console.log(`Generating file for ${section.id}`);
+
+      return helper.render(template, {section: section}, section.id);
+    }));
+// use `numbers-china-` as file namespace.
+    yield Promise.all(renderResults.map(result => {
+      return fs.writeFile(`${tmpDir}/${argv.i}-${result.name}.html`, result.content, 'utf8');
+    }));      
+  })
+  .then(function(){
+    browserSync.reload('*.html');
+  }, function(err) {
+    console.error(err.stack);
+  });
+});
+
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src('client/scss/main.scss')
+  return gulp.src(['client/scss/main.scss', 'client/scss/widget.scss'])
     .pipe($.changed(DEST))
     .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
@@ -155,7 +199,7 @@ gulp.task('webpack', function(done) {
 
 gulp.task('serve', 
   gulp.parallel(
-    'html', 'styles', 'webpack', 
+    'html', 'widgets', 'styles', 'webpack', 
 
     function serve() {
     browserSync.init({
@@ -170,7 +214,7 @@ gulp.task('serve',
 
     gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
     gulp.watch('client/scss/**/*.scss', gulp.parallel('styles'));
-    gulp.watch(['views/**/*.html', 'data/*.json'], gulp.parallel('html'));
+    gulp.watch(['views/**/*.html', 'data/*.json'], gulp.parallel('html', 'widgets'));
   })
 );
 
@@ -181,32 +225,17 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'styles', 'webpack'), 'dev'));
+gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'widgets', 'styles', 'webpack'), 'dev'));
 
-function addPrefix ($, file) {
-  $('object').each(function() {
-    var objectEl = $(this);
-    var href = objectEl.attr('data')
-    if (href) {
-      objectEl.attr('data', url.resolve(config.urlPrefix, href));
-    }    
-  });
-}
 
-gulp.task('prefix', function() {
+gulp.task('deploy:html', function() {
   const DEST = path.resolve(__dirname, config.html);
 
   console.log(`Deploying HTML file to: ${DEST}`);
 
-  return gulp.src('.tmp/*.html')
+  return gulp.src(`.tmp/${argv.i}.html`)
     .pipe($.smoosher({
       ignoreFilesNotFound: true
-    }))
-    .pipe($.cheerio({
-      run: addPrefix,
-      parserOptions: {
-        decodeEntities: false
-      }
     }))
     .pipe($.htmlmin({
       removeComments: true,
@@ -216,6 +245,21 @@ gulp.task('prefix', function() {
       minifyCSS: true
     }))
     .pipe(gulp.dest(DEST));
+});
+
+gulp.task('deploy:widgets', () => {
+  const DEST = path.resolve(__dirname, config.widgets);
+
+  return gulp.src(`.tmp/${argv.i}-*.html`)
+    .pipe($.smoosher({
+      ignoreFilesNotFound: true
+    }))
+    .pipe($.htmlmin({
+      collapseWhitespace: true,
+      removeAttributeQuotes: true,
+      minifyCSS: true
+    }))
+    .pipe(gulp.dest(DEST));  
 });
 
 gulp.task('images', function () {
@@ -230,4 +274,4 @@ gulp.task('images', function () {
     .pipe(gulp.dest(DEST));
 });
 
-gulp.task('deploy', gulp.series('build', gulp.parallel('prefix', 'images')));
+gulp.task('deploy', gulp.series('build', gulp.parallel('deploy:html','deploy:widgets', 'images')));

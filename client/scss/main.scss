@@ -4,6 +4,9 @@
 ));
 
 @import "o-colors/main";
+$o-grid-gutters: (
+	default: 10px,
+);
 @import "o-grid/main";
 
 @import "ftc-icons/main";

@@ -1,73 +1,39 @@
-.card--index,
-.card__header {
-  [data-card-theme="pink"] & {
-    background-color: $ft-color-pink;
-  }
-  [data-card-theme="teal"] & {
-    background-color: $ft-color-teal;
-  }
-  [data-card-theme="orange"] & {
-    background-color: $ft-color-orange;
-  }
-  [data-card-theme="green"] & {
-    background-color: $ft-color-green;
-  }
-  [data-card-theme="dusk"] & {
-    background-color: $ft-color-dusk;
-  }
-  [data-card-theme="purple"] & {
-    background-color: $ft-color-purple;
-  }
-  [data-card-theme="brown"] & {
-    background-color: $ft-color-brown;
-  }
-  [data-card-theme="grey"] & {
-    background-color: $ft-color-grey;
-  }
-  [data-card-theme="blue"] & {
-    background-color: $ft-color-blue;
-  }
-  [data-card-theme="cyan"] & {
-    background-color: $ft-color-cyan;
-  }
+.bg--pink {
+  background-color: $ft-color-pink;
 }
 
-.bdr--teal {
-  border-left: 5px solid $ft-color-teal;
+.bg--teal {
+  background-color: $ft-color-teal;
 }
 
-.bdr--pink {
-  border-left: 5px solid $ft-color-pink;
+.bg--orange {
+  background-color: $ft-color-orange;
 }
 
-.bdr--orange {
-  border-left: 5px solid $ft-color-orange;
+.bg--green {
+  background-color: $ft-color-green;
 }
 
-.bdr--green {
-  border-left: 5px solid $ft-color-green;
+.bg--dusk {
+  background-color: $ft-color-dusk;
 }
 
-.bdr--dusk {
-  border-left: 5px solid $ft-color-dusk;
+.bg--purple {
+  background-color: $ft-color-purple;
 }
 
-.bdr--purple {
-  border-left: 5px solid $ft-color-purple;
+.bg--brown {
+  background-color: $ft-color-brown;
 }
 
-.bdr--brown {
-  border-left: 5px solid $ft-color-brown;
+.bg--grey {
+  background-color: $ft-color-grey;
 }
 
-.bdr--grey {
-  border-left: 5px solid $ft-color-grey;
+.bg--blue {
+  background-color: $ft-color-blue;
 }
 
-.bdr--blue {
-  border-left: 5px solid $ft-color-blue;
-}
-
-.bdr--cyan {
-  border-left: 5px solid $ft-color-cyan;
+.bg--cyan {
+  background-color: $ft-color-cyan;
 }

@@ -26,43 +26,51 @@ body {
   @include arrowUpwards(36, rgba(0,0,0,.2));
 }
 
-// Simplified version of `o-grid` layout.
-[data-o-grid-container] {
-  position: relative;
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
-  min-width: $o-grid-min-width;
-  max-width: $_o-grid-max-width;
-  padding-left: oGridGutter();
-  padding-right: oGridGutter();
 
-  @include oGridTargetIE8 {
-    padding-left: oGridGutter($o-grid-fixed-layout);
-    padding-right: oGridGutter($o-grid-fixed-layout);
-    width: oGridGetMaxWidthForLayout($o-grid-fixed-layout, $grid-mode: 'fixed');
-  }
+.card-group__container {
+  @include oGridContainer;
 }
 
-[data-o-grid-row] {
-  //display: table;
-  display: flex;
-  flex-wrap: wrap;
-
-  margin-left: -1 * oGridGutter();
-
-  @include oGridTargetIE8 {
-    margin-left: -1 * oGridGutter($o-grid-fixed-layout);
-  }
+.card__group {
+  padding-top: $o-header-bottom-height;
 }
 
-[data-o-grid-col] {
-  position: relative;
-  box-sizing: border-box;
-  flex: 1 1 0%;
-  padding-left: oGridGutter();
+.bdr--teal {
+  border-left: 5px solid $ft-color-teal;
+}
 
-  @include oGridTargetIE8 {
-    padding-left: oGridGutter($o-grid-fixed-layout);
-  }
+.bdr--pink {
+  border-left: 5px solid $ft-color-pink;
+}
+
+.bdr--orange {
+  border-left: 5px solid $ft-color-orange;
+}
+
+.bdr--green {
+  border-left: 5px solid $ft-color-green;
+}
+
+.bdr--dusk {
+  border-left: 5px solid $ft-color-dusk;
+}
+
+.bdr--purple {
+  border-left: 5px solid $ft-color-purple;
+}
+
+.bdr--brown {
+  border-left: 5px solid $ft-color-brown;
+}
+
+.bdr--grey {
+  border-left: 5px solid $ft-color-grey;
+}
+
+.bdr--blue {
+  border-left: 5px solid $ft-color-blue;
+}
+
+.bdr--cyan {
+  border-left: 5px solid $ft-color-cyan;
 }

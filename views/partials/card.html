@@ -1,12 +1,17 @@
-<div class="card{% if card.isIndex %} card--index{% endif %}">
-  <div class="card__header">
-    {% if card.isIndex %}<h2{% else %}<h3{% endif%} class="card__title">{{card.title}}{% if card.isIndex %}</h2>{% else %}</h3>{% endif %}
+<div class="card{% if card.isIndex %} card--index bg--{{section.theme}}{% endif %}">
+  <div class="card__header{% if not card.isIndex %} bg--{{section.theme}}{% endif %}">
+    {% if card.isIndex %}
+    <h2 class="card__title">{{card.title}}</h2>
+    {% else %}
+    <h3 class="card__title">{{card.title}}</h3>
+    {% endif %}
   </div>
 
   <div class="card__body">
     {% if card.svg %}
     <figure>
       <object type="image/svg+xml" data="{{card.svg}}"></object>
+      <!--[if lt IE 9]><img src="{{card.svg}}"><![endif]-->
     </figure>
     {% endif %}
 

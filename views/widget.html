@@ -1,0 +1,10 @@
+ <div class="card-group__row">
+ <!-- smoosh-->
+ <link rel="stylesheet" type="text/css" href="styles/widget.css">
+ <!-- endsmoosh -->
+{% for card in section.cards %}
+<div class="card__group-item">          
+  {% include "partials/card.html" %}
+</div>            
+{% endfor %}
+</div> 
