@@ -32,12 +32,12 @@
     "li-keqiang-index.svg": {
         "chart-title": "李克强指数",
         "chart-subtitle": "年度变化%",
-        "chart-source": "来源：彭博，2016/11/22"
+        "chart-source": "来源：彭博，2017/01/03"
     },
     "china-s-official-pmis.svg": {
         "chart-title": "中国官方采购经理指数(PMI)",
         "chart-subtitle": "",
-        "chart-source": "来源：CEIC，2016/12/01",
+        "chart-source": "来源：CEIC，2017/01/01",
         "chart-key": [
             "制造业",
             "非制造业"
@@ -46,7 +46,7 @@
     "shanghai-composite-index.svg": {
         "chart-title": "上证综指",
         "chart-subtitle": "",
-        "chart-source": "来源：CEIC，2016/11/30"
+        "chart-source": "来源：CEIC，2017/01/03"
     },
     "weighted-average-bank-loan-rate.svg": {
         "chart-title": "加权平均银行贷款利率",
@@ -56,17 +56,17 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "人民币对美元",
         "chart-subtitle": "1美元对人民币",
-        "chart-source": "来源：彭博，2016/12/20"
+        "chart-source": "来源：彭博，2017/01/13"
     },
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "7天回购利率",
         "chart-subtitle": "%",
-        "chart-source": "来源：CEIC，2016/12/20"
+        "chart-source": "来源：CEIC，2016/01/13"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "债券",
         "chart-subtitle": "中国债券收益率与收益率差%",
-        "chart-source": "来源：CEIC/中央国债登记结算，2016/12/19",
+        "chart-source": "来源：CEIC/中央国债登记结算，2017/01/13",
         "chart-key": [
             "5年债券",
             "AA级"
@@ -75,7 +75,7 @@
     "chinese-inflation.svg": {
         "chart-title": "中国通胀",
         "chart-subtitle": "年同比变化％",
-        "chart-source": "来源：CEIC，2016/12/09"
+        "chart-source": "来源：CEIC，2017/01/10"
     },
     "china-s-average-annual-wages.svg": {
         "chart-title": "中国平均年薪",
@@ -90,7 +90,7 @@
     "china-s-trade-balance.svg": {
         "chart-title": "中国贸易收支平衡",
         "chart-subtitle": "10亿美元",
-        "chart-source": "来源：CEIC，2016/12/08",
+        "chart-source": "来源：CEIC，2017/01/13",
         "chart-key": [
             "进口",
             "出口"
@@ -99,7 +99,7 @@
     "china-s-current-account-balance.svg": {
         "chart-title": "中国经常账目余额",
         "chart-subtitle": "占GDP的比例％",
-        "chart-source": "来源：CEIC，2016/11/04"
+        "chart-source": "来源：CEIC，2017/01/09"
     },
     "floor-space-under-construction.svg": {
         "chart-title": "房屋施工面积",
