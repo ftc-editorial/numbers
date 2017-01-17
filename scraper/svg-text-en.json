@@ -51,12 +51,12 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "Renminbi vs US dollar",
         "chart-subtitle": "Rmb per $",
-        "chart-source": "Source: Bloomberg. 13 Jan 2017"
+        "chart-source": "Source: Bloomberg. 17 Jan 2017"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "China bond yields and spread",
         "chart-subtitle": "Spot rate, %",
-        "chart-source": "Source: CEIC/China Central Depositary. 13 Jan 2017",
+        "chart-source": "Source: CEIC/China Central Depositary. 16 Jan 2017",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -70,7 +70,7 @@
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "China's 7-day repo rate",
         "chart-subtitle": "%",
-        "chart-source": "Source: CEIC. 13 Jan 2017"
+        "chart-source": "Source: CEIC. 17 Jan 2017"
     },
     "chinese-inflation.svg": {
         "chart-title": "Chinese inflation",

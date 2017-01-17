@@ -56,17 +56,17 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "人民币对美元",
         "chart-subtitle": "1美元对人民币",
-        "chart-source": "来源：彭博，2017/01/13"
+        "chart-source": "来源：彭博，2017/01/17"
     },
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "7天回购利率",
         "chart-subtitle": "%",
-        "chart-source": "来源：CEIC，2016/01/13"
+        "chart-source": "来源：CEIC，2016/01/17"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "债券",
         "chart-subtitle": "中国债券收益率与收益率差%",
-        "chart-source": "来源：CEIC/中央国债登记结算，2017/01/13",
+        "chart-source": "来源：CEIC/中央国债登记结算，2017/01/16",
         "chart-key": [
             "5年债券",
             "AA级"
