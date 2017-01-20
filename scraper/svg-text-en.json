@@ -2,7 +2,7 @@
     "china-s-real-gdp-growth.svg": {
         "chart-title": "China's real GDP growth",
         "chart-subtitle": "Annual % growth, quarterly",
-        "chart-source": "Source: CEIC Generate. 19 Oct 2016"
+        "chart-source": "Source: CEIC Generate. 20 Jan 2017"
     },
     "sources-of-china-s-growth.svg": {
         "chart-title": "Sources of China's growth",
@@ -27,7 +27,7 @@
     "china-s-activity-indicators.svg": {
         "chart-title": "China's activity indicators",
         "chart-subtitle": "Annual growth (%), monthly",
-        "chart-source": "Source: CEIC. 13 Dec 2016",
+        "chart-source": "Source: CEIC. 20 Jan 2017",
         "chart-key": [
             "Fixed asset investment (ytd)",
             "Retail sales",
@@ -51,12 +51,12 @@
     "renminbi-vs-us-dollar.svg": {
         "chart-title": "Renminbi vs US dollar",
         "chart-subtitle": "Rmb per $",
-        "chart-source": "Source: Bloomberg. 17 Jan 2017"
+        "chart-source": "Source: Bloomberg. 19 Jan 2017"
     },
     "china-bond-yields-and-spread.svg": {
         "chart-title": "China bond yields and spread",
         "chart-subtitle": "Spot rate, %",
-        "chart-source": "Source: CEIC/China Central Depositary. 16 Jan 2017",
+        "chart-source": "Source: CEIC/China Central Depositary. 19 Jan 2017",
         "chart-key": [
             "5-yr treasury",
             "AA- rated"
@@ -70,7 +70,7 @@
     "china-s-7-day-repo-rate.svg": {
         "chart-title": "China's 7-day repo rate",
         "chart-subtitle": "%",
-        "chart-source": "Source: CEIC. 17 Jan 2017"
+        "chart-source": "Source: CEIC. 20 Jan 2017"
     },
     "chinese-inflation.svg": {
         "chart-title": "Chinese inflation",
@@ -109,6 +109,6 @@
     "floor-space-sold.svg": {
         "chart-title": "Floor space sold",
         "chart-subtitle": "Year-on-year % change",
-        "chart-source": "Source: CEIC. 14 Dec 2016"
+        "chart-source": "Source: CEIC. 20 Jan 2017"
     }
 }
