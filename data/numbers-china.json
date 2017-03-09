@@ -46,21 +46,21 @@
 				},
 				{
 					"title": "增长",
-					"svg": "graphics/china-s-real-gdp-growth.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-real-gdp-growth.svg",
 					"text": [
 						"2016年全年增长6.7%，其中第四季度增长6.8%，低于2015年的6.9%。这是自1990年以来最慢的全年增长，不过这一增速仍落在中国政府6.5%到7%的增速目标区间。"
 					]
 				},
 				{
 					"title": "GDP增长组成",
-					"svg": "graphics/sources-of-china-s-growth.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/sources-of-china-s-growth.svg",
 					"text": [
 						"消费增长速度未能如预期一般抵消出口的下滑。"
 					]
 				},
 				{
 					"title": "人均",
-					"svg": "graphics/gdp-per-capita.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/gdp-per-capita.svg",
 					"text": [
 						"尽管中国人均GDP在近几十年来显著增长，但数额依然仅约为美国的四分之一。"
 					]
@@ -82,21 +82,21 @@
 				},
 				{
 					"title": "替代增长指标",
-					"svg": "graphics/li-keqiang-index.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/li-keqiang-index.svg",
 					"text": [
 						"该替代增长指标由三项活动指标构成：耗电量、铁路货运量和银行贷款发放量。然而，该项指标未能反映服务业的增长，服务业是目前经济中增长最快的领域。"
 					]
 				},
 				{
 					"title": "指标",
-					"svg": "graphics/china-s-activity-indicators.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-activity-indicators.svg",
 					"text": [
 						"虽然总体增长数据相当可观，但传统上拉动中国经济增长和全球大宗商品需求的行业却陷入日渐加深的困境。"
 					]
 				},
 				{
 					"title": "商业活动",
-					"svg": "graphics/china-s-official-pmis.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-official-pmis.svg",
 					"text": [
 						"官方PMI表明关键制造业领域轻微收缩。其它非官方PMI则反映出更显著的放缓。PMI数值大于50代表扩张，小于50代表衰退。"
 					]
@@ -118,19 +118,19 @@
 				},
 				{
 					"title": "上海证券交易所",
-					"svg": "graphics/shanghai-composite-index.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/shanghai-composite-index.svg",
 					"text": []
 				},
 				{
 					"title": "汇率",
-					"svg": "graphics/renminbi-vs-us-dollar.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/renminbi-vs-us-dollar.svg",
 					"text": [
 						"自2015年8月中国央行让人民币意外贬值以来，投资者在解读中国汇率政策上遇到了难题。"
 					]
 				},
 				{
 					"title": "债券",
-					"svg": "graphics/china-bond-yields-and-spread.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-bond-yields-and-spread.svg",
 					"text": [
 						"五年期国债和AA-级债券的收益率差，是预测信贷危机的标尺。AA-级在中国相当于垃圾债，因为更低评级的公司根本无法卖出债券。"
 					]
@@ -153,21 +153,21 @@
 				},
 				{
 					"title": "平均贷款利率",
-					"svg": "graphics/weighted-average-bank-loan-rate.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/weighted-average-bank-loan-rate.svg",
 					"text": [
 						"自2014年底以来的一系列基准利率下调和流动性注入降低了能够从银行获得信贷的企业的融资成本，对大型国企和住房抵押贷款的借款者而言尤其如此。"
 					]
 				},
 				{
 					"title": "回购率",
-					"svg": "graphics/china-s-7-day-repo-rate.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-7-day-repo-rate.svg",
 					"text": [
 						"7天回购利率被视为中国银行间货币市场短期融资状况的基准利率。"
 					]
 				},
 				{
 					"title": "通胀",
-					"svg": "graphics/chinese-inflation.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/chinese-inflation.svg",
 					"text": [
 						"通胀大幅下跌意味着名义GDP比实际GDP放缓幅度更大。"
 					]
@@ -194,12 +194,12 @@
 				},
 				{
 					"title": "薪资",
-					"svg": "graphics/china-s-average-annual-wages.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-average-annual-wages.svg",
 					"text": []
 				},
 					{
 					"title": "失业",
-					"svg": "graphics/china-s-unemployment-rate.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-unemployment-rate.svg",
 					"text": []
 				}
 			]
@@ -218,12 +218,12 @@
 				},
 				{
 					"title": "商品和服务",
-					"svg": "graphics/china-s-trade-balance.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-trade-balance.svg",
 					"text": []
 				},
 				{
 					"title": "经常账目",
-					"svg": "graphics/china-s-current-account-balance.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/china-s-current-account-balance.svg",
 					"text": []
 				}
 			]
@@ -243,12 +243,12 @@
 				},
 				{
 					"title": "施工中",
-					"svg": "graphics/floor-space-under-construction.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/floor-space-under-construction.svg",
 					"text": []
 				},
 				{
 					"title": "售出",
-					"svg": "graphics/floor-space-sold.svg",
+					"svg": "http://ig.ftchinese.com/autograph/graphics/floor-space-sold.svg",
 					"text": []
 				},
 				{
