@@ -90,11 +90,6 @@ gulp.task('html', () => {
       const template = 'index.html';
       console.log(`Using data file ${d.name}.json`);
 
-      if (process.env.NODE_ENV === 'prod') {
-        d.content = urlPrefix(d.content, config.urlPrefix);
-        Object.assign(d.content, prodSetting);
-      } 
-
       const context = merge({
         footer: footer
       }, d.content);
