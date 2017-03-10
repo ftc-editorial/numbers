@@ -91,7 +91,8 @@ gulp.task('html', () => {
       console.log(`Using data file ${d.name}.json`);
 
       const context = merge({
-        footer: footer
+        footer: footer,
+        production: process.env.NODE_ENV === 'prod'
       }, d.content);
 
       

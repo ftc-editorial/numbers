@@ -189,7 +189,7 @@
 				},
 				{
 					"title": "劳动力需求",
-					"svg": "images/China_labour_demand.svg",
+					"svg": "http://static.ftchinese.com/ig/images/China_labour_demand.svg",
 					"text": []
 				},
 				{
@@ -253,7 +253,7 @@
 				},
 				{
 					"title": "房价",
-					"svg": "images/Property_price_growth_in_China.svg",
+					"svg": "http://static.ftchinese.com/ig/images/Property_price_growth_in_China.svg",
 					"text": [
 						"中国不再发布官方房价指数，但路透社(Reuters)通过70个中大城市的房价计算出了平均数。"
 					]
