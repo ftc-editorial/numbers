@@ -32,8 +32,9 @@ const knownOptions = {
 
 const argv = minimist(process.argv.slice(2), knownOptions);
 
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.js');
+const webpack = require('./webpack.config.js');
+
+// const webpackConfig = require('./webpack.config.js');
 
 const footer = require('./bower_components/ftc-footer');
 
@@ -51,16 +52,14 @@ const prodSetting = {
 
 const tmpDir = '.tmp';
 
-process.env.NODE_ENV = 'dev';
+process.env.NODE_ENV = 'development';
 // change NODE_ENV between tasks.
-gulp.task('prod', function(done) {
-  process.env.NODE_ENV = 'prod';
-  done();
+gulp.task('prod', function() {
+  return Promise.resolve(process.env.NODE_ENV = 'production');
 });
 
 gulp.task('dev', function(done) {
-  process.env.NODE_ENV = 'dev';
-  done();
+  return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
 function urlPrefix (data, prefix) {
@@ -122,7 +121,7 @@ gulp.task('widgets', () => {
     const json = yield fs.readFile(`data/${argv.i}.json`, 'utf8');
     var data = JSON.parse(json);
     
-    if (process.env.NODE_ENV === 'prod') {
+    if (process.env.NODE_ENV === 'production') {
          data = urlPrefix(data, config.urlPrefix);
     } 
    
@@ -176,21 +175,16 @@ gulp.task('eslint', () => {
     .pipe($.eslint.failAfterError());
 });
 
-gulp.task('webpack', function(done) {
-  if (process.env.NODE_ENV === 'prod') {
-    delete webpackConfig.watch;
-  }
-  webpack(webpackConfig, function(err, stats) {
-    if (err) throw new $.util.PluginError('webpack', err);
-    $.util.log('[webpack]', stats.toString({
-      colors: $.util.colors.supportsColor,
-      chunks: false,
-      hash: false,
-      version: false
-    }))
-    browserSync.reload('main.js');
-    done();
-  });
+gulp.task('webpack', function() {
+  return webpack()
+    .then(stats => {
+      console.log(stats.toString({
+        colors: true
+      }));
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 gulp.task('serve', 

@@ -1,33 +1,53 @@
 const path = require('path');
+const webpack = require('webpack');
 const BowerWebpackPlugin = require('bower-webpack-plugin');
 
-module.exports = {
+const config = {
 	entry: './client/js/main.js',
 	output: {
-		path: path.join(__dirname, '.tmp/scripts'),
+		path: path.resolve(__dirname, '.tmp/scripts'),
 		filename: 'main.js',
 		sourceMapFilename: '[file].map'
 	},
-	watch: true,
+	// watch: true,
 	devtool: 'source-map',
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				include: [
 					path.resolve(__dirname, 'client/js'),
 					path.resolve(__dirname, 'bower_components')
 				],
-				loader: 'babel',
-				query: {
+				loader: 'babel-loader',
+				options: {
 					presets: ['es2015']
 				}
 			}
 		]
 	},
-	plugins: [
-		new BowerWebpackPlugin({
-			includes: /\.js$/
-		})
-	]
+	resolve: {
+		modules: [
+			path.resolve(__dirname, 'bower_components'),
+		],
+		mainFiles: ['main'],
+		extensions: ['js']
+	},
+	target: 'web'
 };
+
+if (process.env.NODE_ENV === 'production') {
+	delete webpackConfig.watch;
+}
+
+function webpackPromisify() {
+  return new Promise(function(resolve, reject) {
+    webpack(config, (err, stats) => {
+			err ? reject(err) : resolve(stats);
+    });
+  });
+}
+
+module.exports = webpackPromisify;
+
+// module.exports = config;
