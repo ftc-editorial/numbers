@@ -4,11 +4,11 @@
   "dependencies": {
     "o-colors": "^3.3.2",
     "o-grid": "^4.2.3",
-    "ftc-share": "^2.1.0",
+    "ftc-share": "^3.2.1",
     "o-assets": "^3.0.1",
     "ftc-logos": "^0.3.0",
     "ftc-footer": "^0.0.3",
     "ftc-icons": "^3.3.0",
-    "ftc-toggle": "^0.1.0"
+    "ftc-toggle": "^0.3.1"
   }
 }
