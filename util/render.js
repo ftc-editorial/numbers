@@ -19,14 +19,7 @@ function render(template, context, name) {
       if (err) {
         reject(err);
       } else {
-        if (name) {
-          resolve({
-            name: name,
-            content: result
-          });          
-        } else {
-          resolve(result);
-        }
+        resolve(result);
       }
     });
   });

@@ -1,6 +1,6 @@
 import Share from 'ftc-share';
 import {ToggleMenu} from 'ftc-toggle';
-import Sticky from './sticky';
+import Sticky from './sticky.js';
 
 Share.init();
 new ToggleMenu('.o-header__right');

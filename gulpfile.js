@@ -1,23 +1,20 @@
-const promisify = require('promisify-node')
-const fs = promisify('fs');
+const pify = require('pify');
+const fs = require('fs-jetpack');
 const path = require('path');
 const url = require('url');
-const isThere = require('is-there');
-const co = require('co');
-const mkdirp = require('mkdirp');
-const helper = require('./helper');
-const merge = require('deepmerge');
+const deepAssign = require('deep-assign');
+const webpack = pify(require('webpack'));
+const loadJsonFile = require('load-json-file');
+const webpackConfig = require('./webpack.config.js');
+const render = require('./util/render.js');
 
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const cssnext = require('postcss-cssnext');
-
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
 const minimist = require('minimist');
-process.env.NODE_ENV = 'dev';
-
 const knownOptions = {
   string: ['input'],
   boolean: 'all',
@@ -29,12 +26,7 @@ const knownOptions = {
     input: 'numbers-china'
   }, 
 };
-
 const argv = minimist(process.argv.slice(2), knownOptions);
-
-const webpack = require('./webpack.config.js');
-
-// const webpackConfig = require('./webpack.config.js');
 
 const footer = require('./bower_components/ftc-footer');
 
@@ -45,10 +37,6 @@ const demoList = ['numbers-china'];
 const projects = argv.a ? demoList : [argv.i];
 
 const index = argv.a ? 'index.html' : `${argv.i}.html`;
-
-const prodSetting = {
-  "production": true
-};
 
 const tmpDir = '.tmp';
 
@@ -62,86 +50,59 @@ gulp.task('dev', function(done) {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
-function urlPrefix (data, prefix) {
-  data.sections.forEach(section => {
-    section.cards.forEach(card => {
-      if (card.svg) {
-        card.svg = `${prefix}${card.svg}`
-      }
-    });
-  });
-  return data; 
-}
-
 gulp.task('html', () => {
-  return co(function *() {
-
-    if (!isThere(tmpDir)) {
-      mkdirp.sync(tmpDir);
-    }
-
-    const data = yield Promise.all(projects.map(project => {
-      const file = path.resolve(process.cwd(), `data/${project}.json`);
-      return helper.readJson(file);
-    }));
-
-    const renderResults = yield Promise.all(data.map(d => {
-      const template = 'index.html';
-      console.log(`Using data file ${d.name}.json`);
-
-      const context = merge({
-        footer: footer,
-        production: process.env.NODE_ENV === 'prod'
-      }, d.content);
-
-      
-      return helper.render(template, context, d.name);
-    }));
-
-    yield Promise.all(renderResults.map(result => {
-      return fs.writeFile(`${tmpDir}/${result.name}.html`, result.content, 'utf8');
-    }));      
-  })
-  .then(function(){
+  const template = 'index.html';
+  return Promise.all(projects.map(project => {
+    const dest = `${tmpDir}/${project}.html`;
+    const dataFile = path.resolve(process.cwd(), `data/${project}.json`);
+    console.log(`Reading data: ${dataFile}`)
+    return loadJsonFile(dataFile)
+      .then(json => {
+        return deepAssign(json, {
+          footer: footer,
+          production: process.env.NODE_ENV === 'production'
+        })
+      })
+      .then(context => {
+        return render(template, context);
+      })
+      .then(html => {
+        console.log(`Build page: ${dest}`);
+        return fs.writeAsync(dest, html);
+      }).
+      catch(err => {
+        throw(err);
+      });
+  }))
+  .then(() => {
     browserSync.reload('*.html');
-  }, function(err) {
-    console.error(err.stack);
-  });
+    return Promise.resolve();
+  })
+  .catch(err => {
+    console.log(err);
+  });  
 });
-
 
 // generate partial html files to be used on homepage widget.
 gulp.task('widgets', () => {
-  return co(function *() {
+  const template = 'widget.html';
 
-    if (!isThere(tmpDir)) {
-      mkdirp.sync(tmpDir);
-    }
-
-    const json = yield fs.readFile(`data/${argv.i}.json`, 'utf8');
-    var data = JSON.parse(json);
-    
-    if (process.env.NODE_ENV === 'production') {
-         data = urlPrefix(data, config.urlPrefix);
-    } 
-   
-// loop over each section. Each section corresponds to an html file. Take `section.id` as file name.
-    const renderResults = yield Promise.all(data.sections.map(section => {
-      const template = 'widget.html';
-      console.log(`Generating file for ${section.id}`);
-
-      return helper.render(template, {section: section}, section.id);
-    }));
-// use `numbers-china-` as file namespace.
-    yield Promise.all(renderResults.map(result => {
-      return fs.writeFile(`${tmpDir}/${argv.i}-${result.name}.html`, result.content, 'utf8');
-    }));      
-  })
-  .then(function(){
-    browserSync.reload('*.html');
-  }, function(err) {
-    console.error(err.stack);
-  });
+  return loadJsonFile(`data/${argv.i}.json`)
+    .then(json => {
+      console.log(json);
+      return Promise.all(json.sections.map(section => {
+        console.log(`Generating file for ${section.id}`);
+        const dest = `${tmpDir}/${argv.i}-${section.id}.html`
+        return render(template, {section: section})
+          .then(html => {
+            console.log(`Build page: ${dest}`);
+            return fs.writeAsync(dest, html);
+          });
+      }));
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 gulp.task('styles', function styles() {
@@ -176,6 +137,9 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('webpack', function() {
+  if (process.env.NODE_ENV === 'production') {
+    delete webpackConfig.watch;
+  }
   return webpack()
     .then(stats => {
       console.log(stats.toString({
