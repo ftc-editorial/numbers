@@ -42,3 +42,7 @@ node translate.js
 ## Note
 Always set `xmlMode:true` for cheerio when dealing with svg.
 
+## Bertha URL
+```
+https://bertha.ig.ft.com/view/publish/gss/1LUNu-fNmH4fY4KYkoYXoUoRi6BsLQpJBr75Liuix9TA/data
+```
