@@ -1,43 +1,22 @@
 const pify = require('pify');
 const fs = require('fs-jetpack');
 const path = require('path');
-const url = require('url');
-const deepAssign = require('deep-assign');
-const webpack = pify(require('webpack'));
 const loadJsonFile = require('load-json-file');
+const deepAssign = require('deep-assign');
+const inline = pify(require('inline-source'));
+const webpack = pify(require('webpack'));
+
 const webpackConfig = require('./webpack.config.js');
 const render = require('./util/render.js');
 
 const browserSync = require('browser-sync').create();
-const del = require('del');
+
 const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
-const minimist = require('minimist');
-const knownOptions = {
-  string: ['input'],
-  boolean: 'all',
-  alias: {
-    i: 'input',
-    a: 'all'
-  },
-  default: {
-    input: 'numbers-china'
-  }, 
-};
-const argv = minimist(process.argv.slice(2), knownOptions);
-
 const footer = require('./bower_components/ftc-footer');
-
 const config = require('./config.json');
-
-const demoList = ['numbers-china'];
-
-const projects = argv.a ? demoList : [argv.i];
-
-const index = argv.a ? 'index.html' : `${argv.i}.html`;
-
 const tmpDir = '.tmp';
 
 process.env.NODE_ENV = 'development';
@@ -50,37 +29,44 @@ gulp.task('dev', function(done) {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
+function buildPage(dataFile) {
+  const env = {
+    isProduction: process.env.NODE_ENV === 'production'
+  };  
+  return loadJsonFile(dataFile)
+    .then(json => {
+      return render('index.html', deepAssign(json, {
+        footer: footer,
+        env
+      }));
+    })
+    .catch(err => {
+      throw err;
+    });
+}
+
 gulp.task('html', () => {
   const template = 'index.html';
-  return Promise.all(projects.map(project => {
-    const dest = `${tmpDir}/${project}.html`;
-    const dataFile = path.resolve(process.cwd(), `data/${project}.json`);
-    console.log(`Reading data: ${dataFile}`)
-    return loadJsonFile(dataFile)
-      .then(json => {
-        return deepAssign(json, {
-          footer: footer,
-          production: process.env.NODE_ENV === 'production'
-        })
-      })
-      .then(context => {
-        return render(template, context);
-      })
-      .then(html => {
-        console.log(`Build page: ${dest}`);
-        return fs.writeAsync(dest, html);
-      }).
-      catch(err => {
-        throw(err);
-      });
-  }))
-  .then(() => {
-    browserSync.reload('*.html');
-    return Promise.resolve();
-  })
-  .catch(err => {
-    console.log(err);
-  });  
+  return buildPage('data/numbers-china.json')
+    .then(html => {
+      if (process.env.NODE_ENV === 'production') {
+        return inline(html, {
+          compress: true,
+          rootpath: path.resolve(process.cwd(), '.tmp')
+        });
+      }    
+      return html;      
+    })
+    .then(html => {
+      return fs.writeAsync('.tmp/index.html', html);
+    })
+    .then(() => {
+      browserSync.reload('*.html');
+      return Promise.resolve();
+    })
+    .catch(err => {
+      console.log(err);
+    });  
 });
 
 // generate partial html files to be used on homepage widget.
