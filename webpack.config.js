@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
-	entry: './client/js/main.js',
+	entry: './client/main.js',
 	output: {
 		path: path.resolve(__dirname, '.tmp/scripts'),
 		filename: 'main.js',

@@ -18,6 +18,7 @@ const $ = require('gulp-load-plugins')();
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
 const tmpDir = '.tmp';
+const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
 // change NODE_ENV between tasks.
@@ -29,25 +30,8 @@ gulp.task('dev', function(done) {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
-function buildPage(dataFile) {
-  const env = {
-    isProduction: process.env.NODE_ENV === 'production'
-  };  
-  return loadJsonFile(dataFile)
-    .then(json => {
-      return render('index.html', deepAssign(json, {
-        footer: footer,
-        env
-      }));
-    })
-    .catch(err => {
-      throw err;
-    });
-}
-
-gulp.task('html', () => {
-  const template = 'index.html';
-  return buildPage('data/numbers-china.json')
+function buildPage(template, data) {
+  return render(template, data)
     .then(html => {
       if (process.env.NODE_ENV === 'production') {
         return inline(html, {
@@ -57,8 +41,25 @@ gulp.task('html', () => {
       }    
       return html;      
     })
+    .catch(err => {
+      throw err;
+    });
+}
+
+gulp.task('html', () => {
+  const env = {
+    isProduction: process.env.NODE_ENV === 'production'
+  };  
+  return loadJsonFile(`data/${project}.json`)
+    .then(json => {
+      const context = Object.assign(json, {
+        footer: footer,
+        env
+      });
+      return buildPage('index.html', context);
+    })
     .then(html => {
-      return fs.writeAsync('.tmp/index.html', html);
+      return fs.writeAsync(`.tmp/${project}.html`, html);
     })
     .then(() => {
       browserSync.reload('*.html');
@@ -70,21 +71,24 @@ gulp.task('html', () => {
 });
 
 // generate partial html files to be used on homepage widget.
-gulp.task('widgets', () => {
-  const template = 'widget.html';
+function buildWidgets(sections) {
+  const promisedWidgets = sections.map(section => {
+    const dest = `${tmpDir}/${project}-${section.id}.html`;
+    return buildPage('widget.html', {section: section})
+      .then(html => {
+        return fs.writeAsync(dest, html);
+      })
+      .catch(err => {
+        throw err;
+      })
+  });
+  return Promise.all(promisedWidgets);
+}
 
-  return loadJsonFile(`data/${argv.i}.json`)
+gulp.task('widgets', () => {
+  return loadJsonFile(`data/${project}.json`)
     .then(json => {
-      console.log(json);
-      return Promise.all(json.sections.map(section => {
-        console.log(`Generating file for ${section.id}`);
-        const dest = `${tmpDir}/${argv.i}-${section.id}.html`
-        return render(template, {section: section})
-          .then(html => {
-            console.log(`Build page: ${dest}`);
-            return fs.writeAsync(dest, html);
-          });
-      }));
+      return buildWidgets(json.sections);
     })
     .catch(err => {
       console.log(err);
@@ -94,7 +98,7 @@ gulp.task('widgets', () => {
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src(['client/scss/main.scss', 'client/scss/widget.scss'])
+  return gulp.src('client/scss/*.scss')
     .pipe($.changed(DEST))
     .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
@@ -173,16 +177,11 @@ gulp.task('deploy:html', function() {
 
   console.log(`Deploying HTML file to: ${DEST}`);
 
-  return gulp.src(`.tmp/${argv.i}.html`)
-    .pipe($.smoosher({
-      ignoreFilesNotFound: true
-    }))
+  return gulp.src(`.tmp/${project}.html`)
     .pipe($.htmlmin({
       removeComments: true,
       collapseWhitespace: true,
-      removeAttributeQuotes: true,
-      minifyJS: true,
-      minifyCSS: true
+      removeAttributeQuotes: true
     }))
     .pipe(gulp.dest(DEST));
 });
@@ -190,14 +189,10 @@ gulp.task('deploy:html', function() {
 gulp.task('deploy:widgets', () => {
   const DEST = path.resolve(__dirname, config.widgets);
 
-  return gulp.src(`.tmp/${argv.i}-*.html`)
-    .pipe($.smoosher({
-      ignoreFilesNotFound: true
-    }))
+  return gulp.src(`.tmp/${project}-*.html`)
     .pipe($.htmlmin({
       collapseWhitespace: true,
-      removeAttributeQuotes: true,
-      minifyCSS: true
+      removeAttributeQuotes: true
     }))
     .pipe(gulp.dest(DEST));  
 });

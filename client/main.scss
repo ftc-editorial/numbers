@@ -13,17 +13,17 @@ $o-grid-gutters: (
 $o-share-icon-size: 32px;
 @import "ftc-share/main";
 
-@import "header/main";
+@import "scss/header/main";
 
-@import "colors";
-@import "var-mixins";
-@import "base";
+@import "scss/colors";
+@import "scss/var-mixins";
+@import "scss/base";
 
-@import "components/articlehead";
-@import "components/card";
-@import "components/bignums";
-@import "components/colorcoding";
-@import "components/share";
+@import "scss/components/articlehead";
+@import "scss/components/card";
+@import "scss/components/bignums";
+@import "scss/components/colorcoding";
+@import "scss/components/share";
 
 $o-footer-is-silent: false;
 @import "ftc-footer/main";

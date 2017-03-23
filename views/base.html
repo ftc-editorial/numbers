@@ -24,7 +24,7 @@
   <meta name="twitter:title" content="{{ogTitle}}">
   <meta name="twitter:description" content="{{description}}">
   <meta name="twitter:image" content="{{ogImage}}">
-  {% if production %}
+  {% if env.isProduction %}
   {% set iconsPath = "http://interactive.ftchinese.com/bower_components/ftc-logos/static" %}
   {% else %}
   {% set iconsPath = "/bower_components/ftc-logos/static" %}
@@ -35,10 +35,9 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{iconsPath}}/favicons/apple-touch-icon-76x76.png">
   <link href="{{iconsPath}}/favicons/favicon.ico" type="image/x-icon" rel="shortcut icon" />
   <title>{{pageTitle}} - FT中文网</title>
-<!-- smoosh-->
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<!-- endsmoosh -->
-{% if production %}
+<link inline rel="stylesheet" type="text/css" href="styles/main.css">
+
+{% if env.isProduction %}
   {% include "partials/analytics.html" %}
 {% endif %}
 </head>
@@ -51,11 +50,9 @@
 
 {% include "partials/o-footer.html" %}
 
-<!-- smoosh -->
-<script src="scripts/main.js"></script>
-<!-- endsmoosh -->
+<script inline src="scripts/main.js"></script>
 
-{% if production %}
+{% if  env.isProduction %}
 <script src="http://static.ftchinese.com/js/log.js?v=6"></script>
 {% endif %}
 </body>
