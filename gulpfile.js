@@ -2,7 +2,6 @@ const pify = require('pify');
 const fs = require('fs-jetpack');
 const path = require('path');
 const loadJsonFile = require('load-json-file');
-const deepAssign = require('deep-assign');
 const inline = pify(require('inline-source'));
 const webpack = pify(require('webpack'));
 
