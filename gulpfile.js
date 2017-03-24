@@ -61,7 +61,7 @@ gulp.task('html', () => {
         footer: footer,
         env
       });
-      return buildPage('index.html', context);
+      return buildPage('numbers.html', context);
     })
     .then(html => {
       return fs.writeAsync(`.tmp/${project}.html`, html);

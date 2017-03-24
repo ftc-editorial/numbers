@@ -26,9 +26,12 @@ body {
   @include arrowUpwards(36, rgba(0,0,0,.2));
 }
 
-
-.card-group__container {
+// layout
+.o-grid-container {
   @include oGridContainer;
+}
+.card-group__row {
+	@include oGridRow;
 }
 
 .card__group {
