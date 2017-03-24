@@ -3,9 +3,15 @@ const fs = require('fs-jetpack');
 const path = require('path');
 const loadJsonFile = require('load-json-file');
 const inline = pify(require('inline-source'));
-const webpack = pify(require('webpack'));
 
-const webpackConfig = require('./webpack.config.js');
+const rollup = require('rollup').rollup;
+const bowerResolve = require('rollup-plugin-bower-resolve');
+const buble = require('rollup-plugin-buble');
+let cache;
+
+// const webpack = pify(require('webpack'));
+// const webpackConfig = require('./webpack.config.js');
+
 const render = require('./util/render.js');
 
 const browserSync = require('browser-sync').create();
@@ -97,7 +103,7 @@ gulp.task('widgets', () => {
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src('client/scss/*.scss')
+  return gulp.src('client/*.scss')
     .pipe($.changed(DEST))
     .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
@@ -125,30 +131,58 @@ gulp.task('eslint', () => {
     .pipe($.eslint.failAfterError());
 });
 
-gulp.task('webpack', function() {
-  if (process.env.NODE_ENV === 'production') {
-    delete webpackConfig.watch;
-  }
-  return webpack()
-    .then(stats => {
-      console.log(stats.toString({
-        colors: true
-      }));
-    })
-    .catch(err => {
-      console.log(err);
+gulp.task('scripts', () => {
+  return rollup({
+    entry: 'client/main.js',
+    plugins: [
+      bowerResolve({
+// Use `module` field for ES6 module if possible        
+        module: true
+      }),
+// buble's option is no documented. Refer here.
+      buble({
+        include: ['client/**'],
+// FTC components should be released together with a transpiled version. Do not transpile again here.  
+        exclude: [
+          'bower_components/**',
+          'node_modules/**'
+        ],
+        transforms: {
+          dangerousForOf: true
+        }
+      })
+    ],
+    cache: cache
+  }).then(function(bundle) {
+    // Cache for later use
+    cache = bundle;
+
+    return bundle.write({
+      dest: '.tmp/scripts/main.js',
+      format: 'iife',
+      sourceMap: true
     });
+  })
+  .then(() => {
+    browserSync.reload();
+    return Promise.resolve();
+  })
+  .catch(err => {
+    console.log(err);
+  });
 });
+
+
 
 gulp.task('serve', 
   gulp.parallel(
-    'html', 'widgets', 'styles', 'webpack', 
+    'html', 'styles', 'scripts', 
 
     function serve() {
     browserSync.init({
       server: {
         baseDir: [tmpDir, 'client'],
-        index: index,
+        index: `${project}.html`,
         routes: {
           '/bower_components': 'bower_components'
         }
@@ -156,11 +190,11 @@ gulp.task('serve',
     });
 
     gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
-    gulp.watch('client/scss/**/*.scss', gulp.parallel('styles'));
+    gulp.watch('client/**/*.js', gulp.parallel('scripts'));
+    gulp.watch('client/**/*.scss', gulp.parallel('styles'));
     gulp.watch(['views/**/*.html', 'data/*.json'], gulp.parallel('html', 'widgets'));
   })
 );
-
 
 gulp.task('clean', function() {
   return del(['.tmp', 'dist']).then(()=>{
@@ -168,7 +202,7 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'widgets', 'styles', 'webpack'), 'dev'));
+gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'widgets', 'styles', 'scripts'), 'dev'));
 
 
 gulp.task('deploy:html', function() {
@@ -209,3 +243,24 @@ gulp.task('images', function () {
 });
 
 gulp.task('deploy', gulp.series('build', gulp.parallel('deploy:html','deploy:widgets', 'images')));
+
+// Currently we give up webpack as it is hard to configure.
+/*
+ * To use webpack you should install those modules:
+ * `babel-core`, `babel-loader`, `babel-preset-latest`.
+ * `babel-loader` needs to be above 7.0 which is not released yet.
+ */
+// gulp.task('webpack', function() {
+//   if (process.env.NODE_ENV === 'production') {
+//     delete webpackConfig.watch;
+//   }
+//   return webpack(webpackConfig)
+//     .then(stats => {
+//       console.log(stats.toString({
+//         colors: true
+//       }));
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
