@@ -5,9 +5,6 @@
 	"footer": {
 		"theme": "theme-light"
 	},
-	"share": {
-		"theme": "theme-tint"
-	},
 	"description": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
 	"ogTitle": "中国经济一图览 - FT中文网",
 	"ogType": "article",
