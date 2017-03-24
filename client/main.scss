@@ -10,7 +10,6 @@ $o-grid-gutters: (
 @import "o-grid/main";
 
 @import "ftc-icons/main";
-$o-share-icon-size: 32px;
 @import "ftc-share/main";
 
 @import "scss/header/main";
@@ -23,10 +22,10 @@ $o-share-icon-size: 32px;
 @import "scss/components/card";
 @import "scss/components/bignums";
 @import "scss/components/colorcoding";
-@import "scss/components/share";
 
 $o-footer-is-silent: false;
 @import "ftc-footer/main";
 
+@include oShare($theme: 'light');
 
 
