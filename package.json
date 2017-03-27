@@ -16,7 +16,7 @@
     "bower": "^1.8.0",
     "browser-sync": "^2.18.2",
     "del": "^2.2.2",
-    "got": "^6.7.1",
+    "fs-jetpack": "^0.13.3",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-changed": "^2.0.0",
     "gulp-eslint": "^3.0.1",
@@ -28,8 +28,6 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.2.0",
     "inline-source": "^5.2.0",
-    "nunjucks": "^3.0.0",
-    "pify": "^2.3.0",
     "postcss-cssnext": "^2.10.0",
     "rollup": "^0.41.6",
     "rollup-plugin-bower-resolve": "^0.3.0",
@@ -37,8 +35,14 @@
   },
   "dependencies": {
     "@ftchinese/ftc-footer": "^0.2.0",
+    "got": "^6.7.1",
     "koa": "^2.2.0",
+    "koa-logger": "^2.0.1",
+    "koa-mount": "^3.0.0",
+    "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
-    "serve-static": "^1.12.1"
+    "load-json-file": "^2.0.0",
+    "nunjucks": "^3.0.0",
+    "pify": "^2.3.0"
   }
 }
