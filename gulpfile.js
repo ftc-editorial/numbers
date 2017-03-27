@@ -167,7 +167,10 @@ gulp.task('scripts', () => {
 });
 
 // This task is used for backedn only.
-gulp.task('frontend', gulp.parallel('styles', 'scripts'));
+gulp.task('watch', gulp.parallel('styles', 'scripts', () => {
+  gulp.watch('client/**/*.js', gulp.parallel('scripts'));
+  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
+}));
 
 gulp.task('serve', 
   gulp.parallel(
