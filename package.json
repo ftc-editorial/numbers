@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "koa": "^2.2.0",
+    "koa-static": "^3.0.0",
     "serve-static": "^1.12.1"
   }
 }
