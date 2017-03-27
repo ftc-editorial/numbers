@@ -4,8 +4,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preload" type="application/javascript" as="script" href="https://h2.ft.com/polyfill/v2/polyfill.min.js">
-  <link rel="preload" type="text/css" as="style" href="https://ig.ft.com/graphics/bloomberg-economics/chart-style.css">
+  <title>{{pageTitle}} - FT中文网</title>
+	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+
+		if (cutsTheMustard) {
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+  
+  <!--<link rel="preload" type="application/javascript" as="script" href="https://cdn.polyfill.io/v2/polyfill.min.js">-->
+
   <meta name="copyright" content="FT中文网">
   <meta name="robots" content="index,follow">
   <meta name="author" content="FTC Interactive Graphics"> 
@@ -27,15 +36,14 @@
   {% if env.isProduction %}
   {% set iconsPath = "http://interactive.ftchinese.com/bower_components/ftc-logos/static" %}
   {% else %}
-  {% set iconsPath = "/bower_components/ftc-logos/static" %}
+  {% set iconsPath = "ftc-logos/static" %}
   {% endif %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{iconsPath}}/favicons/apple-touch-icon-180x180.png">
   <link rel="apple-touch-icon" sizes="152x152" href="{{iconsPath}}/favicons/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="{{iconsPath}}/favicons/apple-touch-icon-120x120.png">
   <link rel="apple-touch-icon" sizes="76x76" href="{{iconsPath}}/favicons/apple-touch-icon-76x76.png">
   <link href="{{iconsPath}}/favicons/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-  <title>{{pageTitle}} - FT中文网</title>
-<link inline rel="stylesheet" type="text/css" href="styles/main.css">
+  <link inline rel="stylesheet" type="text/css" href="styles/main.css">
 
 {% if env.isProduction %}
   {% include "partials/analytics.html" %}

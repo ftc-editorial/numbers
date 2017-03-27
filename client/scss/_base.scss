@@ -25,7 +25,9 @@ body {
   }
   @include arrowUpwards(36, rgba(0,0,0,.2));
 }
-
+#site-content {
+  padding-top: $o-header-bottom-height;
+}
 // layout
 .o-grid-container {
   @include oGridContainer;
