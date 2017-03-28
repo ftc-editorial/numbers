@@ -1,0 +1,38 @@
+{
+	"introText": {
+		"text": "The FT’s one-stop overview of key economic data, including <a class=\"sections--gdp\" href=\"#gdp\">GDP</a>, <a class=\"sections--jobs\" href=\"#labour\">unemployment</a>, <a class=\"sections--business\" href=\"#trade\">trade</a>, the <a class=\"sections--publicfinances\" href=\"#markets\">markets</a> and <a class=\"sections--housing\" href=\"#housing\">house prices</a>",
+		"html": "The FT’s one-stop overview of key economic data, including <a class=\"sections--gdp\" href=\"#gdp\">GDP</a>, <a class=\"sections--jobs\" href=\"#labour\">unemployment</a>, <a class=\"sections--business\" href=\"#trade\">trade</a>, the <a class=\"sections--publicfinances\" href=\"#markets\">markets</a> and <a class=\"sections--housing\" href=\"#housing\">house prices</a>"
+	},
+	"title": {
+		"text": "China's economy: GDP growth, interest rates and inflation statistics",
+		"html": "The Chinese economy at a glance"
+	},
+	"logo": {
+		"text": "https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Finteractive.ftdata.co.uk%2Fstatic%2Fsites%2Fchina%2Feconomic-dashboard%2Fchina-dashboard.svg?source=ig_numbers&format=svg",
+		"html": "https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Finteractive.ftdata.co.uk%2Fstatic%2Fsites%2Fchina%2Feconomic-dashboard%2Fchina-dashboard.svg?source=ig_numbers&format=svg"
+	},
+	"description": {
+		"text": "The FT’s one-stop overview of key economic data, including GDP, inflation, unemployment, the major business surveys, the public finances and house prices",
+		"html": "The FT’s one-stop overview of key economic data, including GDP, inflation, unemployment, the major business surveys, the public finances and house prices"
+	},
+	"og:site_name": {
+		"text": "China's economy: GDP growth, interest rates and inflation statistics",
+		"html": "China's economy: GDP growth, interest rates and inflation statistics"
+	},
+	"og:title": {
+		"text": "20 charts that explain the Chinese economy",
+		"html": "20 charts that explain the Chinese economy"
+	},
+	"og:description": {
+		"text": "The FT’s one-stop shop for China's key economic data, including GDP, inflation, unemployment, trade, interest rates and markets",
+		"html": "The FT’s one-stop shop for China's key economic data, including GDP, inflation, unemployment, trade, interest rates and markets"
+	},
+	"og:image": {
+		"text": "http://im.ft-static.com/content/images/4b633cae-37a2-11e5-bdbb-35e55cbae175.png",
+		"html": "http://im.ft-static.com/content/images/4b633cae-37a2-11e5-bdbb-35e55cbae175.png"
+	},
+	"uuid": {
+		"text": "60f71472-ef8b-11e5-9f20-c3a047354386",
+		"html": "60f71472-ef8b-11e5-9f20-c3a047354386"
+	}
+}
