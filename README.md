@@ -44,7 +44,19 @@ Always set `xmlMode:true` for cheerio when dealing with svg.
 
 ## Bertha URL
 ```
-https://bertha.ig.ft.com/view/publish/gss/1LUNu-fNmH4fY4KYkoYXoUoRi6BsLQpJBr75Liuix9TA/data
-
-https://bertha.ig.ft.com/view/publish/gss/1j6V0OpSP4KJRaWirUGoPRU1rA5ACL7Y_x32ZFg1-GnE/data,credits,groups,options
+https://bertha.ig.ft.com/view/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options
 ```
+
+## Run
+
+Compile statis assets first:
+```
+gulp watch
+```
+
+Then
+```
+nodemon app.js
+```
+
+Open browser `localhost:3000`
