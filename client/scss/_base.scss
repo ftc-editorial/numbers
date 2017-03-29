@@ -37,7 +37,7 @@ body {
 .o-grid-container {
   @include oGridContainer;
 }
-.card-group__row {
+.o-grid-row {
 	@include oGridRow;
 }
 

@@ -1,6 +1,6 @@
-<div class="card{% if card.isIndex %} card--index bg--{{section.theme}}{% endif %}">
-  <div class="card__header{% if not card.isIndex %} bg--{{section.theme}}{% endif %}">
-    {% if card.isIndex %}
+<section class="card{% if card.indexcard %} card--index{% endif %}">
+  <div class="card__header">
+    {% if card.indexcard %}
     <h2 class="card__title">{{card.title}}</h2>
     {% else %}
     <h3 class="card__title">{{card.title}}</h3>
@@ -8,31 +8,33 @@
   </div>
 
   <div class="card__body">
-    {% if card.svg %}
+    {% if card.charturl %}
     <figure>
-      <object type="image/svg+xml" data="{{card.svg}}"></object>
-      <!--[if lt IE 9]><img src="{{card.svg}}"><![endif]-->
+      <object type="image/svg+xml" data="{{card.charturl}}"></object>
+      <!--[if lt IE 9]><img src="{{card.charturl}}"><![endif]-->
     </figure>
     {% endif %}
 
-    {% for para in card.text %}
-    <p>{{para}}</p>
-    {% endfor %}
+    {% if card.body %}
+      {{ card.body }}
+    {% endif %}
     
-    {% if card.bigNum %}
-    <div class="card-num card-num--big">
-      <div class="card-num__heading">{{card.bigNum.heading}}</div>
-      <div class="card-num__value">{{card.bigNum.text}}</div>
+    {% if card["bignum-heading"] %}
+    <div class="headline-figs" title="更新于">
+      <div class="bignum-heading">{{card["bignum-heading"]}}</div>
+      <div class="bignum">{{card["big-number"]}}<span>{{card["bignum-units"]}}</span></div>
     </div>
     {% endif %}
 
-    {% if card.smallNum %}
-    <div class="card-num card-num--small">
-      <div class="card-num__heading">{{card.smallNum.heading}}</div>
-      <div class="card-num__value">{{card.smallNum.text}}</div>
+    {% if card["annual-heading"] %}
+    <div class="small-figs">
+      <div class="small-figs-holder" title="更新于">
+        <div class="small-figs-heading"></div>
+        <div class="small-figs-value"></div>
+      </div>
     </div>
     {% endif %}
-
   </div>
+  
   <div class="card__footer"></div>
-</div>
+</section>

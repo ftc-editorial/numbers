@@ -14,7 +14,7 @@
       <div class="o-header__center">
         
         <div class="o-header__title">
-          <span class="o-header__headline">{{articleHead}}</span>
+          <span class="o-header__headline">{{title.html}}</span>
           {% if edition %}
           <a class="o-header__edition" href="{{edition.href}}" target="_blank">{{edition.text}}</a>
           {% endif %}          
@@ -38,9 +38,9 @@
         
         <ol class="o-header__nav">
 
-          {% for section in sections %}
+          {% for group in groups %}
           <li class="o-header__nav-item">
-            <a class="o-header__nav-link bdr--{{section.theme}}" href="#{{section.id}}">{{section.name}}</a>
+            <a class="o-header__nav-link bdr--{{group.color}}" href="#{{group.id}}">{{group.name}}</a>
           </li>
           {% endfor %}
 

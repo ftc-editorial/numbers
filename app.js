@@ -5,21 +5,18 @@ const Router = require('koa-router');
 const serve = require('koa-static');
 const logger = require('koa-logger');
 const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
+const loadJsonFile = require('load-json-file');
 const render = require('./util/render.js');
 const name = 'Numbers';
 const port = process.env.PORT || 3000;
+const env = {
+  isProduction: process.env.NODE_ENV === 'production'
+};
 
 debug('booting %s', name);
 
 const app = new Koa();
 const router = new Router();
-
-const countries = {
-  china: '',
-  us: '',
-  uk: '',
-  japan: ''
-};
 
 app.use(logger());
 
@@ -38,10 +35,10 @@ router.get('/', async function index(ctx, next) {
 
 router.get('/:country', async function china(ctx, next) {
   await next();
-  console.log(ctx.params);
-  ctx.body = await render('numbers.html', {
+  const context = await loadJsonFile(path.resolve(process.cwd(), 'data/dashboard-china.json'));
+  ctx.body = await render('numbers.html', Object.assign(context, {
     footer
-  });
+  }));
 });
 
 app.use(router.routes());

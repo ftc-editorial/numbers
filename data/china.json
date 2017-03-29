@@ -1,7 +1,138 @@
 {
-	"gdp": [
+	"credits": [
 		{
-			"title": "Overall economic growth",
+			"type": "credit",
+			"name": "吴佳柏",
+			"url": "https://twitter.com/gabewildau"
+		},
+		{
+			"type": "credit",
+			"name": "艾蜜莉•卡德曼",
+			"url": "https://www.ft.com/stream/authorsId/Q0ItMDAwMTA1Nw==-QXV0aG9ycw=="
+		},
+		{
+			"type": "credit",
+			"name": "杨缘",
+			"url": "https://twitter.com/yuanfenyang"
+		},
+		{
+			"type": "credit",
+			"name": "路克•卡瓦纳",
+			"url": "https://twitter.com/lukekavanagh_"
+		},
+		{
+			"type": "credit",
+			"name": "史书华",
+			"url": "https://twitter.com/silvashih"
+		},
+		{
+			"type": "credit",
+			"name": "倪卫国",
+			"url": null
+		}
+	],
+	"groups": [
+		{
+			"id": "gdp",
+			"name": "GDP",
+			"color": "teal"
+		},
+		{
+			"id": "sources",
+			"name": "增长来源",
+			"color": "green"
+		},
+		{
+			"id": "markets",
+			"name": "金融市场",
+			"color": "pink"
+		},
+		{
+			"id": "rates",
+			"name": "利率",
+			"color": "pink"
+		},
+		{
+			"id": "labour",
+			"name": "劳动力",
+			"color": "purple"
+		},
+		{
+			"id": "trade",
+			"name": "贸易",
+			"color": "cyan"
+		},
+		{
+			"id": "fundementals",
+			"name": "Economic fundementals",
+			"color": "blue"
+		},
+		{
+			"id": "housing",
+			"name": "房地产",
+			"color": "grey"
+		}
+	],
+	"options": [
+		{
+			"name": "introText",
+			"value": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。",
+			"html": null
+		},
+		{
+			"name": "title",
+			"value": "China's economy: GDP growth, interest rates and inflation statistics",
+			"html": "中国经济一图览"
+		},
+		{
+			"name": "logo",
+			"value": "https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Finteractive.ftdata.co.uk%2Fstatic%2Fsites%2Fchina%2Feconomic-dashboard%2Fchina-dashboard.svg?source=ig_numbers&format=svg",
+			"html": null
+		},
+		{
+			"name": "edition",
+			"value": "English",
+			"html": "https://ig.ft.com/sites/numbers/economies/china"
+		},
+		{
+			"name": "description",
+			"value": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
+			"html": null
+		},
+		{
+			"name": "og:site_name",
+			"value": "China's economy: GDP growth, interest rates and inflation statistics",
+			"html": null
+		},
+		{
+			"name": "og:title",
+			"value": "20 charts that explain the Chinese economy",
+			"html": null
+		},
+		{
+			"name": "og:description",
+			"value": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
+			"html": null
+		},
+		{
+			"name": "og:image",
+			"value": "http://i.ftimg.net/picture/3/000062653_piclink.jpg",
+			"html": null
+		},
+		{
+			"name": "wx:image",
+			"value": "http://i.ftimg.net/picture/1/000062861_piclink.jpg",
+			"html": null
+		},
+		{
+			"name": "uuid",
+			"value": "60f71472-ef8b-11e5-9f20-c3a047354386",
+			"html": null
+		}
+	],
+	"data": [
+		{
+			"title": "总体经济增长",
 			"body": "<p>Fears about China’s economy are shaking global markets and capital is leaving the country at an unprecedented pace.</p>\n<p>Investors are eager for clues about whether slides in China’s equity market and currency depreciation at the start of this year were a sign of acute distress in the real economy, or whether policymakers can engineer a gradual slowdown that avoids financial crisis and social instability.</p>",
 			"nowcast": null,
 			"group": "gdp",
@@ -27,11 +158,11 @@
 			]
 		},
 		{
-			"title": "Growth",
+			"title": "增长",
 			"body": "<p>China last year grew at its slowest pace since 1990, dragged down by a severe slowdown in manufacturing and construction, once the main growth drivers.</p>",
 			"nowcast": null,
 			"group": "gdp",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-real-gdp-growth.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-real-gdp-growth.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -53,11 +184,11 @@
 			]
 		},
 		{
-			"title": "Components of GDP growth",
+			"title": "GDP增长组成",
 			"body": "<p>Consumption has not been growing as quickly as hoped to compensate for the decline in exports</p>",
 			"nowcast": null,
 			"group": "gdp",
-			"charturl": "https://ig.ft.com/autograph/graphics/sources-of-china-s-growth.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/sources-of-china-s-growth.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -76,11 +207,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Per person",
+			"title": "人均",
 			"body": "<p>While GDP per person has increased notably in recent decades, it is still only about a quarter of what is seen in the US</p>",
 			"nowcast": null,
 			"group": "gdp",
-			"charturl": "https://ig.ft.com/autograph/graphics/gdp-per-capita.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/gdp-per-capita.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -100,11 +231,9 @@
 				"China Economy",
 				"China GDP"
 			]
-		}
-	],
-	"sources": [
+		},
 		{
-			"title": "Sources of growth",
+			"title": "增长来源",
 			"body": "<p>The task of “rebalancing” the Chinese economy weighs heavily on policymakers’ minds. The government is attempting to steer the economy away from investment- and export-led growth, to growth based on domestic consumption. However, it is proving difficult to convince Chinese households to save less and spend more.</p>\n<p>A full rebalancing will require economic restructuring. This includes trimming down or getting rid of state-owned enterprises in overcapacity sectors such as coal mining and steel processing where profits have been dropping.</p>",
 			"nowcast": null,
 			"group": "sources",
@@ -130,11 +259,11 @@
 			]
 		},
 		{
-			"title": "Alternative growth metrics",
+			"title": "替代增长指标",
 			"body": "<p>This alternative metric of growth is composed of three indicators of activity: electricity consumption, rail freight volume and bank lending. However it fails to capture growth in the services sector, now the fastest-growing area of the economy.</p>",
 			"nowcast": null,
 			"group": "sources",
-			"charturl": "https://ig.ft.com/autograph/graphics/li-keqiang-index.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/li-keqiang-index.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -156,11 +285,11 @@
 			]
 		},
 		{
-			"title": "Indicators",
+			"title": "指标",
 			"body": "<p>Despite the respectable headline growth figure, pain is deepening in the sectors that have traditionally driven Chinese growth and global commodity demand.</p>",
 			"nowcast": null,
 			"group": "sources",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-activity-indicators.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-activity-indicators.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -179,11 +308,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Business activity",
+			"title": "商业活动",
 			"body": "<p>The official PMI is signalling mild contraction in the crucial manufacturing sphere. Other unofficial PMIs suggest the slowdown is more pronounced. A PMI value of more than 50 indicates expansion. Lower than 50 indicates expected contraction</p>",
 			"nowcast": null,
 			"group": "sources",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-official-pmis.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-official-pmis.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -203,11 +332,9 @@
 				"China Economy",
 				"China GDP"
 			]
-		}
-	],
-	"markets": [
+		},
 		{
-			"title": "Markets",
+			"title": "金融市场",
 			"body": "<p>China’s bond market is now the third largest in the world - and continues to grow. However, Chinese corporates still rely on bank loans for the majority of financing. The government is seeking to develop the bond market and open it up to foreign investors to diversify China’s funding sources, and move risk away from the banking system.</p>\n<p>The inter-bank market accounts for more than 95 per cent of bond trading by volume. Government bond yields are still higher than developed economies</p>",
 			"nowcast": null,
 			"group": "markets",
@@ -230,11 +357,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Shanghai Stock Exchange",
+			"title": "上海证券交易所",
 			"body": "",
 			"nowcast": null,
 			"group": "markets",
-			"charturl": "https://ig.ft.com/autograph/graphics/shanghai-composite-index.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/shanghai-composite-index.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -253,11 +380,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Currency",
+			"title": "汇率",
 			"body": "<p>Since a surprise move in August 2015 to let the renminbi weaken, investors have been struggling to interpret China’s exchange rate policy</p>",
 			"nowcast": null,
 			"group": "markets",
-			"charturl": "https://ig.ft.com/autograph/graphics/renminbi-vs-us-dollar.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/renminbi-vs-us-dollar.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -276,11 +403,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Bonds",
+			"title": "债券",
 			"body": "<p>The yield spread between 5-year treasury and AA- rated bonds are a gauge of perceived credit risk. An AA- rating is equivalent to junk status in China because lower-rated companies can’t sell debt at all.</p>",
 			"nowcast": null,
 			"group": "markets",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-bond-yields-and-spread.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-bond-yields-and-spread.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -297,11 +424,9 @@
 			"updated": "Chart timestamp",
 			"footnote": "",
 			"metadata": []
-		}
-	],
-	"rates": [
+		},
 		{
-			"title": "Interest rates",
+			"title": "利率",
 			"body": "<p>The People’s Bank of China sets the one-year benchmark lending rate, which it has cut six times since 2014. It is now phasing out the use of this benchmark rate, and a proliferation of other rates has come into use.</p>\n<p>The availability of money is also influenced by the mandatory reserves-to-deposit ratio, which the central bank has also been lowering. Despite this, bank lending trended downwards throughout 2015.</p>\n<p>At the same time as loosening its monetary policy, the government has been selling off its dollar reserves and buying up renminbi, thus shrinking the domestic money supply.</p>",
 			"nowcast": null,
 			"group": "rates",
@@ -324,11 +449,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Average loan rate",
+			"title": "平均贷款利率",
 			"body": "<p>A series of benchmark interest-rate cuts and liquidity injections since late 2014 have lowered financing costs for companies with access to bank credit, especially large state-owned companies and home mortgage borrowers.</p>",
 			"nowcast": null,
 			"group": "rates",
-			"charturl": "https://ig.ft.com/autograph/graphics/weighted-average-bank-loan-rate.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/weighted-average-bank-loan-rate.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -347,11 +472,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Repo rate",
+			"title": "回购率",
 			"body": "<p>The seven-day bond repurchase rate is considered the benchmark for short-term funding conditions in China’s interbank money market.</p>",
 			"nowcast": null,
 			"group": "rates",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-7-day-repo-rate.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-7-day-repo-rate.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -370,11 +495,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Inflation",
+			"title": "通胀",
 			"body": "<p>A collapse in inflation has meant nominal GDP growth has slowed even more sharply than real GDP growth</p>",
 			"nowcast": null,
 			"group": "rates",
-			"charturl": "https://ig.ft.com/autograph/graphics/chinese-inflation.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/chinese-inflation.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -391,11 +516,9 @@
 			"updated": null,
 			"footnote": "",
 			"metadata": []
-		}
-	],
-	"labour": [
+		},
 		{
-			"title": "Labour market",
+			"title": "劳动力市场",
 			"body": "<p>While economic growth is slowing overall and manufacturing companies are cutting jobs, demand for labour has been propped up by the growing services sector. State-owned enterprises are holding on to employees even in overcapacity sectors, stabilising the labour market but slowing China’s economic restructuring.</p>\n<p>Although wages are increasing, discontent lurks below the surface. The official unemployment measures do not take into account migrant workers who are forced to move back to the countryside. Workers might find themselves unable to collect wages owed by bosses in shrinking sectors; strikes are illegal. The China Labour Bulletin recorded a doubling of strikes from 2014 to 2015.</p>",
 			"nowcast": null,
 			"group": "labour",
@@ -418,11 +541,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Labour demand",
+			"title": "劳动力需求",
 			"body": "",
 			"nowcast": null,
 			"group": "labour",
-			"charturl": "https://ig.ft.com/static/sites/numbers/economies/china/China_labour_demand.svg",
+			"charturl": "http://static.ftchinese.com/ig/images/China_labour_demand.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -441,11 +564,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Wages",
+			"title": "薪资",
 			"body": "",
 			"nowcast": null,
 			"group": "labour",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-average-annual-wages.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-average-annual-wages.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -464,11 +587,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Unemployment",
+			"title": "失业",
 			"body": "",
 			"nowcast": null,
 			"group": "labour",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-unemployment-rate.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-unemployment-rate.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -485,11 +608,9 @@
 			"updated": null,
 			"footnote": "",
 			"metadata": []
-		}
-	],
-	"trade": [
+		},
 		{
-			"title": "Trade",
+			"title": "贸易",
 			"body": "<p>Although China still runs a healthy trade surplus, the surplus of capital outflow over trade inflow has caused a fall in dollar reserves. The central bank has also sold off dollar reserves to support the price of the renminbi.</p>",
 			"nowcast": null,
 			"group": "trade",
@@ -512,11 +633,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Goods & services",
+			"title": "商品和服务",
 			"body": "",
 			"nowcast": null,
 			"group": "trade",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-trade-balance.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-trade-balance.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -535,11 +656,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Current account",
+			"title": "经常账目",
 			"body": "",
 			"nowcast": null,
 			"group": "trade",
-			"charturl": "https://ig.ft.com/autograph/graphics/china-s-current-account-balance.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/china-s-current-account-balance.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -556,11 +677,9 @@
 			"updated": null,
 			"footnote": "",
 			"metadata": []
-		}
-	],
-	"housing": [
+		},
 		{
-			"title": "Housing",
+			"title": "房地产",
 			"body": "<p>A lack of investment options means that China’s burgeoning middle class has historically put its wealth in housing. Local governments and state-owned enterprises rely on land prices as a major asset and source of income.</p>\n<p>Many commentators expect that the housing sector’s contribution to economic growth will continue to shrink. Some point to localised property bubbles, such as in Shenzhen and Hong Kong, which have an average price-to-income ratio of 18 and 16 respectively, compared with London’s 10. This year China starts a new five-year-plan that prioritises supply-side reforms, such as reducing the stock of unsold housing.</p>",
 			"nowcast": null,
 			"group": "housing",
@@ -583,11 +702,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Under construction",
+			"title": "施工中",
 			"body": "",
 			"nowcast": null,
 			"group": "housing",
-			"charturl": "https://ig.ft.com/autograph/graphics/floor-space-under-construction.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/floor-space-under-construction.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -606,11 +725,11 @@
 			"metadata": []
 		},
 		{
-			"title": "Sold",
+			"title": "售出",
 			"body": "",
 			"nowcast": null,
 			"group": "housing",
-			"charturl": "https://ig.ft.com/autograph/graphics/floor-space-sold.svg",
+			"charturl": "http://ig.ftchinese.com/autograph/graphics/floor-space-sold.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
@@ -629,11 +748,11 @@
 			"metadata": []
 		},
 		{
-			"title": "House pricecs",
+			"title": "房价",
 			"body": "<p>China no longer publishes and official property price index, but Reuters calculates an average based on 70 cities.</p>",
 			"nowcast": null,
 			"group": "housing",
-			"charturl": "https://ig.ft.com/static/sites/numbers/economies/china/Property_price_growth_in_China.svg",
+			"charturl": "http://static.ftchinese.com/ig/images/Property_price_growth_in_China.svg",
 			"indexcard": null,
 			"big-number": null,
 			"bignum-heading": null,
