@@ -16,12 +16,12 @@ if (require.main === module) {
   const dataUrl = 'https://bertha.ig.ft.com/republish/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options';
   const dest = path.resolve(__dirname, '../data');
   got(dataUrl, {
-    json: true
-  })
-  .then(res => {
-    return writeJsonFile(`${dest}/china.json`, res.body);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+      json: true
+    })
+    .then(res => {
+      return writeJsonFile(`${dest}/china.json`, res.body);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
