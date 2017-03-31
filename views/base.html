@@ -35,15 +35,13 @@
   <meta name="twitter:description" content="{{meta.og.description}}">
   <meta name="twitter:image" content="{{meta.og.image}}">
   {% if env.isProduction %}
-  {% set iconsPath = "http://interactive.ftchinese.com/bower_components/ftc-logos/static" %}
-  {% else %}
-  {% set iconsPath = "ftc-logos/static" %}
+  {% set iconsPath = "http://interactive.ftchinese.com/favicons" %}
   {% endif %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{iconsPath}}/favicons/apple-touch-icon-180x180.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="{{iconsPath}}/favicons/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="{{iconsPath}}/favicons/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{iconsPath}}/favicons/apple-touch-icon-76x76.png">
-  <link href="{{iconsPath}}/favicons/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{iconsPath}}/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{iconsPath}}/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{iconsPath}}/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{iconsPath}}/apple-touch-icon-76x76.png">
+  <link href="{{iconsPath}}/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
   <link inline rel="stylesheet" type="text/css" href="styles/main.css">
 
 {% if env.isProduction %}
