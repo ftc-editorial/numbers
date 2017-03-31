@@ -1,3 +1,5 @@
+[DEPRECATION] This is the legacy version to build everything into static files.
+
 ## Gulp Commands
 
 `gulp serve`
