@@ -8,21 +8,15 @@ const rollup = require('rollup').rollup;
 const bowerResolve = require('rollup-plugin-bower-resolve');
 const buble = require('rollup-plugin-buble');
 let cache;
-
-// const webpack = pify(require('webpack'));
-// const webpackConfig = require('./webpack.config.js');
-
-const render = require('./util/render.js');
-
 const browserSync = require('browser-sync').create();
-
 const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
+const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const tmpDir = '.tmp';
+const public = 'public';
 const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
@@ -61,10 +55,10 @@ gulp.task('html', () => {
         footer: footer,
         env
       });
-      return buildPage('index.html', context);
+      return buildPage('numbers.html', context);
     })
     .then(html => {
-      return fs.writeAsync(`.tmp/${project}.html`, html);
+      return fs.writeAsync(`${public}/${project}.html`, html);
     })
     .then(() => {
       browserSync.reload('*.html');
@@ -78,7 +72,7 @@ gulp.task('html', () => {
 // generate partial html files to be used on homepage widget.
 function buildWidgets(sections) {
   const promisedWidgets = sections.map(section => {
-    const dest = `${tmpDir}/${project}-${section.id}.html`;
+    const dest = `${public}/${project}-${section.id}.html`;
     return buildPage('widget.html', {section: section})
       .then(html => {
         return fs.writeAsync(dest, html);
@@ -101,10 +95,10 @@ gulp.task('widgets', () => {
 });
 
 gulp.task('styles', function styles() {
-  const DEST = '.tmp/styles';
+  const dest = `${public}/styles`;
 
   return gulp.src('client/*.scss')
-    .pipe($.changed(DEST))
+    .pipe($.changed(dest))
     .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
     .pipe($.sass({
@@ -120,7 +114,7 @@ gulp.task('styles', function styles() {
       })
     ]))
     .pipe($.sourcemaps.write('./'))
-    .pipe(gulp.dest(DEST))
+    .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });
 
@@ -158,7 +152,7 @@ gulp.task('scripts', () => {
     cache = bundle;
 
     return bundle.write({
-      dest: '.tmp/scripts/main.js',
+      dest: `${public}/scripts/main.js`,
       format: 'iife',
       sourceMap: true
     });
@@ -172,7 +166,11 @@ gulp.task('scripts', () => {
   });
 });
 
-
+// This task is used for backedn only.
+gulp.task('watch', gulp.parallel('styles', 'scripts', () => {
+  gulp.watch('client/**/*.js', gulp.parallel('scripts'));
+  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
+}));
 
 gulp.task('serve', 
   gulp.parallel(
@@ -203,7 +201,6 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'widgets', 'styles', 'scripts'), 'dev'));
-
 
 gulp.task('deploy:html', function() {
   const DEST = path.resolve(__dirname, config.html);

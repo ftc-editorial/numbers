@@ -1,42 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
-<article class="article" role="main">
-  <header class="articlehead">
-    <div class="card-group__container">
-
-      <h1 class="articlehead__headline" id="main-title">{{articleHead}}</h1>
-
-      <p class="articlehead__lead">{{articleLead}}</p>
-      
-      <p class="articlehead__byline">{{articleByline}}</a>
-      </p>
-      
-      <div class="o-share o-share--theme-light" data-o-component="o-share"></div>
-    </div><!-- data-o-grid-container -->
-  </header>
-
-  {% for section in sections%}
-  <section class="card__group" id="{{section.id}}">
-
-    <div class="card-group__container">
-
-{# widget starts from here #}    
-      <div class="card-group__row">
-
-      {% for card in section.cards %}
-        <div class="card__group-item">          
-          {% include "partials/card.html" %}
-        </div>            
-      {% endfor %}
-
-      </div><!-- data-o-grid-row -->  
-{# widget ends #}
-
-    </div><!-- data-o-grid-container-->        
-
-  </section>
-  {% endfor %}
-
+<article id="site-content" class="o-grid-container" role="main">
+  <nav>
+    <h2>经济数据一览</h2>
+    <ul>
+      <li><a href="./china">中国</a></li>
+      <li><a href="./us">美国</a></li>
+      <li><a href="./uk">英国</a></li>
+      <li><a href="./japan">日本</a></li>
+    </ul>
+  </nav>
 </article>
 {% endblock %}

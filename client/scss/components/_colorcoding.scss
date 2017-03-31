@@ -1,39 +1,42 @@
-.bg--pink {
-  background-color: $ft-color-pink;
+.card--index, .card__header {
+  .bg--pink & {
+    background-color: $ft-color-pink;  
+  }
+
+  .bg--teal & {
+    background-color: $ft-color-teal;
+  }
+
+  .bg--orange & {
+    background-color: $ft-color-orange;
+  }
+
+  .bg--green & {
+    background-color: $ft-color-green;
+  }
+
+  .bg--dusk & {
+    background-color: $ft-color-dusk;
+  }
+
+  .bg--purple & {
+    background-color: $ft-color-purple;
+  }
+
+  .bg--brown & {
+    background-color: $ft-color-brown;
+  }
+
+  .bg--grey & {
+    background-color: $ft-color-grey;
+  }
+
+  .bg--blue & {
+    background-color: $ft-color-blue;
+  }
+
+  .bg--cyan & {
+    background-color: $ft-color-cyan;
+  }
 }
 
-.bg--teal {
-  background-color: $ft-color-teal;
-}
-
-.bg--orange {
-  background-color: $ft-color-orange;
-}
-
-.bg--green {
-  background-color: $ft-color-green;
-}
-
-.bg--dusk {
-  background-color: $ft-color-dusk;
-}
-
-.bg--purple {
-  background-color: $ft-color-purple;
-}
-
-.bg--brown {
-  background-color: $ft-color-brown;
-}
-
-.bg--grey {
-  background-color: $ft-color-grey;
-}
-
-.bg--blue {
-  background-color: $ft-color-blue;
-}
-
-.bg--cyan {
-  background-color: $ft-color-cyan;
-}

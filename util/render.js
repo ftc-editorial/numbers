@@ -13,7 +13,7 @@ var env = new nunjucks.Environment(
   {autoescape: false}
 );
 
-function render(template, context, name) {
+function render(template, context) {
   return new Promise(function(resolve, reject) {
     env.render(template, context, function(err, result) {
       if (err) {

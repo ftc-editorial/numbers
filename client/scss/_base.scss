@@ -26,9 +26,19 @@ body {
   @include arrowUpwards(36, rgba(0,0,0,.2));
 }
 
+#site-content {
+  padding-top: $o-header-bottom-height;
 
-.card-group__container {
+  .numbers-index & {
+    min-height: 50vh;
+  }
+}
+// layout
+.o-grid-container {
   @include oGridContainer;
+}
+.o-grid-row {
+	@include oGridRow;
 }
 
 .card__group {

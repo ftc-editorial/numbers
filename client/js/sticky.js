@@ -23,14 +23,16 @@ class Sticky {
 
 		if (!config.relativeTo) {
 			return;
-		} else if (!(config.relativeTo instanceof HTMLElement)) {
-			this.refEl = config.relativeTo;
-		}
+		} 
+		this.refEl = config.relativeTo;
 
 		if (!(this.refEl instanceof HTMLElement)) {
 			this.refEl = document.querySelector(this.refEl);
 		}
 
+		if (!this.refEl) {
+			return;
+		}
 
 		this.distance = this.getDistance();
 

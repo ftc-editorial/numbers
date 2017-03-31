@@ -1,25 +1,66 @@
 {	
-	"header": {
-		"theme": "theme-light"
-	},
 	"footer": {
 		"theme": "theme-light"
 	},
-	"description": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
-	"ogTitle": "中国经济一图览 - FT中文网",
-	"ogType": "article",
-	"ogImage": "http://i.ftimg.net/picture/3/000062653_piclink.jpg",
-	"ogUrl": "http://www.ftchinese.com/channel/numbers-china.html",
-	"wechatImage": "http://i.ftimg.net/picture/1/000062861_piclink.jpg",
-	"pageTitle": "中国经济一图览",
-	"edition": {
-		"text": "English",
-		"href": "https://ig.ft.com/sites/numbers/economies/china"
+	"title": {
+		"text": "中国经济一图览",
+		"html": ""
 	},
 	"articleHead": "中国经济一图览",
-	"articleLead": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。",
-	"articleByline": "制作：<a href=\"https://twitter.com/gabewildau\" rel=\"nofollow\">吳佳柏</a>，<a href=\"https://twitter.com/ecadman\" rel=\"nofollow\">艾蜜莉•卡德曼</a>，<a href=\"https://twitter.com/yuanfenyang\" rel=\"nofollow\">杨缘</a>，<a href=\"https://twitter.com/lukekavanagh_\" rel=\"nofollow\">路克•卡瓦纳</a>，<a href=\"https://twitter.com/silvashih\" rel=\"nofollow\">史书华</a>，倪卫国",
-	"sections": [
+	"edition": {
+		"text": "English",
+		"html": "https://ig.ft.com/sites/numbers/economies/china"
+	},
+	"introText": {
+		"text": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。"
+	},
+	"meta": {
+		"title": "",
+		"description": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
+		"wx": {
+			"image": "http://i.ftimg.net/picture/1/000062861_piclink.jpg"
+		},
+		"og": {
+			"site_name": "中国经济一图览 - FT中文网",
+			"title": "",
+			"description": "",
+			"image": "http://i.ftimg.net/picture/3/000062653_piclink.jpg",
+			"url": "http://www.ftchinese.com/channel/numbers-china.html"
+		}
+	},
+	"credits": [
+		{
+			"type": "credit",
+			"name": "吳佳柏",
+			"url": "https://twitter.com/gabewildau"
+		},
+		{
+			"type": "credit",
+			"name": "艾蜜莉•卡德曼",
+			"url": "https://twitter.com/ecadman"
+		},
+		{
+			"type": "credit",
+			"name": "杨缘",
+			"url": "https://twitter.com/yuanfenyang"
+		},
+		{
+			"type": "credit",
+			"name": "路克•卡瓦纳",
+			"url": "https://twitter.com/lukekavanagh"
+		},
+		{
+			"type": "credit",
+			"name": "史书华",
+			"url": "https://twitter.com/silvashih"
+		},
+		{
+			"type": "credit",
+			"name": "倪卫国",
+			"url": ""
+		}
+	],
+	"groups": [
 		{
 			"id":"gdp",
 			"name": "GDP",
