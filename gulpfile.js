@@ -16,7 +16,7 @@ const $ = require('gulp-load-plugins')();
 const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const public = 'public';
+const public = process.env.PUBLIC_DIR || 'public';
 const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
@@ -194,27 +194,8 @@ gulp.task('serve',
   })
 );
 
-gulp.task('clean', function() {
-  return del(['.tmp', 'dist']).then(()=>{
-    console.log('.tmp and dist deleted');
-  });
-});
-
-gulp.task('build', gulp.series('prod', 'clean', gulp.parallel('html', 'widgets', 'styles', 'scripts'), 'dev'));
-
-gulp.task('deploy:html', function() {
-  const DEST = path.resolve(__dirname, config.html);
-
-  console.log(`Deploying HTML file to: ${DEST}`);
-
-  return gulp.src(`.tmp/${project}.html`)
-    .pipe($.htmlmin({
-      removeComments: true,
-      collapseWhitespace: true,
-      removeAttributeQuotes: true
-    }))
-    .pipe(gulp.dest(DEST));
-});
+// For server only build frontend assets
+gulp.task('build', gulp.series('prod', gulp.parallel('styles', 'scripts'), 'dev'));
 
 gulp.task('deploy:widgets', () => {
   const DEST = path.resolve(__dirname, config.widgets);
@@ -239,7 +220,7 @@ gulp.task('images', function () {
     .pipe(gulp.dest(DEST));
 });
 
-gulp.task('deploy', gulp.series('build', gulp.parallel('deploy:html','deploy:widgets', 'images')));
+gulp.task('deploy', gulp.parallel('deploy:widgets', 'images'));
 
 // Currently we give up webpack as it is hard to configure.
 /*
