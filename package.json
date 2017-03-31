@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@ftchinese/ftc-footer": "^0.2.0",
+    "@ftchinese/ftc-logos": "^1.1.1",
     "debug": "^2.6.3",
     "fs-jetpack": "^0.13.3",
     "got": "^6.7.1",
