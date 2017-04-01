@@ -3,7 +3,6 @@ const fs = require('fs-jetpack');
 const path = require('path');
 const loadJsonFile = require('load-json-file');
 const inline = pify(require('inline-source'));
-
 const rollup = require('rollup').rollup;
 const bowerResolve = require('rollup-plugin-bower-resolve');
 const buble = require('rollup-plugin-buble');
@@ -16,7 +15,8 @@ const $ = require('gulp-load-plugins')();
 const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const public = process.env.PUBLIC_DIR || 'public';
+const publicDir = process.env.PUBLIC_DIR || 'public';
+let cache;
 const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
@@ -58,7 +58,7 @@ gulp.task('html', () => {
       return buildPage('numbers.html', context);
     })
     .then(html => {
-      return fs.writeAsync(`${public}/${project}.html`, html);
+      return fs.writeAsync(`${publicDir}/${project}.html`, html);
     })
     .then(() => {
       browserSync.reload('*.html');
@@ -72,7 +72,7 @@ gulp.task('html', () => {
 // generate partial html files to be used on homepage widget.
 function buildWidgets(sections) {
   const promisedWidgets = sections.map(section => {
-    const dest = `${public}/${project}-${section.id}.html`;
+    const dest = `${publicDir}/${project}-${section.id}.html`;
     return buildPage('widget.html', {section: section})
       .then(html => {
         return fs.writeAsync(dest, html);
@@ -95,7 +95,7 @@ gulp.task('widgets', () => {
 });
 
 gulp.task('styles', function styles() {
-  const dest = `${public}/styles`;
+  const dest = `${publicDir}/styles`;
 
   return gulp.src('client/*.scss')
     .pipe($.changed(dest))
@@ -152,7 +152,7 @@ gulp.task('scripts', () => {
     cache = bundle;
 
     return bundle.write({
-      dest: `${public}/scripts/main.js`,
+      dest: `${publicDir}/scripts/main.js`,
       format: 'iife',
       sourceMap: true
     });
