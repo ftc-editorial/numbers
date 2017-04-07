@@ -15,10 +15,9 @@ const $ = require('gulp-load-plugins')();
 const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const deployDir = path.resolve(__dirname, '../ft-interact/static');
+const projectName = path.basename(process.env.cwd())
+const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
-
-const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
 // change NODE_ENV between tasks.
@@ -221,7 +220,7 @@ gulp.task('images', function () {
     .pipe(gulp.dest(DEST));
 });
 
-gulp.task('deploy', gulp.parallel('deploy:widgets', 'images'));
+gulp.task('deploy', gulp.parallel('styles', 'scripts', 'images'));
 
 // Currently we give up webpack as it is hard to configure.
 /*
