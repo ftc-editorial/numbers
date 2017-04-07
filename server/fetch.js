@@ -1,27 +1,50 @@
+const got = require('got');
+const errors = require('../util/errors.js');
+const createDashboard = require('./create-dashboard.js');
+
 function dataUrl(key, republish) {
   return `https://bertha.ig.ft.com/${republish ? 'republish' : 'view'}/publish/gss/${key}/data,credits,groups,options`;
 }
 
-const docId = {
-  china: '1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA',
-  us: '',
-  uk: '',
-  japan: ''
+const urls = {
+  china: dataUrl('1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA')
 };
 
-if (require.main === module) {
-  const path = require('path');
-  const got = require('got');
-  const writeJsonFile = require('write-json-file');
-  const dataUrl = 'https://bertha.ig.ft.com/republish/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options';
-  const dest = path.resolve(__dirname, '../test');
-  got(dataUrl, {
+const dashboards = {};
+
+function fetch(name) {
+  const dashboard = dashboards[name];
+
+  if (dashboard) {
+    return dashboard;
+  }
+
+  const url = urls[name];
+  
+  if (!url) {
+    return Promise.reject(errors.notFound('Economy'));
+  }
+
+  return got(url, {
       json: true
     })
-    .then(res => {
-      return writeJsonFile(`${dest}/example-bertha.json`, res.body);
+    .then(response => {
+      const dashboard = createDashboard(response.body, name);
+      dashboards[name] = dashboard;
+      return dashboard;
     })
     .catch(err => {
-      console.log(err);
+      throw err;
     });
 }
+
+if (require.main === module) {
+  fetch('china')
+    .then(data => {
+      console.log(dashboards);
+      console.log(pollers);
+    })
+}
+
+module.exports = fetch;
+module.exports.urls = urls;

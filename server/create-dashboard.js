@@ -4,8 +4,9 @@
  * @param {Object[]} spreadsheet.groups - Index
  * @param {Object[]} spreadsheet.data - Data to be transfromed and merged into `groups`
  * @param {object[]} spreadsheet.credits
+ * @param {String} name - country name `china | us | uk | japan`
  */
-function createDashboard(spreadsheet) {
+function createDashboard(spreadsheet, name) {
 // Reduce array `spreadsheet.options` to an object,
 // using each array element's `name` as key.
   const options = spreadsheet.options.reduce((o, row) => {
@@ -42,12 +43,14 @@ function createDashboard(spreadsheet) {
 
 // Creat the data structure
   let dashboard = {
+    name: name,
     title: options.title,
     introText: options.introText,
     edition: options.edition,
     meta: {
       title: options.title && options.title.text,
       description: options.description && options.description.text,
+      canonicalUrl: `http://ig.ftchinese.com/numbers/${name}`,
       wx: {
         image: options['wx:image'] && options['wx:image'].text
       },
@@ -65,20 +68,7 @@ function createDashboard(spreadsheet) {
 }
 
 if (require.main === module) {
-  const path = require('path');
-  const loadJsonFile = require('load-json-file');
-  const writeJsonFile = require('write-json-file');
-  const dest = path.resolve(__dirname, '../test');
-  loadJsonFile(`${dest}/example-bertha.json`)
-    .then(json => {
-      return createDashboard(json);
-    })
-    .then(dashboard => {
-      return writeJsonFile(`${dest}/example-dashboard.json`, dashboard);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+
 }
 
 module.exports = createDashboard;
