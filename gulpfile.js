@@ -15,7 +15,8 @@ const $ = require('gulp-load-plugins')();
 const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const publicDir = process.env.PUBLIC_DIR || 'public';
+const deployDir = path.resolve(__dirname, '../ft-interact/static');
+const tmpDir = path.resolve(__dirname, '.tmp');
 let cache;
 const project = 'numbers-china';
 
@@ -58,7 +59,7 @@ gulp.task('html', () => {
       return buildPage('numbers.html', context);
     })
     .then(html => {
-      return fs.writeAsync(`${publicDir}/${project}.html`, html);
+      return fs.writeAsync(`${tmpDir}/${project}.html`, html);
     })
     .then(() => {
       browserSync.reload('*.html');
@@ -72,7 +73,7 @@ gulp.task('html', () => {
 // generate partial html files to be used on homepage widget.
 function buildWidgets(sections) {
   const promisedWidgets = sections.map(section => {
-    const dest = `${publicDir}/${project}-${section.id}.html`;
+    const dest = `${tmpDir}/${project}-${section.id}.html`;
     return buildPage('widget.html', {section: section})
       .then(html => {
         return fs.writeAsync(dest, html);
@@ -95,7 +96,7 @@ gulp.task('widgets', () => {
 });
 
 gulp.task('styles', function styles() {
-  const dest = `${publicDir}/styles`;
+  const dest = `${tmpDir}/styles`;
 
   return gulp.src('client/*.scss')
     .pipe($.changed(dest))
@@ -152,7 +153,7 @@ gulp.task('scripts', () => {
     cache = bundle;
 
     return bundle.write({
-      dest: `${publicDir}/scripts/main.js`,
+      dest: `${tmpDir}/scripts/main.js`,
       format: 'iife',
       sourceMap: true
     });
