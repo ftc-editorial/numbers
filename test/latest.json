@@ -1,0 +1,2114 @@
+[
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 1.098,
+        "sourcevalue": 1.098,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "10yr bond",
+        "slug": "10yr-bond",
+        "ftname": "10yr bond"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 1.098,
+        "sourcevalue": 1.098,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "10yr bond",
+        "slug": "10yr-bond",
+        "ftname": "10yr bond"
+    },
+    {
+        "date": "2017-04-10T00:00:00.000Z",
+        "value": 4.14,
+        "sourcevalue": 4.14,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "30Y fed",
+        "slug": "30y-fed",
+        "ftname": "30Y fed"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 1.42,
+        "sourcevalue": 1.42,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "av mortgage",
+        "slug": "av-mortgage",
+        "ftname": "av mortgage"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": -12.1,
+        "sourcevalue": -12.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "Balance of payments",
+        "slug": "balance-of-payments",
+        "ftname": "Balance of payments"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -10.833,
+        "sourcevalue": -10833,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "Balance of trade in goods",
+        "slug": "balance-of-trade-in-goods",
+        "ftname": "Balance of trade in goods"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 8.867,
+        "sourcevalue": 8867,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "Balance of trade services",
+        "slug": "balance-of-trade-services",
+        "ftname": "Balance of trade services"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 0.25,
+        "sourcevalue": 0.25,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "base rate",
+        "slug": "base-rate",
+        "ftname": "base rate"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": -0.9,
+        "sourcevalue": -0.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Business investment QoQ change",
+        "slug": "business-investment-qoq-change",
+        "ftname": "Business investment QoQ change"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 3.31,
+        "sourcevalue": 3.31,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN 10yr bond",
+        "slug": "cn-10yr-bond",
+        "ftname": "CN 10yr bond"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 4.4279,
+        "sourcevalue": 4.4279,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN AAA 5 spot",
+        "slug": "cn-aaa-5-spot",
+        "ftname": "CN AAA 5 spot"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 6.2618,
+        "sourcevalue": 6.2618,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN AA minus 5 spot",
+        "slug": "cn-aa-minus-5-spot",
+        "ftname": "CN AA minus 5 spot"
+    },
+    {
+        "date": "2015-12-01T00:00:00.000Z",
+        "value": 10.058552164655785,
+        "sourcevalue": 62029,
+        "transform": {
+            "fn": "month-on-month",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN average wage",
+        "slug": "cn-average-wage",
+        "ftname": "CN average wage"
+    },
+    {
+        "date": "2016-09-01T00:00:00.000Z",
+        "value": -194.04931156,
+        "sourcevalue": -194.04931156,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "$ mn",
+        "id": "CN capital account",
+        "slug": "cn-capital-account",
+        "ftname": "CN capital account"
+    },
+    {
+        "date": "2015-12-01T00:00:00.000Z",
+        "value": 26585852.3314122,
+        "sourcevalue": 26585852.3314122,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN capital flow",
+        "slug": "cn-capital-flow",
+        "ftname": "CN capital flow"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 12.6,
+        "sourcevalue": 12.6,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN consumer confidence",
+        "slug": "cn-consumer-confidence",
+        "ftname": "CN consumer confidence"
+    },
+    {
+        "date": "2015-12-01",
+        "value": 4.6,
+        "sourcevalue": 4.6,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN consumption",
+        "slug": "cn-consumption",
+        "ftname": "CN consumption"
+    },
+    {
+        "date": "2016-09-01T00:00:00.000Z",
+        "value": 69.25367734407,
+        "sourcevalue": 69253.67734407,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "$ mn",
+        "id": "CN current account",
+        "slug": "cn-current-account",
+        "ftname": "CN current account"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 0.381798,
+        "sourcevalue": 0.381798,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN current account per GDP",
+        "slug": "cn-current-account-per-gdp",
+        "ftname": "CN current account per GDP"
+    },
+    {
+        "date": "2014-12-31",
+        "value": 14.9,
+        "sourcevalue": 14.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN debt GDP",
+        "slug": "cn-debt-gdp",
+        "ftname": "CN debt GDP"
+    },
+    {
+        "date": "1999-01-01T00:00:00.000Z",
+        "value": "11.6089967327185",
+        "sourcevalue": "11.6089967327185",
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN debt",
+        "slug": "cn-debt",
+        "ftname": "CN debt"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 6.9013,
+        "sourcevalue": 6.9013,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN dollar vs yuan",
+        "slug": "cn-dollar-vs-yuan",
+        "ftname": "CN dollar vs yuan"
+    },
+    {
+        "date": "2015-12-01",
+        "value": -2.5,
+        "sourcevalue": -2.5,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN export cont",
+        "slug": "cn-export-cont",
+        "ftname": "CN export cont"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 120.078966933,
+        "sourcevalue": 120078.966933,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "$",
+        "id": "CN exports $",
+        "slug": "cn-exports-usd",
+        "ftname": "CN exports $"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 8.9,
+        "sourcevalue": 8.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN FIA ytd",
+        "slug": "cn-fia-ytd",
+        "ftname": "CN FIA ytd"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 8.8,
+        "sourcevalue": 8.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN FIA ytd real",
+        "slug": "cn-fia-ytd-real",
+        "ftname": "CN FIA ytd real"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 4.786506869279401,
+        "sourcevalue": 7383254.8,
+        "transform": {
+            "fn": "year-on-year",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN floor space construct",
+        "slug": "cn-floor-space-construct",
+        "ftname": "CN floor space construct"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 25.099173237619382,
+        "sourcevalue": 140543.393,
+        "transform": {
+            "fn": "year-on-year",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN floor space sold",
+        "slug": "cn-floor-space-sold",
+        "ftname": "CN floor space sold"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 8127.46784508,
+        "sourcevalue": 8127.46784508,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "$",
+        "id": "CN GDP cap",
+        "slug": "cn-gdp-cap",
+        "ftname": "CN GDP cap"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 4.3282,
+        "sourcevalue": 4.3282,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN GDP consumption contr",
+        "slug": "cn-gdp-consumption-contr",
+        "ftname": "CN GDP consumption contr"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": -0.4556,
+        "sourcevalue": -0.4556,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN GDP export cont",
+        "slug": "cn-gdp-export-cont",
+        "ftname": "CN GDP export cont"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 2.8274,
+        "sourcevalue": 2.8274,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN GDP GFCF contr",
+        "slug": "cn-gdp-gfcf-contr",
+        "ftname": "CN GDP GFCF contr"
+    },
+    {
+        "date": "2015-12-01",
+        "value": 36.1,
+        "sourcevalue": 36.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN GFCF",
+        "slug": "cn-gfcf",
+        "ftname": "CN GFCF"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 129.226646678,
+        "sourcevalue": 129226.646678,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "$",
+        "id": "CN imports $",
+        "slug": "cn-imports-usd",
+        "ftname": "CN imports $"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 0.8,
+        "sourcevalue": 0.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN inflation YOY",
+        "slug": "cn-inflation-yoy",
+        "ftname": "CN inflation YOY"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 3.0341,
+        "sourcevalue": 3.0341,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN interbank",
+        "slug": "cn-interbank",
+        "ftname": "CN interbank"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 6,
+        "sourcevalue": 6,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN IP yoy",
+        "slug": "cn-ip-yoy",
+        "ftname": "CN IP yoy"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 12.85,
+        "sourcevalue": 12.85,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN li index",
+        "slug": "cn-li-index",
+        "ftname": "CN li index"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 12.85,
+        "sourcevalue": 12.85,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN Li Keqiang",
+        "slug": "cn-li-keqiang",
+        "ftname": "CN Li Keqiang"
+    },
+    {
+        "date": "2017-03-01T00:00:00.000Z",
+        "value": 51.8,
+        "sourcevalue": 51.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN manu PMI",
+        "slug": "cn-manu-pmi",
+        "ftname": "CN manu PMI"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 12.53,
+        "sourcevalue": 12.53,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN new floor space",
+        "slug": "cn-new-floor-space",
+        "ftname": "CN new floor space"
+    },
+    {
+        "date": "2017-03-01T00:00:00.000Z",
+        "value": 55.1,
+        "sourcevalue": 55.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN non manu PMI",
+        "slug": "cn-non-manu-pmi",
+        "ftname": "CN non manu PMI"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 6.8,
+        "sourcevalue": 6.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN real GDP",
+        "slug": "cn-real-gdp",
+        "ftname": "CN real GDP"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 3005.124,
+        "sourcevalue": 3005.124,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "$ bn",
+        "id": "CN reserves",
+        "slug": "cn-reserves",
+        "ftname": "CN reserves"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 10.9,
+        "sourcevalue": 10.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN retail sales",
+        "slug": "cn-retail-sales",
+        "ftname": "CN retail sales"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 10.9,
+        "sourcevalue": 10.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN retail yoy",
+        "slug": "cn-retail-yoy",
+        "ftname": "CN retail yoy"
+    },
+    {
+        "date": "2017-03-01T00:00:00.000Z",
+        "value": 3222.51,
+        "sourcevalue": 3222.51,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN shanghai composite",
+        "slug": "cn-shanghai-composite",
+        "ftname": "CN shanghai composite"
+    },
+    {
+        "date": "2016-01-29T00:00:00.000Z",
+        "value": 2.7583,
+        "sourcevalue": 2.7583,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN sov 5 year",
+        "slug": "cn-sov-5-year",
+        "ftname": "CN sov 5 year"
+    },
+    {
+        "date": "2014-12-01T00:00:00.000Z",
+        "value": 4.69999981,
+        "sourcevalue": 4.69999981,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN unemployment WB",
+        "slug": "cn-unemployment-wb",
+        "ftname": "CN unemployment WB"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 5.44,
+        "sourcevalue": 5.44,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "CN weighted loan",
+        "slug": "cn-weighted-loan",
+        "ftname": "CN weighted loan"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 0.14492,
+        "sourcevalue": 0.14492,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "CN yuan vs dollar",
+        "slug": "cn-yuan-vs-dollar",
+        "ftname": "CN yuan vs dollar"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 4.5,
+        "sourcevalue": 4.5,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "confidenceEU",
+        "slug": "confidenceeu",
+        "ftname": "confidenceEU"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 2,
+        "sourcevalue": 2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "construction output",
+        "slug": "construction-output",
+        "ftname": "construction output"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 1.4,
+        "sourcevalue": 1.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "consumer credit",
+        "slug": "consumer-credit",
+        "ftname": "consumer credit"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 4503,
+        "sourcevalue": 4503,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "corp tax",
+        "slug": "corp-tax",
+        "ftname": "corp tax"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 7.106057593231982,
+        "sourcevalue": 59250,
+        "transform": {
+            "fn": "year-on-year",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "current receipts",
+        "slug": "current-receipts",
+        "ftname": "current receipts"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 85.4,
+        "sourcevalue": 85.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "debt percent GDP",
+        "slug": "debt-percent-gdp",
+        "ftname": "debt percent GDP"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 470.527,
+        "sourcevalue": 470527,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "econ size",
+        "slug": "econ-size",
+        "ftname": "econ size"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 229.51978,
+        "sourcevalue": 229519.78,
+        "transform": {
+            "fn": "thousands",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "England & Wales",
+        "slug": "england-and-wales",
+        "ftname": "England & Wales"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 1,
+        "sourcevalue": 1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Fed target",
+        "slug": "fed-target",
+        "ftname": "Fed target"
+    },
+    {
+        "date": "2014-01-01",
+        "value": "16186.7",
+        "sourcevalue": "16186.7",
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "$",
+        "id": "Fred test",
+        "slug": "fred-test",
+        "ftname": "Fred test"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 1.171,
+        "sourcevalue": 1.171,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "GDPEUR",
+        "slug": "gdpeur",
+        "ftname": "GDPEUR"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 7151,
+        "sourcevalue": 7151,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "GDP per head",
+        "slug": "gdp-per-head",
+        "ftname": "GDP per head"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 0.7,
+        "sourcevalue": 0.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "GDP quarterly change",
+        "slug": "gdp-quarterly-change",
+        "ftname": "GDP quarterly change"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 1.2466,
+        "sourcevalue": 1.2466,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "GDPUSD",
+        "slug": "gdpusd",
+        "ftname": "GDPUSD"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 4.9,
+        "sourcevalue": 4.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Go down",
+        "slug": "go-down",
+        "ftname": "Go down"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 70.3,
+        "sourcevalue": 70.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Go up",
+        "slug": "go-up",
+        "ftname": "Go up"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 19594,
+        "sourcevalue": 19594,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "income tax",
+        "slug": "income-tax",
+        "ftname": "income tax"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 110.4,
+        "sourcevalue": 110.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "index of services total",
+        "slug": "index-of-services-total",
+        "ftname": "index of services total"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 3.2,
+        "sourcevalue": 3.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Industrial production",
+        "slug": "industrial-production",
+        "ftname": "Industrial production"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 2.3,
+        "sourcevalue": 2.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Inflation (CPI)",
+        "slug": "inflation-cpi",
+        "ftname": "Inflation (CPI)"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 19.1,
+        "sourcevalue": 19.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "input prices",
+        "slug": "input-prices",
+        "ftname": "input prices"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 0.058,
+        "sourcevalue": 0.058,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP 10yr bond",
+        "slug": "jp-10yr-bond",
+        "ftname": "JP 10yr bond"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 0.4,
+        "sourcevalue": 0.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP cash earnings YOY",
+        "slug": "jp-cash-earnings-yoy",
+        "ftname": "JP cash earnings YOY"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 43.9,
+        "sourcevalue": 43.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP consumer confidence",
+        "slug": "jp-consumer-confidence",
+        "ftname": "JP consumer confidence"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": -0.1,
+        "sourcevalue": -0.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP CPI ex",
+        "slug": "jp-cpi-ex",
+        "ftname": "JP CPI ex"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 65.5,
+        "sourcevalue": 65.5,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "Bn Yen",
+        "id": "JP current account",
+        "slug": "jp-current-account",
+        "ftname": "JP current account"
+    },
+    {
+        "date": "2016-02-01T00:00:00.000Z",
+        "value": -6.32031819,
+        "sourcevalue": -6.32031819,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP exports YOY",
+        "slug": "jp-exports-yoy",
+        "ftname": "JP exports YOY"
+    },
+    {
+        "date": "2016-09-01T00:00:00.000Z",
+        "value": -0.4,
+        "sourcevalue": -0.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP exports YOY q",
+        "slug": "jp-exports-yoy-q",
+        "ftname": "JP exports YOY q"
+    },
+    {
+        "date": "2011-12-31T00:00:00.000Z",
+        "value": 68536.7,
+        "sourcevalue": 68536.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP gdp per worker",
+        "slug": "jp-gdp-per-worker",
+        "ftname": "JP gdp per worker"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 0.3,
+        "sourcevalue": 0.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP GDP qoq",
+        "slug": "jp-gdp-qoq",
+        "ftname": "JP GDP qoq"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0.3,
+        "sourcevalue": 0.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP headline CPI",
+        "slug": "jp-headline-cpi",
+        "ftname": "JP headline CPI"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 1.43,
+        "sourcevalue": 1.43,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP jobs to applicants",
+        "slug": "jp-jobs-to-applicants",
+        "ftname": "JP jobs to applicants"
+    },
+    {
+        "date": "2017-01-01T00:00:00.000Z",
+        "value": 104.8,
+        "sourcevalue": 104.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP labour prod index",
+        "slug": "jp-labour-prod-index",
+        "ftname": "JP labour prod index"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0,
+        "sourcevalue": 0,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP monthly cash earnings",
+        "slug": "jp-monthly-cash-earnings",
+        "ftname": "JP monthly cash earnings"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0.21730842546701717,
+        "sourcevalue": 26.287,
+        "transform": {
+            "fn": "year-on-year",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP monthly real earnings",
+        "slug": "jp-monthly-real-earnings",
+        "ftname": "JP monthly real earnings"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 8.723684976120497,
+        "sourcevalue": 691375,
+        "transform": {
+            "fn": "year-on-year",
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP motor sales",
+        "slug": "jp-motor-sales",
+        "ftname": "JP motor sales"
+    },
+    {
+        "date": "2015-12-31T00:00:00.000Z",
+        "value": 339.263,
+        "sourcevalue": 339263,
+        "transform": {
+            "fn": "billions-to-trillions",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP net assets",
+        "slug": "jp-net-assets",
+        "ftname": "JP net assets"
+    },
+    {
+        "date": "2017-04-06T00:00:00.000Z",
+        "value": 18597.06,
+        "sourcevalue": 18597.06,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP Nikkei 225",
+        "slug": "jp-nikkei-225",
+        "ftname": "JP Nikkei 225"
+    },
+    {
+        "date": "2015-12-31",
+        "value": 5.8,
+        "sourcevalue": 5.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP price expectations down total",
+        "slug": "jp-price-expectations-down-total",
+        "ftname": "JP price expectations down total"
+    },
+    {
+        "date": "2015-12-31",
+        "value": 79.7,
+        "sourcevalue": 79.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP price expectations up total",
+        "slug": "jp-price-expectations-up-total",
+        "ftname": "JP price expectations up total"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0.1,
+        "sourcevalue": 0.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP retail sales",
+        "slug": "jp-retail-sales",
+        "ftname": "JP retail sales"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 2.8,
+        "sourcevalue": 2.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "JP unemployment rate",
+        "slug": "jp-unemployment-rate",
+        "ftname": "JP unemployment rate"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 110.86,
+        "sourcevalue": 110.86,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "JP USD vs yen",
+        "slug": "jp-usd-vs-yen",
+        "ftname": "JP USD vs yen"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 490.26415000000003,
+        "sourcevalue": 490264.15,
+        "transform": {
+            "fn": "thousands",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "London",
+        "slug": "london",
+        "ftname": "London"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 2.7,
+        "sourcevalue": 2.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "manufacturing production",
+        "slug": "manufacturing-production",
+        "ftname": "manufacturing production"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 68.315,
+        "sourcevalue": 68.315,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "k",
+        "id": "mortgage approvals",
+        "slug": "mortgage-approvals",
+        "ftname": "mortgage approvals"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 451.882,
+        "sourcevalue": 451882,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "NFC loans",
+        "slug": "nfc-loans",
+        "ftname": "NFC loans"
+    },
+    {
+        "date": "2016-01-25T21:00:00",
+        "value": 16708.9,
+        "sourcevalue": 16708.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Nikkei 225 - markit",
+        "slug": "nikkei-225-markit",
+        "ftname": "Nikkei 225 - markit"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 123.68214,
+        "sourcevalue": 123682.14,
+        "transform": {
+            "fn": "thousands",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "North east",
+        "slug": "north-east",
+        "ftname": "North east"
+    },
+    {
+        "date": "2016-03-31T00:00:00.000Z",
+        "value": 9,
+        "sourcevalue": 9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "ONS house prices",
+        "slug": "ons-house-prices",
+        "ftname": "ONS house prices"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 1,
+        "sourcevalue": 1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "output per job",
+        "slug": "output-per-job",
+        "ftname": "output per job"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 52.068999999999996,
+        "sourcevalue": 1.8,
+        "transform": {
+            "fn": "rolling-annual-total",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "PSBN ex rolling",
+        "slug": "psbn-ex-rolling",
+        "ftname": "PSBN ex rolling"
+    },
+    {
+        "date": "2015-12-31",
+        "value": 0.07809999999999999,
+        "sourcevalue": 7.47,
+        "transform": {
+            "fn": "rolling-annual-total",
+            "arguments": [
+                "millions-to-billions"
+            ]
+        },
+        "unit": "£",
+        "id": "public sector borrowing",
+        "slug": "public-sector-borrowing",
+        "ftname": "public sector borrowing"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 2.2,
+        "sourcevalue": 2.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Regular weekly earnings growth",
+        "slug": "regular-weekly-earnings-growth",
+        "ftname": "Regular weekly earnings growth"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 4.1,
+        "sourcevalue": 4.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Retail sales",
+        "slug": "retail-sales",
+        "ftname": "Retail sales"
+    },
+    {
+        "date": "2017-01-01T00:00:00.000Z",
+        "value": "185.51",
+        "sourcevalue": "185.51",
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "S&P/Case-Shiller national house price index",
+        "slug": "s-and-p-case-shiller-national-house-price-index",
+        "ftname": "S&P/Case-Shiller national house price index"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 165.968,
+        "sourcevalue": 165968,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "SME loans",
+        "slug": "sme-loans",
+        "ftname": "SME loans"
+    },
+    {
+        "date": "1998-03-01",
+        "value": 10471.16,
+        "sourcevalue": 10471.16,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Testing CEIC",
+        "slug": "testing-ceic",
+        "ftname": "Testing CEIC"
+    },
+    {
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Testing CSV",
+        "slug": "testing-csv",
+        "ftname": "Testing CSV"
+    },
+    {
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "Testing JSON",
+        "slug": "testing-json",
+        "ftname": "Testing JSON"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 31.854,
+        "sourcevalue": 31854,
+        "transform": {
+            "fn": "thousands-to-millions",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "total in employment",
+        "slug": "total-in-employment",
+        "ftname": "total in employment"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 108.4429,
+        "sourcevalue": 108.4429,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "trade weighted",
+        "slug": "trade-weighted",
+        "ftname": "trade weighted"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 2589,
+        "sourcevalue": 2589,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK borrowing ex banks",
+        "slug": "uk-borrowing-ex-banks",
+        "ftname": "UK borrowing ex banks"
+    },
+    {
+        "date": "2017-02-01T00:00:00.000Z",
+        "value": 148.299,
+        "sourcevalue": 148.299,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "m",
+        "id": "UK bricks",
+        "slug": "uk-bricks",
+        "ftname": "UK bricks"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 458.043,
+        "sourcevalue": 458043,
+        "transform": {
+            "fn": "thousands-to-millions",
+            "arguments": []
+        },
+        "unit": "th",
+        "id": "UK bricks Quarterly",
+        "slug": "uk-bricks-quarterly",
+        "ftname": "UK bricks Quarterly"
+    },
+    {
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "UK CA non EU",
+        "slug": "uk-ca-non-eu",
+        "ftname": "UK CA non EU"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -0.4,
+        "sourcevalue": -0.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK construction output MOM",
+        "slug": "uk-construction-output-mom",
+        "ftname": "UK construction output MOM"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 52.2,
+        "sourcevalue": 52.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK construction PMI",
+        "slug": "uk-construction-pmi",
+        "ftname": "UK construction PMI"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 74.6,
+        "sourcevalue": 74.6,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK employment rate",
+        "slug": "uk-employment-rate",
+        "ftname": "UK employment rate"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 1.9,
+        "sourcevalue": 1.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK GDP annual change",
+        "slug": "uk-gdp-annual-change",
+        "ftname": "UK GDP annual change"
+    },
+    {
+        "date": "2016-03-31T00:00:00.000Z",
+        "value": 5.9,
+        "sourcevalue": 5.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK house ex Lonon SE",
+        "slug": "uk-house-ex-lonon-se",
+        "ftname": "UK house ex Lonon SE"
+    },
+    {
+        "date": "2016-03-31T00:00:00.000Z",
+        "value": 2.9,
+        "sourcevalue": 2.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK house MOM",
+        "slug": "uk-house-mom",
+        "ftname": "UK house MOM"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -0.4,
+        "sourcevalue": -0.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK industrial prod MOM",
+        "slug": "uk-industrial-prod-mom",
+        "ftname": "UK industrial prod MOM"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 54.2,
+        "sourcevalue": 54.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK manufacturing PMI",
+        "slug": "uk-manufacturing-pmi",
+        "ftname": "UK manufacturing PMI"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 102.9,
+        "sourcevalue": 102.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK output per filled job whole",
+        "slug": "uk-output-per-filled-job-whole",
+        "ftname": "UK output per filled job whole"
+    },
+    {
+        "date": "2016-12-01T00:00:00.000Z",
+        "value": 102.3,
+        "sourcevalue": 102.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK output per hour whole",
+        "slug": "uk-output-per-hour-whole",
+        "ftname": "UK output per hour whole"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 102.9,
+        "sourcevalue": 102.9,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK output per job index",
+        "slug": "uk-output-per-job-index",
+        "ftname": "UK output per job index"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 1.8,
+        "sourcevalue": 1.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "bn",
+        "id": "UK PSBN ex",
+        "slug": "uk-psbn-ex",
+        "ftname": "UK PSBN ex"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 2.3,
+        "sourcevalue": 2.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK reg weekly earnings growth",
+        "slug": "uk-reg-weekly-earnings-growth",
+        "ftname": "UK reg weekly earnings growth"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 3.7,
+        "sourcevalue": 3.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK retail YOY",
+        "slug": "uk-retail-yoy",
+        "ftname": "UK retail YOY"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 3.2,
+        "sourcevalue": 3.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK RPI YOY",
+        "slug": "uk-rpi-yoy",
+        "ftname": "UK RPI YOY"
+    },
+    {
+        "date": "2017-03-31T00:00:00.000Z",
+        "value": 55,
+        "sourcevalue": 55,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK services PMI",
+        "slug": "uk-services-pmi",
+        "ftname": "UK services PMI"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 0.8,
+        "sourcevalue": 0.8,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK services QOQ",
+        "slug": "uk-services-qoq",
+        "ftname": "UK services QOQ"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 2.4,
+        "sourcevalue": 2.4,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK services YOY",
+        "slug": "uk-services-yoy",
+        "ftname": "UK services YOY"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -0.1,
+        "sourcevalue": -0.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "UK servies MOM",
+        "slug": "uk-servies-mom",
+        "ftname": "UK servies MOM"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -2447,
+        "sourcevalue": -2447,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "UK trade balance non EU goods",
+        "slug": "uk-trade-balance-non-eu-goods",
+        "ftname": "UK trade balance non EU goods"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": -1966,
+        "sourcevalue": -1966,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "£",
+        "id": "UK trade deficit",
+        "slug": "uk-trade-deficit",
+        "ftname": "UK trade deficit"
+    },
+    {
+        "date": "2017-01-31T00:00:00.000Z",
+        "value": 4.7,
+        "sourcevalue": 4.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "Unemployment rate",
+        "slug": "unemployment-rate",
+        "ftname": "Unemployment rate"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 2.347,
+        "sourcevalue": 2.347,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US 10yr bond",
+        "slug": "us-10yr-bond",
+        "ftname": "US 10yr bond"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 2.3426,
+        "sourcevalue": 2.3426,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US 10yr treasury",
+        "slug": "us-10yr-treasury",
+        "ftname": "US 10yr treasury"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": -0.3,
+        "sourcevalue": -0.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US av weekly earnings",
+        "slug": "us-av-weekly-earnings",
+        "ftname": "US av weekly earnings"
+    },
+    {
+        "date": "2017-04-02T00:00:00.000Z",
+        "value": 50.2,
+        "sourcevalue": 50.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "US consumer confidence",
+        "slug": "us-consumer-confidence",
+        "ftname": "US consumer confidence"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 2.2,
+        "sourcevalue": 2.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US core check",
+        "slug": "us-core-check",
+        "ftname": "US core check"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 1.75335,
+        "sourcevalue": 1.75335,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US core",
+        "slug": "us-core",
+        "ftname": "US core"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 2.7,
+        "sourcevalue": 2.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US CPI",
+        "slug": "us-cpi",
+        "ftname": "US CPI"
+    },
+    {
+        "date": "2017-04-07T00:00:00.000Z",
+        "value": 0.9395,
+        "sourcevalue": 0.9395,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "USDEUR",
+        "slug": "usdeur",
+        "ftname": "USDEUR"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 16.813299999999998,
+        "sourcevalue": 16813.3,
+        "transform": {
+            "fn": "millions-to-billions",
+            "arguments": []
+        },
+        "unit": "$tr",
+        "id": "US econ size",
+        "slug": "us-econ-size",
+        "ftname": "US econ size"
+    },
+    {
+        "date": "2017-04-05T00:00:00.000Z",
+        "value": 0.91,
+        "sourcevalue": 0.91,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US Fed effective",
+        "slug": "us-fed-effective",
+        "ftname": "US Fed effective"
+    },
+    {
+        "date": "2014-12-31T00:00:00.000Z",
+        "value": 148,
+        "sourcevalue": 148,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": 0,
+        "id": "US GDP per person",
+        "slug": "us-gdp-per-person",
+        "ftname": "US GDP per person"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 6.1,
+        "sourcevalue": 6.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US home sales",
+        "slug": "us-home-sales",
+        "ftname": "US home sales"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 592,
+        "sourcevalue": 592,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "000s",
+        "id": "US house sales",
+        "slug": "us-house-sales",
+        "ftname": "US house sales"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 235,
+        "sourcevalue": 235,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "k",
+        "id": "US non farm change",
+        "slug": "us-non-farm-change",
+        "ftname": "US non farm change"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 145.798,
+        "sourcevalue": 145798,
+        "transform": {
+            "fn": "thousands",
+            "arguments": []
+        },
+        "unit": null,
+        "id": "US non farm",
+        "slug": "us-non-farm",
+        "ftname": "US non farm"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 1.3,
+        "sourcevalue": 1.3,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "US output per hour",
+        "slug": "us-output-per-hour",
+        "ftname": "US output per hour"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 107.373,
+        "sourcevalue": 107.373,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "US output per person",
+        "slug": "us-output-per-person",
+        "ftname": "US output per person"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 2.1,
+        "sourcevalue": 2.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US QOQ change",
+        "slug": "us-qoq-change",
+        "ftname": "US QOQ change"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 2,
+        "sourcevalue": 2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US qoq income",
+        "slug": "us-qoq-income",
+        "ftname": "US qoq income"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0.1,
+        "sourcevalue": 0.1,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US retail MOM",
+        "slug": "us-retail-mom",
+        "ftname": "US retail MOM"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 5.7,
+        "sourcevalue": 5.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US retail YOY",
+        "slug": "us-retail-yoy",
+        "ftname": "US retail YOY"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 4.7,
+        "sourcevalue": 4.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US unemployment",
+        "slug": "us-unemployment",
+        "ftname": "US unemployment"
+    },
+    {
+        "date": "2016-12-31T00:00:00.000Z",
+        "value": 1.7,
+        "sourcevalue": 1.7,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": null,
+        "id": "US unit labour",
+        "slug": "us-unit-labour",
+        "ftname": "US unit labour"
+    },
+    {
+        "date": "2017-02-28T00:00:00.000Z",
+        "value": 0.2,
+        "sourcevalue": 0.2,
+        "transform": {
+            "fn": null,
+            "arguments": []
+        },
+        "unit": "%",
+        "id": "US weekly earnings",
+        "slug": "us-weekly-earnings",
+        "ftname": "US weekly earnings"
+    }
+]
