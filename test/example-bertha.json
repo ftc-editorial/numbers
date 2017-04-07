@@ -31,48 +31,6 @@
 			"url": null
 		}
 	],
-	"groups": [
-		{
-			"id": "gdp",
-			"name": "GDP",
-			"color": "teal"
-		},
-		{
-			"id": "sources",
-			"name": "增长来源",
-			"color": "green"
-		},
-		{
-			"id": "markets",
-			"name": "金融市场",
-			"color": "pink"
-		},
-		{
-			"id": "rates",
-			"name": "利率",
-			"color": "pink"
-		},
-		{
-			"id": "labour",
-			"name": "劳动力",
-			"color": "purple"
-		},
-		{
-			"id": "trade",
-			"name": "贸易",
-			"color": "cyan"
-		},
-		{
-			"id": "fundementals",
-			"name": "Economic fundementals",
-			"color": "blue"
-		},
-		{
-			"id": "housing",
-			"name": "房地产",
-			"color": "grey"
-		}
-	],
 	"options": [
 		{
 			"name": "introText",
@@ -128,6 +86,48 @@
 			"name": "uuid",
 			"value": "60f71472-ef8b-11e5-9f20-c3a047354386",
 			"html": null
+		}
+	],
+	"groups": [
+		{
+			"id": "gdp",
+			"name": "GDP",
+			"color": "teal"
+		},
+		{
+			"id": "sources",
+			"name": "增长来源",
+			"color": "green"
+		},
+		{
+			"id": "markets",
+			"name": "金融市场",
+			"color": "pink"
+		},
+		{
+			"id": "rates",
+			"name": "利率",
+			"color": "pink"
+		},
+		{
+			"id": "labour",
+			"name": "劳动力",
+			"color": "purple"
+		},
+		{
+			"id": "trade",
+			"name": "贸易",
+			"color": "cyan"
+		},
+		{
+			"id": "fundementals",
+			"name": "Economic fundementals",
+			"color": "blue"
+		},
+		{
+			"id": "housing",
+			"name": "房地产",
+			"color": "grey"
 		}
 	],
 	"data": [
