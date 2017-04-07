@@ -2,7 +2,7 @@ const path = require('path');
 const got = require('got');
 const writeJsonFile = require('write-json-file');
 const dest = path.resolve(__dirname, 'example-bertha.json');
-const urls = require('../server/fetch.js').urls;
+const urls = require('../server/urls.js')(true);
 
 console.log(`Fetching example data from bertha: ${urls.china}`);
 
