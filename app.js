@@ -69,7 +69,7 @@ app.use(router.allowedMethods());
 
 app.listen(port, () => {
   debug(`App listening on port ${port}`);
-  dashboard.getDataForAll()
+  return dashboard.getDataForAll()
     .catch(err => {
       console.log(err);
     });
