@@ -17,7 +17,7 @@ const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
 const deployDir = path.resolve(__dirname, '../ft-interact/static');
 const tmpDir = path.resolve(__dirname, '.tmp');
-let cache;
+
 const project = 'numbers-china';
 
 process.env.NODE_ENV = 'development';
