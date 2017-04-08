@@ -9,7 +9,7 @@ Promise.all(urls.docNames.map(name => {
   const dest = path.resolve(__dirname, `../public/dashboard-${name}.json`)
   return loadJsonFile(source)
     .then(data => {
-      console.log(`Saving dashboard dat to ${dest}`);
+      console.log(`Saving dashboard data to ${dest}`);
       const dashboard = createDashboard(data);
       return writeJsonFile(dest, dashboard);
     });
