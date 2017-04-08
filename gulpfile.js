@@ -15,7 +15,7 @@ const $ = require('gulp-load-plugins')();
 const render = require('./util/render.js');
 const footer = require('./bower_components/ftc-footer');
 const config = require('./config.json');
-const projectName = path.basename(process.env.cwd())
+const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
 
