@@ -36,7 +36,7 @@ class Dashboard {
       return dashboard;
     }
 
-    const url = urls.one(name, this.republish);
+    const url = urls.getUrlFor(name, this.republish);
     
     if (!url) {
       return Promise.reject(errors.notFound('Economy'));
@@ -58,7 +58,7 @@ class Dashboard {
   }
 
   getDataForAll() {
-    return Promise.all(urls.docNames().map(name => {
+    return Promise.all(urls.docNames.map(name => {
       return this.getDataFor(name);
     }));
   }

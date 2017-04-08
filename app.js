@@ -50,11 +50,11 @@ router.get('/:economy', async function (ctx, next) {
 });
 
 router.get('/urls/republish', async function (ctx, next) {
-  ctx = urls.all(true);
+  ctx = urls.getUrls(true);
 });
 
 router.get('/urls/read', async function (ctx, next) {
-  ctx.urls.all();
+  ctx.urls.getUrls();
 });
 
 router.get('/__operations/refresh', async function (ctx, next) {
