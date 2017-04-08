@@ -5,7 +5,7 @@ const urls = require('../server/urls.js');
 
 Promise.all(urls.docNames.map(name => {
   const url = urls.getUrlFor(name, true);
-  const dest = path.resolve(__dirname, `bertha-${name}.json`);
+  const dest = path.resolve(__dirname, `../public/bertha-${name}.json`);
   console.log(`Fetching ${url}`);
   return got(url, {json: true})
     .then(response => {
