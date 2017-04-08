@@ -1,18 +1,18 @@
 const path = require('path');
 const got = require('got');
 const writeJsonFile = require('write-json-file');
-const dest = path.resolve(__dirname, 'example-bertha.json');
-const urls = require('../server/urls.js')(true);
+const urls = require('../server/urls.js');
 
-console.log(`Fetching example data from bertha: ${urls.china}`);
-
-got(urls.china, {
-    json: true
-  })
-  .then(res => {
-    console.log(`Saving example data to ${dest}`);
-    return writeJsonFile(dest, res.body);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+Promise.all(urls.docNames.map(name => {
+  const url = urls.getUrlFor(name, true);
+  const dest = path.resolve(__dirname, `bertha-${name}.json`);
+  console.log(`Fetching ${url}`);
+  return got(url, {json: true})
+    .then(response => {
+      console.log(`Saving ${dest}`);
+      return writeJsonFile(dest, response.body)
+    });
+}))
+.catch(err => {
+  console.log(err);
+});
