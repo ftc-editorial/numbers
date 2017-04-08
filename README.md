@@ -3,6 +3,10 @@
 https://bertha.ig.ft.com/view/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options
 ```
 
+To see the original bertha data structure, run `npm run bertha`.
+
+To see the final data structure fed to template, run `npm run dashboard`.
+
 ## Run
 
 Compile static assets first:
