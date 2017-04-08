@@ -1,6 +1,6 @@
 const docs = {
   china: '1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA',
-  us: '1bstjNTZcGfU6dCcaQAiMRqenaYElxL0cyQPpLOV1Lz0'
+  us: '10pU6IjKiPRxFICLuM-SnqDWH5Lwn2VbknAoFWR1F_-s'
 };
 
 class URL {
