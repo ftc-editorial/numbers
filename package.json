@@ -10,7 +10,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/* .tmp/* public/*",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "bertha": "node ./test/bertha-data.js",
+    "dashboard": "node ./test/dashboard-data.js"
   },
   "devDependencies": {
     "bower": "^1.8.0",
