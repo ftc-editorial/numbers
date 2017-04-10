@@ -1,4 +1,4 @@
-const debug = require('debug')('numbers');
+const debug = require('debug')('nums:dashboard');
 const got = require('got');
 const errors = require('../util/errors.js');
 const createDashboard = require('./create-dashboard.js');

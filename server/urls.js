@@ -33,7 +33,7 @@ class URL {
  */
   getUrls(republish) {
     return Object.keys(this._docs).reduce((o, name) => {
-      o[name] = this.one(name, republish);
+      o[name] = this.getUrlFor(name, republish);
       return o;
     }, {});      
   }
