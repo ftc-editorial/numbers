@@ -1,4 +1,4 @@
-const debug = require('debug')('numbers');
+const debug = require('debug')('nums:server');
 const path = require('path');
 const Koa = require('koa')
 const Router = require('koa-router');
@@ -22,41 +22,79 @@ debug('booting %s', appName);
 const app = new Koa();
 const router = new Router();
 
+app.proxy = true;
+
+let messages = {
+  404: 'Not Found',
+  500: 'Server Error'
+};
+
+// App error logging
+app.on('error', function (err, ctx) {
+  debug(err);
+});
+
 app.use(logger());
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(serve(path.resolve(process.cwd(), '.tmp')));
 }
 
-router.get('/', async function index(ctx, next) {
-  ctx.body = await render('home.html', {
-    pageTitle: '经济数据一图览',
-    pageGroup: 'index',
+// Prepare data used by the whole app.
+app.use(async function (ctx, next) {
+  debug(`Attaching data to ctx.state`);
+  ctx.state = {
+    meta: {
+      title: '经济数据一图览'
+    },
+    env,
     footer
-  });
+  }
+  await next();
 });
 
-router.get('/:economy', async function (ctx, next) {
-  await next();
-  const economy = ctx.params.economy;
+// Send Custom Error Page
+app.use(async function (ctx, next) {
   try {
-    const context = await dashboard.getDataFor(economy);
-    ctx.body = await render('dashboard.html', Object.assign(context, {
-      footer
-    }));
-  } catch(e) {
-    console.log(e);
+    await next();
+  } catch (e) {
+    ctx.body = await render('error.html', {
+      message: e.message
+      // error: e
+    });
   }
 });
 
+// Router
+router.get('/', async function index(ctx, next) {
+  try {
+    ctx.body = await render('home.html', Object.assign({}, ctx.state, {
+      pageGroup: 'index'
+    }));
+  } catch (e) {
+    return e;
+  }
+});
+
+router.get('/:economy', async function (ctx, next) {
+  const economy = ctx.params.economy;
+  // try {
+    const dashboardData = await dashboard.getDataFor(economy);
+    ctx.body = await render('dashboard.html', Object.assign(dashboardData, ctx.state, {
+      pageGroup: 'dashboard'
+    }));
+
+});
+
 router.get('/urls/republish', async function (ctx, next) {
-  ctx = urls.getUrls(true);
+  ctx.body = urls.getUrls(true);
 });
 
 router.get('/urls/read', async function (ctx, next) {
-  ctx.urls.getUrls();
+  ctx.body = urls.getUrls();
 });
 
+// Purge all cache.
 router.get('/__operations/refresh', async function (ctx, next) {
   dashboard.purgeLocalCache();
   dashboard.purgeBerthaCache();
@@ -64,10 +102,20 @@ router.get('/__operations/refresh', async function (ctx, next) {
   ctx.body = 'Refresh data successful.';
 });
 
+// Use router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(port, () => {
+// Create server
+const server = app.listen(port);
+
+// Logging server error.
+server.on('error', (error) => {
+  debug('Server error');
+});
+
+// Listening event handler
+server.on('listening', () => {
   debug(`App listening on port ${port}`);
   return dashboard.getDataForAll()
     .catch(err => {
