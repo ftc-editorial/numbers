@@ -1,3 +1,4 @@
+const debug = require('debug')('numbers');
 const got = require('got');
 const errors = require('../util/errors.js');
 const createDashboard = require('./create-dashboard.js');
@@ -16,7 +17,7 @@ class Dashboard {
       if (!this.cache.hasOwnProperty(k)) {
         continue;
       }
-      console.log(`Clear cache for ${k}`);
+      debug(`Clear cache for ${k}`);
       this.cache[k] = null;
     }
   }
@@ -32,24 +33,25 @@ class Dashboard {
     const dashboard = this.cache[name];
 // Find local cached data, use it.
     if (dashboard) {
-      console.log(`Use cached data for ${name}`);
+      debug(`Use cached data for ${name}`);
       return dashboard;
     }
 
     const url = urls.getUrlFor(name, this.republish);
     
     if (!url) {
+      debug(`Economy for ${name} not found`);
       return Promise.reject(errors.notFound('Economy'));
     }
     
-    console.log(`Fetching data for ${name}`);
+    debug(`Fetching data for ${name}`);
     return got(url, {
         json: true
       })
       .then(response => {
         const dashboard = createDashboard(response.body, name);
         this.cache[name] = dashboard;
-        console.log(`Data for ${name} cached.`);
+        debug(`Data for ${name} cached.`);
         return Promise.resolve(dashboard);
       })
       .catch(err => {
@@ -63,7 +65,6 @@ class Dashboard {
     }));
   }
 }
-
 
 if (require.main === module) {
   new Dashboard().getDataFor('china')

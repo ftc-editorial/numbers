@@ -11,11 +11,12 @@ module.exports = {
     // First application
     {
       name      : "numbers",
-      script    : `app.js`,
+      script    : "app.js",
       interpreter: interpreter,
       env: {
         NODE_ENV: "development",
         PORT: 4001,
+        DEBUG: "nums:server"
       },
       env_production : {
         NODE_ENV: "production",

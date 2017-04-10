@@ -1,4 +1,4 @@
-const debug = require('debug')('nums:server');
+const debug = require('debug')('numbers');
 const path = require('path');
 const Koa = require('koa')
 const Router = require('koa-router');
