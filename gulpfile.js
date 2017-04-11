@@ -4,9 +4,10 @@ const path = require('path');
 const loadJsonFile = require('load-json-file');
 const inline = pify(require('inline-source'));
 const nunjucks = require('nunjucks');
-nunjucks.configure(['view', 'node_modules/@ftchinese/ftc-footer'], {
+nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
   noCache: true,
-  watch: false
+  watch: false,
+  autoescape: false
 });
 const render = pify(nunjucks.render);
 const browserSync = require('browser-sync').create();
@@ -40,7 +41,7 @@ function buildPage(template, data) {
     isProduction: process.env.NODE_ENV === 'production'
   };
   const context = Object.assign(data, {env});
-  const dest = `${tmpDir}/${project}.html`;
+  const dest = `${tmpDir}/numbers-china.html`;
   return render(template, data)
     .then(html => {
       if (process.env.NODE_ENV === 'production') {
@@ -183,7 +184,7 @@ gulp.task('serve',
     gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
     gulp.watch('client/**/*.js', gulp.parallel('scripts'));
     gulp.watch('client/**/*.scss', gulp.parallel('styles'));
-    gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html', 'widgets'));
+    gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html'));
   })
 );
 
