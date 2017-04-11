@@ -12,6 +12,7 @@
     "clean": "rm -rf dist/* .tmp/* public/*",
     "postversion": "git push && git push --tags",
     "bertha": "node ./test/bertha-data.js",
+    "latest": "node ./test/latest-data.js",
     "dashboard": "node ./test/dashboard-data.js"
   },
   "devDependencies": {
