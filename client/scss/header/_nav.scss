@@ -16,35 +16,47 @@
 	span {
 		vertical-align: middle;
 	}
-	svg {
-		width: 40px;
-		height: 40px;
-		fill: oColorsGetColorFor(o-header, text);
-		display: inline-block;
+	// svg {
+	// 	width: 40px;
+	// 	height: 40px;
+	// 	fill: oColorsGetColorFor(o-header--light, text);
+	// 	display: inline-block;
+	// 	vertical-align: middle;
+	// }
+	&:after {
+		content: '';
+		// display: inline-block;
+		// width: 40px;
+		// height: 40px;
+		// vertical-align: middle;
+		// background-image: url("https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:hamburger?source=ftchinese");
+		// background-repeat: no-repeat;
+		// background-position: center center;
+		// background-size: contain;
+		@include oIconsGetIcon(hamburger, $color: oColorsGetColorFor(o-header--light, text), $container-width: 40, $apply-base-styles: true, $apply-width-height: true, $iconset-version: 1);
 		vertical-align: middle;
 	}
-
-	.o-header--theme-light & {
-		svg {
-			fill: oColorsGetColorFor(o-header--light, text);
-		}
+	&[aria-expanded="true"]:after {
+		// background-image: url("https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:cross?source=ftchinese");
+		@include oIconsGetIcon(cross, $color: oColorsGetColorFor(o-header--light, text), $apply-base-styles: false, $apply-width-height: false);
+		
 	}
 
-	.o-icons__hamburger {
-		display: inline-block;
-	}
-	.o-icons__cross {
-		display: none;
-	}
+	// .o-icons__hamburger {
+	// 	display: inline-block;
+	// }
+	// .o-icons__cross {
+	// 	display: none;
+	// }
 
-	&[aria-expanded="true"] {
-		.o-icons__hamburger {
-			display: none;
-		}
-		.o-icons__cross {
-			display: inline-block;
-		}
-	}
+	// &[aria-expanded="true"] {
+	// 	.o-icons__hamburger {
+	// 		display: none;
+	// 	}
+	// 	.o-icons__cross {
+	// 		display: inline-block;
+	// 	}
+	// }
 }
 
 .o-header__nav {
