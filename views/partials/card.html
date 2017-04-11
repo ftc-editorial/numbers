@@ -29,8 +29,8 @@
     {% if card["annual-heading"] %}
     <div class="small-figs">
       <div class="small-figs-holder" title="更新于">
-        <div class="small-figs-heading"></div>
-        <div class="small-figs-value"></div>
+        <div class="small-figs-heading">{{card["annual-heading"]}}</div>
+        <div class="small-figs-value"><span>{{card.units}}</span></div>
       </div>
     </div>
     {% endif %}
