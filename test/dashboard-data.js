@@ -10,7 +10,7 @@ Promise.all(urls.docNames.map(name => {
   return loadJsonFile(source)
     .then(data => {
       console.log(`Saving dashboard data to ${dest}`);
-      const dashboard = createDashboard(data);
+      const dashboard = createDashboard(data, name);
       return writeJsonFile(dest, dashboard);
     });
 }))
