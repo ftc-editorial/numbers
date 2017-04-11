@@ -1,31 +1,27 @@
 {	
-	"footer": {
-		"theme": "theme-light"
-	},
 	"title": {
 		"text": "中国经济一图览",
 		"html": ""
 	},
-	"articleHead": "中国经济一图览",
+	"introText": {
+		"text": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。",
+		"html": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。"
+	},
 	"edition": {
 		"text": "English",
 		"html": "https://ig.ft.com/sites/numbers/economies/china"
 	},
-	"introText": {
-		"text": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新<a href=\"#gdp\">国内生产总值(GDP)</a>、<a href=\"#labour\">失业率</a>、<a href=\"#trade\">贸易</a>、<a href=\"#markets\">金融市场</a>和<a href=\"#housing\">房价</a>等关键数据。"
-	},
 	"meta": {
-		"title": "",
+		"title": "中国经济一图览",
 		"description": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
 		"wx": {
 			"image": "http://i.ftimg.net/picture/1/000062861_piclink.jpg"
 		},
 		"og": {
 			"site_name": "中国经济一图览 - FT中文网",
-			"title": "",
-			"description": "",
-			"image": "http://i.ftimg.net/picture/3/000062653_piclink.jpg",
-			"url": "http://www.ftchinese.com/channel/numbers-china.html"
+			"title": "中国经济一图览",
+			"description": "英国《金融时报》中文网对中国经济数据的一站式概览，定期更新国内生产总值(GDP)、失业率、贸易、金融市场和房价等关键数据。",
+			"image": "http://i.ftimg.net/picture/3/000062653_piclink.jpg"
 		}
 	},
 	"credits": [
@@ -64,24 +60,21 @@
 		{
 			"id":"gdp",
 			"name": "GDP",
-			"theme": "teal",
+			"color": "teal",
 			"cards": [
 				{
-					"isIndex": true,
+					"indexcard": true,
 					"title": "总体经济增长",
-					"text": [
-						"对中国经济的担忧正在动摇全球市场，资本正以空前速度逃离中国。",
-						"今年年初中国股市暴跌和货币贬值是否表明中国实体经济严重受困，以及中国政策制定者能否运作实现经济平缓减速，以避免金融危机和社会动荡，对于以上疑问，投资者们渴望找出线索。"
-					],
-					"bigNum": {
-						"lastUpdated": "",
-						"heading": "2016 第四季 增长率",
-						"text": "6.8<span>%</span>"
-					},
-					"smallNum": {
-						"heading": "人均GDP",
-						"text": "7956.69 <span>美元</span>"
-					}
+					"body": "<p>对中国经济的担忧正在动摇全球市场，资本正以空前速度逃离中国。</p>\n<p>今年年初中国股市暴跌和货币贬值是否表明中国实体经济严重受困，以及中国政策制定者能否运作实现经济平缓减速，以避免金融危机和社会动荡，对于以上疑问，投资者们渴望找出线索。</p>",
+					"big-number": "6.80",
+					"bignum-heading": "2016 第四季 增长率",
+					"big-units": "%",
+					"bignum-name": "CN real GDP",
+					"annual-change": null,
+					"annual-heading": "人均GDP",
+					"annual-name": "CN GDP cap",
+					"units": "美元",
+					"value": "7956.69"
 				},
 				{
 					"title": "增长",
@@ -109,7 +102,7 @@
 		{
 			"id":"sources",
 			"name": "增长来源",
-			"theme": "green",
+			"color": "green",
 			"cards": [
 				{
 					"isIndex": true,
@@ -145,7 +138,7 @@
 		{
 			"id":"markets",
 			"name": "金融市场",
-			"theme": "pink",
+			"color": "pink",
 			"cards": [
 				{
 					"isIndex": true,
@@ -179,7 +172,7 @@
 		{
 			"id":"rates",
 			"name": "利率",
-			"theme": "pink",
+			"color": "pink",
 			"cards": [
 				{
 					"isIndex": true,
@@ -216,7 +209,7 @@
 		{
 			"id":"labour",
 			"name": "劳动力",
-			"theme": "purple",
+			"color": "purple",
 			"cards": [
 				{
 					"isIndex": true,
@@ -246,7 +239,7 @@
 		{
 			"id":"trade",
 			"name": "贸易",
-			"theme": "cyan",
+			"color": "cyan",
 			"cards": [
 				{
 					"isIndex": true,
@@ -270,7 +263,7 @@
 		{
 			"id":"housing",
 			"name": "房地产",
-			"theme": "grey",
+			"color": "grey",
 			"cards": [
 				{
 					"isIndex": true,
