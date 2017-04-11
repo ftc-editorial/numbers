@@ -1,36 +1,33 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-<article id="site-content" class="article o-grid-container" role="main">
-  <header class="articlehead">
-      <h1 class="articlehead__headline" id="main-title">{{title.html}}</h1>
+<header class="articlehead">
+    <h1 class="articlehead__headline" id="main-title">{{title.html}}</h1>
 
-      <p class="articlehead__lead">{{introText.html}}</p>
-      
-      <p class="articlehead__byline">制作：
-        {% for credit in credits %}
-        <a href="{{credit.url}}">{{credit.name}}</a>{% if not loop.last %}，{% endif %}
-        {% endfor %}
-      </p>
-      
-      <div class="o-share o-share--theme-light" data-o-component="o-share"></div>
-  </header>
+    <p class="articlehead__lead">{{introText.html}}</p>
+    
+    <p class="articlehead__byline">制作：
+      {% for credit in credits %}
+      <a href="{{credit.url}}">{{credit.name}}</a>{% if not loop.last %}，{% endif %}
+      {% endfor %}
+    </p>
+    
+    <div class="o-share o-share--theme-light" data-o-component="o-share"></div>
+</header>
 
-  <div class="cards-container">
-    {% for group in groups%}
-    <div id="{{group.id}}" class="card__group o-grid-row bg--{{group.color}}">
+<div class="cards-container">
+  {% for group in groups%}
+  <div id="{{group.id}}" class="card__group o-grid-row bg--{{group.color}}">
 
-        {% for card in group.cards %}
-        <div class="card__group-item">    
-          {% include "partials/card.html" %}
-        </div>
-        {% endfor %}     
+      {% for card in group.cards %}
+      <div class="card__group-item">    
+        {% include "partials/card.html" %}
+      </div>
+      {% endfor %}     
 
-    </div>
-    {% endfor %}
   </div>
-
-</article>
+  {% endfor %}
+</div>
 {% endblock %}
 
 {% block js%}

@@ -28,7 +28,7 @@
   <meta property="og:url" content="{{ogUrl}}">
   <meta property="og:description" content="{{meta.og.description}}" />
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:site_name" content="meta.og.site_name">
+  <meta property="og:site_name" content="{{meta.og.site_name}}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@FTChinese">
   <meta name="twitter:title" content="{{meta.og.title}}">
@@ -50,7 +50,9 @@
 <img src="{{meta.wx.image}}" style="display:block; width:0px; height:0px; overflow:hidden">
 {% include "partials/header.html" %}
 
+<article id="site-content" class="article o-grid-container" role="main">
 {% block content %}{% endblock %}
+</article>
 
 {% include "partials/o-footer.html" %}
 
