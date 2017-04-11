@@ -6,7 +6,7 @@
  * @param {object[]} spreadsheet.credits
  * @param {String} name - country name `china | us | uk | japan`
  */
-function createDashboard(spreadsheet, name) {
+function createDashboard(spreadsheet, latest, name) {
 // Reduce array `spreadsheet.options` to an object,
 // using each array element's `name` as key.
   const options = spreadsheet.options.reduce((o, row) => {
@@ -17,12 +17,44 @@ function createDashboard(spreadsheet, name) {
 // Reduce array `spreadsheet.data` to an object using each element's `group` as key.
 // Recategorize each element under this key.
   const cardsByGroup = spreadsheet.data.reduce((o, row) => {
+    const bignumName = row['bignum-name'];
+    const shortName = row['short-name'];
+    const annualName = row['annual-name'];
+
+    if (row['big-number']) {
+      row.bigNum = {
+        value: row['big-number'],
+        unit: row['bignum-units']
+      }
+    } else if (bignumName && latest[bignumName]) {
+      row.bigNum = latest[bignumName];
+    }
+
+    if (row['short-change']) {
+      row.shortNum = {
+        value: row['short-change'],
+        unit: row.units
+      }
+    } else if (shortName && latest[shortName]) {
+      row.shortNum = latest[shortName];
+    }
+
+    if (row['annual-change']) {
+      row.annualNum = {
+        value: row['annual-change'],
+        unit: row.units
+      }
+    } else if (annualName && latest[annualName]) {
+      row.annualNum = latest[annualName];
+    }
+
     const id = row.group;
     if (o[id]) {
       o[id].push(row)
     } else {
       o[id] = [row];
     }
+
     return o;
   }, {});
 

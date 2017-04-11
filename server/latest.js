@@ -31,7 +31,12 @@ function arrayToMap(data) {
   const map = data.reduce((o, e) => {
     if(e.id) {
       e.date = new Date(e.date);
-      o[e.id] = e;
+      o[e.id] = {
+        date: new Date(e.date),
+        value: e.value,
+        unit: e.unit,
+        id: e.id
+      };
     }
     return o;
   }, {});

@@ -1,6 +1,7 @@
 const debug = require('debug')('nums:dashboard');
 const got = require('got');
 const errors = require('../util/errors.js');
+const latest = require('./latest.js');
 const createDashboard = require('./create-dashboard.js');
 const urls = require('./urls.js');
 
@@ -13,6 +14,7 @@ class Dashboard {
 
 // Clear local cache so that we could update data.
   purgeLocalCache () {
+    latest.cache = null;
     for (let k in this.cache) {
       if (!this.cache.hasOwnProperty(k)) {
         continue;
@@ -45,18 +47,24 @@ class Dashboard {
     }
     
     debug(`Fetching data for ${name}`);
-    return got(url, {
-        json: true
-      })
+    return Promise.all([
+      got(url, { json: true})
       .then(response => {
-        const dashboard = createDashboard(response.body, name);
-        this.cache[name] = dashboard;
-        debug(`Data for ${name} cached.`);
-        return Promise.resolve(dashboard);
-      })
-      .catch(err => {
-        throw err;
-      });
+        return response.body;
+      }),
+      latest.getData()
+    ])
+    .then(([spreadsheet, latest]) => {
+      const dashboard = createDashboard(spreadsheet, latest, name);
+
+      this.cache[name] = dashboard;
+      debug(`Data for ${name} cached.`);
+
+      return dashboard;
+    })
+    .catch(err => {
+      throw err;
+    });
   }
 
   getDataForAll() {
