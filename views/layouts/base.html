@@ -34,15 +34,12 @@
   <meta name="twitter:title" content="{{meta.og.title}}">
   <meta name="twitter:description" content="{{meta.og.description}}">
   <meta name="twitter:image" content="{{meta.og.image}}">
-  {% if env.isProduction %}
-  {% set iconsPath = "http://interactive.ftchinese.com/favicons" %}
-  {% endif %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{iconsPath}}/apple-touch-icon-180x180.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="{{iconsPath}}/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="{{iconsPath}}/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{iconsPath}}/apple-touch-icon-76x76.png">
-  <link href="{{iconsPath}}/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
-  <link inline rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{url.icon}}/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{url.icon}}/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{url.icon}}/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{url.icon}}/apple-touch-icon-76x76.png">
+  <link href="{{url.icon}}/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+  <link inline rel="stylesheet" type="text/css" href="{{url.frontend}}/styles/main.css">
 
 {% if env.isProduction %}
   {% include "partials/analytics.html" %}
@@ -57,7 +54,7 @@
 
 {% include "partials/o-footer.html" %}
 
-<script inline src="scripts/main.js"></script>
+{% block js %}{% endblock %}
 
 {% if  env.isProduction %}
 <script src="http://static.ftchinese.com/js/log.js?v=6"></script>
