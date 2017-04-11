@@ -1,3 +1,17 @@
+{% macro smallnum(heading, value, unit, date) %}
+<div class="small-figs-holder" title="更新于{{date}}">
+  <div class="small-figs-heading">{{heading}}</div>
+  <div class="small-figs-value">{{value | round(2) }}<span>{{unit}}</span></div>
+</div>
+{% endmacro %}
+
+{% macro bignum(heading, value, unit, date ) %}
+<div class="headline-figs" title="更新于{{date}}">
+  <div class="bignum-heading">{{heading}}</div>
+  <div class="bignum">{{value}}<span>{{unit}}</span></div>
+</div>
+{% endmacro %}
+
 <section class="card{% if card.indexcard %} card--index{% endif %}">
   <div class="card__header">
     {% if card.indexcard %}
@@ -21,21 +35,20 @@
     
     {% if card["bignum-heading"] %}
       {% if card.bigNum %}
-      <div class="headline-figs" title="更新于{{card.bigNum.date}}">
-        <div class="bignum-heading">{{card["bignum-heading"]}}</div>
-        <div class="bignum">{{card.bigNum.value}}<span>{{card.bigNum.unit}}</span></div>
-      </div>
+      {{ bignum(card["bignum-heading"], card.bigNum.value, card.bigNum.unit, card.bigNum.date) }}
       {% endif %}
     {% endif %}
 
     {% if card["annual-heading"] %}
+    <div class="small-figs">
+      {% if card.shortNum %}
+      {{ smallnum(card["annual-heading"], card.shortNum.value, card.shortNum.unit, card.shortNum.date) }}
+      {% endif %}
+
       {% if card.annualNum %}
-      <div class="small-figs">
-        <div class="small-figs-holder" title="更新于{{card.annualNum.date}}">
-          <div class="small-figs-heading">{{card["annual-heading"]}}</div>
-          <div class="small-figs-value">{{card.annualNum.value}}<span>{{card.annualNum.unit}}</span></div>
-        </div>
-      </div>
+      {{ smallnum(card["annual-heading"], card.annualNum.value, card.annualNum.unit, card.annualNum.date) }}
+      {% endif %}
+    </div>
     {% endif %}
   </div>
   
