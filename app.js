@@ -24,11 +24,6 @@ const router = new Router();
 
 app.proxy = true;
 
-let messages = {
-  404: 'Not Found',
-  500: 'Server Error'
-};
-
 // App error logging
 app.on('error', function (err, ctx) {
   debug(err);
@@ -54,36 +49,44 @@ app.use(async function (ctx, next) {
 });
 
 // Send Custom Error Page
+let messages = {
+  404: 'Not Found',
+  500: 'Server Error'
+};
+
 app.use(async function (ctx, next) {
   try {
+// Catch all errors from downstream    
     await next();
   } catch (e) {
-    ctx.body = await render('error.html', {
-      message: e.message
-      // error: e
-    });
+    const status = e.status || 500;
+    const data = app.env === 'production' ? {
+      message: messages[status],
+      error:  {}
+    } : {
+      message: e.message,
+      error: e
+    };
+    ctx.response.status = status;
+    ctx.body = await render('error.html', data);
   }
 });
 
 // Router
 router.get('/', async function index(ctx, next) {
-  try {
-    ctx.body = await render('home.html', Object.assign({}, ctx.state, {
-      pageGroup: 'index'
-    }));
-  } catch (e) {
-    return e;
-  }
+  const data = Object.assign({}, ctx.state, {
+    pageGroup: 'index'
+  });
+  ctx.body = await render('home.html', data);
 });
 
 router.get('/:economy', async function (ctx, next) {
   const economy = ctx.params.economy;
-  // try {
-    const dashboardData = await dashboard.getDataFor(economy);
-    ctx.body = await render('dashboard.html', Object.assign(dashboardData, ctx.state, {
-      pageGroup: 'dashboard'
-    }));
-
+  const dashboardData = await dashboard.getDataFor(economy);
+  const data = Object.assign(dashboardData, ctx.state, {
+    pageGroup: 'dashboard'
+  });
+  ctx.body = await render('dashboard.html', data);
 });
 
 router.get('/urls/republish', async function (ctx, next) {
@@ -117,6 +120,7 @@ server.on('error', (error) => {
 // Listening event handler
 server.on('listening', () => {
   debug(`App listening on port ${port}`);
+// After server boot, ask it fetch data to bertha immediately and cache them.  
   return dashboard.getDataForAll()
     .catch(err => {
       console.log(err);
