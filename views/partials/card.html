@@ -20,19 +20,22 @@
     {% endif %}
     
     {% if card["bignum-heading"] %}
-    <div class="headline-figs" title="更新于">
-      <div class="bignum-heading">{{card["bignum-heading"]}}</div>
-      <div class="bignum">{{card["big-number"]}}<span>{{card["bignum-units"]}}</span></div>
-    </div>
+      {% if card.bigNum %}
+      <div class="headline-figs" title="更新于{{card.bigNum.date}}">
+        <div class="bignum-heading">{{card["bignum-heading"]}}</div>
+        <div class="bignum">{{card.bigNum.value}}<span>{{card.bigNum.unit}}</span></div>
+      </div>
+      {% endif %}
     {% endif %}
 
     {% if card["annual-heading"] %}
-    <div class="small-figs">
-      <div class="small-figs-holder" title="更新于">
-        <div class="small-figs-heading">{{card["annual-heading"]}}</div>
-        <div class="small-figs-value"><span>{{card.units}}</span></div>
+      {% if card.annualNum %}
+      <div class="small-figs">
+        <div class="small-figs-holder" title="更新于{{card.annualNum.date}}">
+          <div class="small-figs-heading">{{card["annual-heading"]}}</div>
+          <div class="small-figs-value">{{card.annualNum.value}}<span>{{card.annualNum.unit}}</span></div>
+        </div>
       </div>
-    </div>
     {% endif %}
   </div>
   
