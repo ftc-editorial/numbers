@@ -3,18 +3,24 @@ const fs = require('fs-jetpack');
 const path = require('path');
 const loadJsonFile = require('load-json-file');
 const inline = pify(require('inline-source'));
-const rollup = require('rollup').rollup;
-const bowerResolve = require('rollup-plugin-bower-resolve');
-const buble = require('rollup-plugin-buble');
-let cache;
+const nunjucks = require('nunjucks');
+nunjucks.configure(['view', 'node_modules/@ftchinese/ftc-footer'], {
+  noCache: true,
+  watch: false
+});
+const render = pify(nunjucks.render);
 const browserSync = require('browser-sync').create();
 const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
-const render = require('./util/render.js');
-const footer = require('./bower_components/ftc-footer');
-const config = require('./config.json');
+const rollup = require('rollup').rollup;
+const bowerResolve = require('rollup-plugin-bower-resolve');
+const buble = require('rollup-plugin-buble');
+const uglify = require('rollup-plugin-uglify');
+let cache;
+
+const footer = require('@ftchinese/ftc-footer')({theme: 'light'});
 const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
@@ -25,11 +31,16 @@ gulp.task('prod', function() {
   return Promise.resolve(process.env.NODE_ENV = 'production');
 });
 
-gulp.task('dev', function(done) {
+gulp.task('dev', function() {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
 function buildPage(template, data) {
+  const env = {
+    isProduction: process.env.NODE_ENV === 'production'
+  };
+  const context = Object.assign(data, {env});
+  const dest = `${tmpDir}/${project}.html`;
   return render(template, data)
     .then(html => {
       if (process.env.NODE_ENV === 'production') {
@@ -40,25 +51,21 @@ function buildPage(template, data) {
       }    
       return html;      
     })
+    .then(html => {
+      return fs.writeAsync(dest, html);
+    })
     .catch(err => {
       throw err;
     });
 }
 
 gulp.task('html', () => {
-  const env = {
-    isProduction: process.env.NODE_ENV === 'production'
-  };  
-  return loadJsonFile(`data/${project}.json`)
+    
+  return loadJsonFile(`test/numbers-china.legacy.json`)
     .then(json => {
-      const context = Object.assign(json, {
-        footer: footer,
-        env
-      });
-      return buildPage('numbers.html', context);
-    })
-    .then(html => {
-      return fs.writeAsync(`${tmpDir}/${project}.html`, html);
+      return buildPage('dashboard.html', Object.assign(json, {
+        footer: footer
+      }));
     })
     .then(() => {
       browserSync.reload('*.html');
@@ -70,29 +77,29 @@ gulp.task('html', () => {
 });
 
 // generate partial html files to be used on homepage widget.
-function buildWidgets(sections) {
-  const promisedWidgets = sections.map(section => {
-    const dest = `${tmpDir}/${project}-${section.id}.html`;
-    return buildPage('widget.html', {section: section})
-      .then(html => {
-        return fs.writeAsync(dest, html);
-      })
-      .catch(err => {
-        throw err;
-      })
-  });
-  return Promise.all(promisedWidgets);
-}
+// function buildWidgets(sections) {
+//   const promisedWidgets = sections.map(section => {
+//     const dest = `${tmpDir}/${project}-${section.id}.html`;
+//     return buildPage('widget.html', {section: section})
+//       .then(html => {
+//         return fs.writeAsync(dest, html);
+//       })
+//       .catch(err => {
+//         throw err;
+//       })
+//   });
+//   return Promise.all(promisedWidgets);
+// }
 
-gulp.task('widgets', () => {
-  return loadJsonFile(`data/${project}.json`)
-    .then(json => {
-      return buildWidgets(json.sections);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+// gulp.task('widgets', () => {
+//   return loadJsonFile(`data/${project}.json`)
+//     .then(json => {
+//       return buildWidgets(json.sections);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 gulp.task('styles', function styles() {
   const dest = `${tmpDir}/styles`;
@@ -102,7 +109,7 @@ gulp.task('styles', function styles() {
     .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
     .pipe($.sass({
-      outputStyle: 'expanded',
+      outputStyle: process.env.NODE_ENV ? 'compressed' : 'expanded',
       precision: 10,
       includePaths: ['bower_components']
     }).on('error', $.sass.logError))
@@ -116,13 +123,6 @@ gulp.task('styles', function styles() {
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
-});
-
-gulp.task('eslint', () => {
-  return gulp.src('client/js/*.js')
-    .pipe($.eslint())
-    .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError());
 });
 
 gulp.task('scripts', () => {
@@ -148,7 +148,6 @@ gulp.task('scripts', () => {
     ],
     cache: cache
   }).then(function(bundle) {
-    // Cache for later use
     cache = bundle;
 
     return bundle.write({
@@ -166,12 +165,6 @@ gulp.task('scripts', () => {
   });
 });
 
-// This task is used for backedn only.
-gulp.task('watch', gulp.parallel('styles', 'scripts', () => {
-  gulp.watch('client/**/*.js', gulp.parallel('scripts'));
-  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
-}));
-
 gulp.task('serve', 
   gulp.parallel(
     'html', 'styles', 'scripts', 
@@ -180,7 +173,7 @@ gulp.task('serve',
     browserSync.init({
       server: {
         baseDir: [tmpDir, 'client'],
-        index: `${project}.html`,
+        index: `numbers-china.html`,
         routes: {
           '/bower_components': 'bower_components'
         }
@@ -190,12 +183,9 @@ gulp.task('serve',
     gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
     gulp.watch('client/**/*.js', gulp.parallel('scripts'));
     gulp.watch('client/**/*.scss', gulp.parallel('styles'));
-    gulp.watch(['views/**/*.html', 'data/*.json'], gulp.parallel('html', 'widgets'));
+    gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html', 'widgets'));
   })
 );
-
-// For server only build frontend assets
-gulp.task('build', gulp.series('prod', gulp.parallel('styles', 'scripts'), 'dev'));
 
 gulp.task('deploy:widgets', () => {
   const DEST = path.resolve(__dirname, config.widgets);
@@ -209,18 +199,32 @@ gulp.task('deploy:widgets', () => {
 });
 
 gulp.task('images', function () {
-  const DEST = path.resolve(__dirname, config.assets);
-  console.log(`Copying images to ${DEST}`)
-  return gulp.src('client/**/*.{svg,png,jpg,jpeg,gif}')
+  const dest = `${deployDir}/images`
+  console.log(`Copy images to ${dest}`)
+  return gulp.src('client/images/*.{svg,png,jpg,jpeg,gif}')
     .pipe($.imagemin({
       progressive: true,
       interlaced: true,
       svgoPlugins: [{cleanupIDs: false}]
     }))
-    .pipe(gulp.dest(DEST));
+    .pipe(gulp.dest(dest));
 });
 
-gulp.task('deploy', gulp.parallel('styles', 'scripts', 'images'));
+// Put css, js  on static server.
+gulp.task('build', gulp.parallel('styles', 'scripts'));
+
+gulp.task('watch', gulp.parallel('build', () => {
+  gulp.watch('client/**/*.js', gulp.parallel('scripts'));
+  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
+}));
+
+gulp.task('copy:frontend', () => {
+  console.log(`Copy frontend assets to ${deployDir}`)
+  return gulp.src('.tmp/**/*.{css,js,map}')
+    .pipe(gulp.dest(deployDir))
+})
+
+gulp.task('deploy', gulp.series('prod', 'build', gulp.parallel('copy:frontend', 'images'), 'dev'));
 
 // Currently we give up webpack as it is hard to configure.
 /*
