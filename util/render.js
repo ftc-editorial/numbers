@@ -1,14 +1,15 @@
 const path = require('path');
 const nunjucks = require('nunjucks');
 
+const loaderOptions = process.env.NODE_ENV === 'production' ? {} : { noCache: true, watch: true };
+
 var env = new nunjucks.Environment(
   new nunjucks.FileSystemLoader(
     [
       path.resolve(process.cwd(), 'views'),
-      path.resolve(process.cwd(), 'bower_components/ftc-footer'),
-      path.resolve(process.cwd(), 'bower_components/ftc-icons')
+      path.resolve(process.cwd(), 'node_modules/@ftchinese/ftc-footer'),
     ],
-    {noCache: true}
+    loaderOptions
   ),
   {autoescape: false}
 );
