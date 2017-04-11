@@ -48,7 +48,7 @@
 	top: 0;
 	left: 0;
 	bottom: 0;
-	z-index: 1;
+
 }
 
 .o-header__logo {
@@ -61,12 +61,14 @@
 	padding: 0;
 	display: table-cell;
 	vertical-align: middle;
+	
 	@include oGridRespondTo(M) {
 		opacity: 0;
 		transition: opacity 0.3s;
-
 		[aria-sticky="true"] & {
 			opacity: 1;
+			position: relative;
+			z-index: 1;
 		}		
 	}
 }

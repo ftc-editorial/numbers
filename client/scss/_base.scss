@@ -33,6 +33,19 @@ body {
     min-height: 50vh;
   }
 }
+
+.homepage-nav {
+  ul {
+    font-size: 1.5em;
+  }
+  a {
+    text-decoration: none;
+    @include oColorsFor(link);
+  }
+  a:hover {
+    @include oColorsFor(link-hover);
+  }
+}
 // layout
 .o-grid-container {
   @include oGridContainer;
