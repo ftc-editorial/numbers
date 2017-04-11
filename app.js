@@ -12,17 +12,25 @@ const render = require('./util/render.js');
 const urls = require('./server/urls.js');
 
 const appName = 'Numbers';
-const port = process.env.PORT || 3000;
-const env = {
-  isProduction: process.env.NODE_ENV === 'production'
-};
-
 debug('booting %s', appName);
 
+const port = process.env.PORT || 3000;
 const app = new Koa();
 const router = new Router();
-
 app.proxy = true;
+
+// Those data are fixed, so make them ready on server startup, not on each request.
+const defaultData = {
+  meta: {
+    title: '经济数据一图览'
+  },
+  url: {
+    icon: 'http://interactive.ftchinese.com/favicons',
+    frontend: app.env === 'production' ? 'http://interactive.ftchinese.com/static/numbers' : null
+  },
+  isProduction: app.env === 'production',
+  footer  
+};
 
 // App error logging
 app.on('error', function (err, ctx) {
@@ -38,13 +46,7 @@ if (process.env.NODE_ENV !== 'production') {
 // Prepare data used by the whole app.
 app.use(async function (ctx, next) {
   debug(`Attaching data to ctx.state`);
-  ctx.state = {
-    meta: {
-      title: '经济数据一图览'
-    },
-    env,
-    footer
-  }
+  ctx.state = defaultData;
   await next();
 });
 
@@ -60,6 +62,7 @@ app.use(async function (ctx, next) {
     await next();
   } catch (e) {
     const status = e.status || 500;
+// Do not output error detail in production env.
     const data = app.env === 'production' ? {
       message: messages[status],
       error:  {}
@@ -83,7 +86,7 @@ router.get('/', async function index(ctx, next) {
 router.get('/:economy', async function (ctx, next) {
   const economy = ctx.params.economy;
   const dashboardData = await dashboard.getDataFor(economy);
-  const data = Object.assign(dashboardData, ctx.state, {
+  const data = Object.assign({}, ctx.state, dashboardData,  {
     pageGroup: 'dashboard'
   });
   ctx.body = await render('dashboard.html', data);
