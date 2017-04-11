@@ -21,7 +21,7 @@ function createDashboard(spreadsheet, latest, name) {
     const shortName = row['short-name'];
     const annualName = row['annual-name'];
 
-    if (row['big-number']) {
+    if (typeof row['big-number'] === 'number') {
       row.bigNum = {
         value: row['big-number'],
         unit: row['bignum-units']
@@ -30,7 +30,7 @@ function createDashboard(spreadsheet, latest, name) {
       row.bigNum = latest[bignumName];
     }
 
-    if (row['short-change']) {
+    if (typeof row['short-change'] === 'number') {
       row.shortNum = {
         value: row['short-change'],
         unit: row.units
@@ -39,7 +39,7 @@ function createDashboard(spreadsheet, latest, name) {
       row.shortNum = latest[shortName];
     }
 
-    if (row['annual-change']) {
+    if (typeof row['annual-change'] === 'number') {
       row.annualNum = {
         value: row['annual-change'],
         unit: row.units
