@@ -17,11 +17,12 @@ module.exports = {
       env: {
         NODE_ENV: "development",
         PORT: 4001,
-        DEBUG: "numbers"
+        DEBUG: "koa*,nums*"
       },
       env_production : {
         NODE_ENV: "production",
-        PORT: 4001
+        PORT: 4001,
+        DEBUG: "nums*"
       }
     }
   ]
