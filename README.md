@@ -42,3 +42,7 @@ npm run datasets
 ```
 
 Final json file are put in `public` directory.
+
+## Translate
+
+Put data in `translation/unit.json`.
