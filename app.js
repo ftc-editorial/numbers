@@ -7,9 +7,9 @@ const logger = require('koa-logger');
 const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
 const loadJsonFile = require('load-json-file');
 
-const dashboard = require('./server/dashboard.js');
-const render = require('./util/render.js');
-const urls = require('./server/urls.js');
+const models = require('./server/models');
+const render = require('./server/render.js');
+const urls = require('./server/models/urls.js');
 
 const appName = 'Numbers';
 debug('booting %s', appName);
@@ -85,7 +85,7 @@ router.get('/', async function index(ctx, next) {
 
 router.get('/:economy', async function (ctx, next) {
   const economy = ctx.params.economy;
-  const dashboardData = await dashboard.getDataFor(economy);
+  const dashboardData = await models.of(economy);
   const data = Object.assign({}, ctx.state, dashboardData,  {
     pageGroup: 'dashboard'
   });
@@ -102,9 +102,9 @@ router.get('/urls/read', async function (ctx, next) {
 
 // Purge all cache.
 router.get('/__operations/refresh', async function (ctx, next) {
-  dashboard.purgeLocalCache();
-  dashboard.purgeBerthaCache();
-  await dashboard.getDataForAll();
+  models.purgeLocalCache();
+  models.purgeBerthaCache();
+  await models.ofAll();
   ctx.body = 'Refresh data successful.';
 });
 
@@ -124,7 +124,7 @@ server.on('error', (error) => {
 server.on('listening', () => {
   debug(`App listening on port ${port}`);
 // After server boot, ask it fetch data to bertha immediately and cache them.  
-  return dashboard.getDataForAll()
+  return models.ofAll()
     .catch(err => {
       console.log(err);
     });
