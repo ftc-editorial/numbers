@@ -11,9 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/* .tmp/* public/*",
     "postversion": "git push && git push --tags",
-    "bertha": "node ./test/bertha-data.js",
-    "datasets": "node ./test/get-datasets.js",
-    "models": "node ./test/get-all-data.js"
+    "models": "env DEBUG=nums* node ./test/get-all-data.js",
+    "datasets": "env DEBUG=nums* node ./test/get-datasets.js",
+    "bertha": "env DEBUG=nums* node ./test/bertha-data.js"
   },
   "devDependencies": {
     "bower": "^1.8.0",
