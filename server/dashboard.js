@@ -8,6 +8,7 @@ const urls = require('./urls.js');
 class Dashboard {
   constructor() {
     this.cache = {};
+    this.sheets = {};
 // By default use bertha's cached data.    
     this.republish = false;
   }
@@ -27,6 +28,30 @@ class Dashboard {
   purgeBerthaCache() {
     this.republish = true;
   }
+
+// helper method
+  fetchSheet(name) {
+    const url = urls.getUrlFor(name, this.republish);
+    
+    if (!url) {
+      debug(`Economy for ${name} not found`);
+      return Promise.reject(errors.notFound('Economy'));
+    }
+
+    if (this.sheets[name]) {
+      return this.sheets[name];
+    }
+
+    debug(`Fetching ${url}`);
+
+    const sheetData = got(url, {json: true})
+      .then(res => {
+        return res.body;
+      });
+    // cache this fetch action  
+    this.sheets[name] = sheetData;
+    return sheetData;
+  }
 /*
  * @param {String} name - one of the keys in `docs` of urls.js
  * @param {Promise}
@@ -38,39 +63,42 @@ class Dashboard {
       debug(`Use cached data for ${name}`);
       return dashboard;
     }
-
-    const url = urls.getUrlFor(name, this.republish);
     
-    if (!url) {
-      debug(`Economy for ${name} not found`);
-      return Promise.reject(errors.notFound('Economy'));
-    }
-    
-    debug(`Fetching data for ${name}`);
+// Fetch `latest` and a `spreadsheet` data in parallel
     return Promise.all([
-      got(url, { json: true})
-      .then(response => {
-        return response.body;
-      }),
-      latest.getData()
-    ])
-    .then(([spreadsheet, latest]) => {
-      const dashboard = createDashboard(spreadsheet, latest, name);
+        this.fetchSheet(name),
+        latest.getData()
+      ])
+      .then(([sheetData, latestData]) => {
 
-      this.cache[name] = dashboard;
-      debug(`Data for ${name} cached.`);
+        const dashboard = createDashboard(sheetData, latestData, name);
+// cache data
+        debug(`Caching data for ${name}`);
+        this.cache[name] = Promise.resolve(dashboard);
 
-      return dashboard;
-    })
-    .catch(err => {
-      throw err;
-    });
+        return dashboard;
+      })
+      .catch(err => {
+        throw err;
+      });
   }
 
-  getDataForAll() {
-    return Promise.all(urls.docNames.map(name => {
-      return this.getDataFor(name);
-    }));
+  async getAll() {
+// Here we need to fetch latest first, and then fetch spreadsheet in parallel
+    const latestData = await latest.getData();
+
+    debug('Fetching all data for all dashboards');
+    const dashboards = urls.docNames.map(name => {
+      return this.fetchSheet(name)
+        .then(sheetData => {
+          const dashboard = createDashboard(sheetData, latestData, name);
+          
+          debug(`Caching data for ${name}`);
+          this.cache[name] = Promise.resolve(dashboard);
+          return dashboard;
+        });
+    });
+    return Promise.all(dashboards);
   }
 }
 

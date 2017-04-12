@@ -8,17 +8,24 @@ class Latest {
     this.cache = null;
   }
 
+  purgeCache() {
+    this.cache = null
+  }
+
   getData() {
     if (this.cache) {
+      debug('Find cached data for latest.')
       return this.cache;
     }
+    debug(`Fetching ${url}`);
     return got(url, {
         json: true
       })
       .then(response => {
-        debug('Got the latest data');
+        debug('Fetched the latest data');
         const data = arrayToMap(response.body);
-        this.cache = data;
+        debug('Cache latest data');
+        this.cache = Promise.resolve(data);
         return data;
       })
       .catch(err => {
