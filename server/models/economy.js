@@ -1,11 +1,13 @@
 const debug = require('debug')('nums:dashboard');
 const got = require('got');
-const errors = require('../util/errors.js');
-const latest = require('./latest.js');
-const createDashboard = require('./create-dashboard.js');
+const Datasets = require('./datasets.js');
+const createDashboard = require('./dashboard.js');
 const urls = require('./urls.js');
+const errors = require('../errors.js');
 
-class Dashboard {
+const datasets = new Datasets();
+
+class Economy {
   constructor() {
     this.cache = {};
     this.sheets = {};
@@ -15,7 +17,7 @@ class Dashboard {
 
 // Clear local cache so that we could update data.
   purgeLocalCache () {
-    latest.cache = null;
+    datasets.cache = null;
     for (let k in this.cache) {
       if (!this.cache.hasOwnProperty(k)) {
         continue;
@@ -56,7 +58,7 @@ class Dashboard {
  * @param {String} name - one of the keys in `docs` of urls.js
  * @param {Promise}
  */
-  getDataFor(name) {
+  of(name) {
     const dashboard = this.cache[name];
 // Find local cached data, use it.
     if (dashboard) {
@@ -64,10 +66,10 @@ class Dashboard {
       return dashboard;
     }
     
-// Fetch `latest` and a `spreadsheet` data in parallel
+// Fetch `datasets` and a `spreadsheet` data in parallel
     return Promise.all([
         this.fetchSheet(name),
-        latest.getData()
+        datasets.fetch()
       ])
       .then(([sheetData, latestData]) => {
 
@@ -83,9 +85,9 @@ class Dashboard {
       });
   }
 
-  async getAll() {
+  async ofAll() {
 // Here we need to fetch latest first, and then fetch spreadsheet in parallel
-    const latestData = await latest.getData();
+    const latestData = await datasets.fetch();
 
     debug('Fetching all data for all dashboards');
     const dashboards = urls.docNames.map(name => {
@@ -102,14 +104,4 @@ class Dashboard {
   }
 }
 
-if (require.main === module) {
-  new Dashboard().getDataFor('china')
-    .then(data => {
-      console.log(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-module.exports = new Dashboard();
+module.exports = Economy;

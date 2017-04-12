@@ -1,18 +1,13 @@
 const debug = require('debug')('nums:latest');
 const got = require('got');
-const errors = require('../util/errors.js');
 const url = process.env.LASTEST_DATA_URL ||  'https://ig.ft.com/autograph/data/latest.json';
 
-class Latest {
+class Datasets {
   constructor() {
     this.cache = null;
   }
 
-  purgeCache() {
-    this.cache = null
-  }
-
-  getData() {
+  fetch() {
     if (this.cache) {
       debug('Find cached data for latest.')
       return this.cache;
@@ -50,4 +45,4 @@ function arrayToMap(data) {
   return map;
 }
 
-module.exports = new Latest();
+module.exports = Datasets;
