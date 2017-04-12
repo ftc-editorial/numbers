@@ -4,13 +4,15 @@ const path = require('path');
 const loadJsonFile = require('load-json-file');
 const writeJsonFile = require('write-json-file');
 const inline = pify(require('inline-source'));
+const register = require('./server/filter.js');
 const nunjucks = require('nunjucks');
 const env = nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
   noCache: true,
   watch: false,
   autoescape: false
 });
-// const render = pify(nunjucks.render);
+register(env);
+const render = pify(nunjucks.render);
 const browserSync = require('browser-sync').create();
 const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
@@ -22,7 +24,7 @@ const buble = require('rollup-plugin-buble');
 const uglify = require('rollup-plugin-uglify');
 let cache;
 
-const footer = require('@ftchinese/ftc-footer')({theme: 'light'});
+const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
 const models = require('./server/models');
 const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
@@ -40,6 +42,7 @@ gulp.task('dev', function() {
 });
 
 gulp.task('chinadata', () => {
+  process.env.DEBUG = 'nums*';
   return models.of('china')
     .then(data => {
       console.log(`Saving file ${chinaData}`);
@@ -59,6 +62,7 @@ function buildPage(template, data) {
   return render(template, data)
     .then(html => {
       if (process.env.NODE_ENV === 'production') {
+        console.log(`Inline assets`);
         return inline(html, {
           compress: true,
           rootpath: path.resolve(process.cwd(), '.tmp')
@@ -119,16 +123,12 @@ gulp.task('scripts', () => {
   return rollup({
     entry: 'client/main.js',
     plugins: [
-      bowerResolve({
-// Use `module` field for ES6 module if possible        
-        module: true
-      }),
+      bowerResolve(),
 // buble's option is no documented. Refer here.
       buble({
-        include: ['client/**'],
+        include: ['client/**', 'bower_components/ftc-share/**', 'bower_components/ftc-toggle/**'],
 // FTC components should be released together with a transpiled version. Do not transpile again here.  
         exclude: [
-          'bower_components/**',
           'node_modules/**'
         ],
         transforms: {
@@ -169,10 +169,10 @@ gulp.task('bs', () => {
   gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
   gulp.watch('client/**/*.js', gulp.parallel('scripts'));
   gulp.watch('client/**/*.scss', gulp.parallel('styles'));
-  gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html'));
+  gulp.watch(['views/**/*.html', 'public/*.json'], gulp.parallel('html'));
 });
 
-gulp.task('serve', gulp.series('chinadata', gulp.parallel('html', 'styles', 'scripts')));
+gulp.task('serve', gulp.series('chinadata', gulp.parallel('html', 'styles', 'scripts'), 'bs'));
 
 gulp.task('images', function () {
   const dest = `${deployDir}/images`
@@ -201,6 +201,15 @@ gulp.task('copy:frontend', () => {
 })
 
 gulp.task('deploy', gulp.series('prod', 'build', gulp.parallel('copy:frontend', 'images'), 'dev'));
+
+gulp.task('copy:html', () => {
+  const dest = path.resolve(__dirname, '../channel');
+  console.log(`Copy html to ${dest}`);
+  return gulp.src('.tmp/*.html')
+    .pipe(gulp.dest(dest));
+})
+
+gulp.task('static', gulp.series('prod', 'build', 'html', gulp.parallel('copy:html', 'images'), 'dev'))
 
 // generate partial html files to be used on homepage widget.
 // function buildWidgets(sections) {
