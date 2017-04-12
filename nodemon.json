@@ -5,7 +5,8 @@
     "client/**"
   ],
   "env": {
-    "PORT": 4001
+    "PORT": 4001,
+    "DEBUG": "koa*,nums*"
   },
   "verbose": true,
   "ext": "js json"
