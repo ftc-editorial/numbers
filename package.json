@@ -12,8 +12,8 @@
     "clean": "rm -rf dist/* .tmp/* public/*",
     "postversion": "git push && git push --tags",
     "bertha": "node ./test/bertha-data.js",
-    "latest": "node ./test/latest-data.js",
-    "dashboard": "node ./test/dashboard-data.js"
+    "datasets": "node ./test/get-datasets.js",
+    "models": "node ./test/get-all-data.js"
   },
   "devDependencies": {
     "bower": "^1.8.0",
