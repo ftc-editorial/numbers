@@ -21,10 +21,24 @@ DEBUG=nums:server nodemon app.js
 
 Open browser `localhost:3000`
 
-## Bust Cache
+## See the data structure
+
+Data produced by bertha:
 
 ```
-localhost:3000/__operations/refresh
+npm run bertha
 ```
 
-This is purge cache both on our server and bertha. It will force bertha to fetch a fresh copy of data on Google Sheets, and the fetched data will be immediately cached on our server.
+Data converted from bertha:
+
+```
+npm run models
+```
+
+Data used for big numbers:
+
+```
+npm run datasets
+```
+
+Final json file are put in `public` directory.
