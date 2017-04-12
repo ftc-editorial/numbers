@@ -17,6 +17,7 @@ class Economy {
 
 // Clear local cache so that we could update data.
   purgeLocalCache () {
+    debug('Clear datasets cache.')
     datasets.cache = null;
     for (let k in this.cache) {
       if (!this.cache.hasOwnProperty(k)) {
@@ -89,7 +90,7 @@ class Economy {
 // Here we need to fetch latest first, and then fetch spreadsheet in parallel
     const latestData = await datasets.fetch();
 
-    debug('Fetching all data for all dashboards');
+    debug('Fetching data for all dashboards');
     const dashboards = urls.docNames.map(name => {
       return this.fetchSheet(name)
         .then(sheetData => {
