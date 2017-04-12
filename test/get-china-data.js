@@ -1,9 +1,9 @@
 const path = require('path');
 const writeJsonFile = require('write-json-file');
-const dashboard = require('../server/dashboard.js');
+const models = require('../server/models');
 const destDir = path.resolve(__dirname, '../public');
 
-dashboard.getDataFor('china')
+models.of('china')
   .then(data => {
     const dest = `${destDir}/dashboard-china.json`;
     console.log(`Saving file ${dest}`);

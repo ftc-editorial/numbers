@@ -1,9 +1,9 @@
 const path = require('path');
 const writeJsonFile = require('write-json-file');
-const dashboard = require('../server/dashboard.js');
+const models = require('../server/models');
 const destDir = path.resolve(__dirname, '../public');
 
-dashboard.getAll()
+models.ofAll()
   .then(dataArr => {
     return Promise.all(dataArr.map(data => {
       const dest = `${destDir}/dashboard-${data.name}.json`;
