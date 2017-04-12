@@ -2,14 +2,15 @@ const pify = require('pify');
 const fs = require('fs-jetpack');
 const path = require('path');
 const loadJsonFile = require('load-json-file');
+const writeJsonFile = require('write-json-file');
 const inline = pify(require('inline-source'));
 const nunjucks = require('nunjucks');
-nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
+const env = nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
   noCache: true,
   watch: false,
   autoescape: false
 });
-const render = pify(nunjucks.render);
+// const render = pify(nunjucks.render);
 const browserSync = require('browser-sync').create();
 const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
@@ -22,9 +23,11 @@ const uglify = require('rollup-plugin-uglify');
 let cache;
 
 const footer = require('@ftchinese/ftc-footer')({theme: 'light'});
+const models = require('./server/models');
 const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
+const chinaData = path.resolve(__dirname, '../public/dashboard-china.json');
 
 process.env.NODE_ENV = 'development';
 // change NODE_ENV between tasks.
@@ -35,6 +38,17 @@ gulp.task('prod', function() {
 gulp.task('dev', function() {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
+
+gulp.task('chinadata', () => {
+  return models.of('china')
+    .then(data => {
+      console.log(`Saving file ${chinaData}`);
+      return writeJsonFile(chinaData, data);
+    })
+    .catch(err => {
+      console.log(err);
+    });  
+})
 
 function buildPage(template, data) {
   const env = {
@@ -62,7 +76,7 @@ function buildPage(template, data) {
 
 gulp.task('html', () => {
     
-  return loadJsonFile(`test/numbers-china.legacy.json`)
+  return loadJsonFile(chinaData)
     .then(json => {
       return buildPage('dashboard.html', Object.assign(json, {
         footer: footer
@@ -76,31 +90,6 @@ gulp.task('html', () => {
       console.log(err);
     });  
 });
-
-// generate partial html files to be used on homepage widget.
-// function buildWidgets(sections) {
-//   const promisedWidgets = sections.map(section => {
-//     const dest = `${tmpDir}/${project}-${section.id}.html`;
-//     return buildPage('widget.html', {section: section})
-//       .then(html => {
-//         return fs.writeAsync(dest, html);
-//       })
-//       .catch(err => {
-//         throw err;
-//       })
-//   });
-//   return Promise.all(promisedWidgets);
-// }
-
-// gulp.task('widgets', () => {
-//   return loadJsonFile(`data/${project}.json`)
-//     .then(json => {
-//       return buildWidgets(json.sections);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
 
 gulp.task('styles', function styles() {
   const dest = `${tmpDir}/styles`;
@@ -166,38 +155,24 @@ gulp.task('scripts', () => {
   });
 });
 
-gulp.task('serve', 
-  gulp.parallel(
-    'html', 'styles', 'scripts', 
-
-    function serve() {
-    browserSync.init({
-      server: {
-        baseDir: [tmpDir, 'client'],
-        index: `numbers-china.html`,
-        routes: {
-          '/bower_components': 'bower_components'
-        }
+gulp.task('bs', () => {
+  browserSync.init({
+    server: {
+      baseDir: [tmpDir, 'client'],
+      index: `numbers-china.html`,
+      routes: {
+        '/bower_components': 'bower_components'
       }
-    });
+    }
+  });
 
-    gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
-    gulp.watch('client/**/*.js', gulp.parallel('scripts'));
-    gulp.watch('client/**/*.scss', gulp.parallel('styles'));
-    gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html'));
-  })
-);
-
-gulp.task('deploy:widgets', () => {
-  const DEST = path.resolve(__dirname, config.widgets);
-
-  return gulp.src(`.tmp/${project}-*.html`)
-    .pipe($.htmlmin({
-      collapseWhitespace: true,
-      removeAttributeQuotes: true
-    }))
-    .pipe(gulp.dest(DEST));  
+  gulp.watch('client/**/*.{csv,svg,png,jpg}', browserSync.reload);
+  gulp.watch('client/**/*.js', gulp.parallel('scripts'));
+  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
+  gulp.watch(['views/**/*.html', 'test/*.json'], gulp.parallel('html'));
 });
+
+gulp.task('serve', gulp.series('chinadata', gulp.parallel('html', 'styles', 'scripts')));
 
 gulp.task('images', function () {
   const dest = `${deployDir}/images`
@@ -226,6 +201,42 @@ gulp.task('copy:frontend', () => {
 })
 
 gulp.task('deploy', gulp.series('prod', 'build', gulp.parallel('copy:frontend', 'images'), 'dev'));
+
+// generate partial html files to be used on homepage widget.
+// function buildWidgets(sections) {
+//   const promisedWidgets = sections.map(section => {
+//     const dest = `${tmpDir}/${project}-${section.id}.html`;
+//     return buildPage('widget.html', {section: section})
+//       .then(html => {
+//         return fs.writeAsync(dest, html);
+//       })
+//       .catch(err => {
+//         throw err;
+//       })
+//   });
+//   return Promise.all(promisedWidgets);
+// }
+
+// gulp.task('widgets', () => {
+//   return loadJsonFile(`data/${project}.json`)
+//     .then(json => {
+//       return buildWidgets(json.sections);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
+
+// gulp.task('deploy:widgets', () => {
+//   const DEST = path.resolve(__dirname, config.widgets);
+
+//   return gulp.src(`.tmp/${project}-*.html`)
+//     .pipe($.htmlmin({
+//       collapseWhitespace: true,
+//       removeAttributeQuotes: true
+//     }))
+//     .pipe(gulp.dest(DEST));  
+// });
 
 // Currently we give up webpack as it is hard to configure.
 /*
