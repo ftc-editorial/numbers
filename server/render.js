@@ -1,6 +1,6 @@
 const path = require('path');
 const nunjucks = require('nunjucks');
-const moment = require('moment');
+const register = require('./filter.js');
 
 const loaderOptions = process.env.NODE_ENV === 'production' ? {} : { noCache: true, watch: true };
 
@@ -15,15 +15,8 @@ var env = new nunjucks.Environment(
   {autoescape: false}
 );
 
-env.addFilter('todate', function(date) {
-  return moment(date).format('YYYY年M月D日');
-});
-
-env.addFilter('replaceDate', function(str, date) {
-  const mnt = moment(date);
-  // Do not use moment().format(str) here as str is not predicatable and any character appeared may be replaced.
-  return str.replace('YYYY', mnt.year()).replace('QQ', mnt.quarter());
-});
+// registe filters
+register(env);
 
 function render(template, context) {
   return new Promise(function(resolve, reject) {
