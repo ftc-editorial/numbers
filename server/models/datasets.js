@@ -9,7 +9,7 @@ class Datasets {
 
   fetch() {
     if (this.cache) {
-      debug('Find cached data for latest.')
+      debug('Find cached datasets.')
       return this.cache;
     }
     debug(`Fetching ${url}`);
@@ -17,9 +17,9 @@ class Datasets {
         json: true
       })
       .then(response => {
-        debug('Fetched the latest data');
+        debug('Fetched the datasets');
         const data = arrayToMap(response.body);
-        debug('Cache latest data');
+        debug('Cache datasets');
         this.cache = Promise.resolve(data);
         return data;
       })
