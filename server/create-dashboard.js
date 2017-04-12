@@ -4,6 +4,7 @@
  * @param {Object[]} spreadsheet.groups - Index
  * @param {Object[]} spreadsheet.data - Data to be transfromed and merged into `groups`
  * @param {object[]} spreadsheet.credits
+ * @param {Object} latest
  * @param {String} name - country name `china | us | uk | japan`
  */
 function createDashboard(spreadsheet, latest, name) {
