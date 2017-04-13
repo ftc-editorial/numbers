@@ -25,7 +25,6 @@ const uglify = require('rollup-plugin-uglify');
 let cache;
 
 const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
-const models = require('./server/models');
 const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
@@ -40,18 +39,6 @@ gulp.task('prod', function() {
 gulp.task('dev', function() {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
-
-gulp.task('chinadata', () => {
-  process.env.DEBUG = 'nums*';
-  return models.of('china')
-    .then(data => {
-      console.log(`Saving file ${chinaData}`);
-      return writeJsonFile(chinaData, data);
-    })
-    .catch(err => {
-      console.log(err);
-    });  
-})
 
 function buildPage(template, data) {
   const env = {
@@ -174,7 +161,7 @@ gulp.task('bs', () => {
   gulp.watch(['views/**/*.html', 'public/*.json'], gulp.parallel('html'));
 });
 
-gulp.task('serve', gulp.series('chinadata', gulp.parallel('html', 'styles', 'scripts'), 'bs'));
+gulp.task('serve', gulp.series(gulp.parallel('html', 'styles', 'scripts'), 'bs'));
 
 gulp.task('images', function () {
   const dest = `${deployDir}/images`
@@ -211,7 +198,7 @@ gulp.task('copy:html', () => {
     .pipe(gulp.dest(dest));
 })
 
-gulp.task('static', gulp.series('prod', 'build', 'html', gulp.parallel('copy:html', 'images'), 'dev'))
+gulp.task('deploy:static', gulp.series('prod', 'build', 'html', gulp.parallel('copy:html', 'images'), 'dev'))
 
 // generate partial html files to be used on homepage widget.
 // function buildWidgets(sections) {

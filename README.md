@@ -46,3 +46,10 @@ Final json file are put in `public` directory.
 ## Translate
 
 Put data in `translation/unit.json`.
+
+## Legacy Static Page
+If you prefer to continue to maintain legacy static page, take the following steps:
+
+* Get data: `npm run models`
+* Preview: `gulp serve`
+* Deploy `gulp deploy:static`

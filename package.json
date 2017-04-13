@@ -10,6 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/* .tmp/* public/*",
+    "postinstall": "env DEBUG=nums* node ./test/get-all-data.js",
     "postversion": "git push && git push --tags",
     "models": "env DEBUG=nums* node ./test/get-all-data.js",
     "datasets": "env DEBUG=nums* node ./test/get-datasets.js",
