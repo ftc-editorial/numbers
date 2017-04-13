@@ -127,13 +127,15 @@ gulp.task('scripts', () => {
 // buble's option is no documented. Refer here.
       buble({
         include: ['client/**', 'bower_components/ftc-share/**', 'bower_components/ftc-toggle/**'],
-// FTC components should be released together with a transpiled version. Do not transpile again here.  
         exclude: [
           'node_modules/**'
         ],
         transforms: {
           dangerousForOf: true
         }
+      }),
+      uglify({
+        compress: process.env.NODE_ENV === 'production' ? {} : false
       })
     ],
     cache: cache
