@@ -28,7 +28,7 @@ const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
 const projectName = path.basename(process.cwd());
 const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
 const tmpDir = path.resolve(__dirname, '.tmp');
-const chinaData = path.resolve(__dirname, '../public/dashboard-china.json');
+const chinaData = path.resolve(__dirname, './public/dashboard-china.json');
 
 process.env.NODE_ENV = 'development';
 // change NODE_ENV between tasks.

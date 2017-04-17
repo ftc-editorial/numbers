@@ -3,6 +3,7 @@ const writeJsonFile = require('write-json-file');
 const models = require('../server/models');
 const destDir = path.resolve(__dirname, '../public');
 
+models.purgeBerthaCache();
 models.ofAll()
   .then(dataArr => {
     return Promise.all(dataArr.map(data => {
