@@ -1,5 +1,5 @@
 const path = require('path');
-const interpreter = path.resolve(process.env.HOME, 'n/versions/node/7.8.0/bin/node');
+const interpreter = path.resolve(process.env.HOME, '.nvm/versions/node/v7.10.0/bin/node');
 
 module.exports = {
   /**
