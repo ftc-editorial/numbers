@@ -29,7 +29,9 @@ module.exports = async function (ctx, next) {
     collapseInlineTagWhitespace: true,
     collapseWhitespace: true,
     conservativeCollapse: true,
-    removeComments: true
+    removeComments: true,
+    minifyCSS: true,
+    minifyJS: true
   });
   return;
 }
