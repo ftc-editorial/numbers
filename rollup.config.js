@@ -13,7 +13,7 @@ export default {
   ],
   targets: [
     {
-      dest: 'public/scripts/main.js',
+      dest: '.tmp/scripts/main.js',
       format: 'iife',
     }
   ]

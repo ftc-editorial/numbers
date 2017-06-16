@@ -12,7 +12,6 @@ module.exports = {
     {
       name      : "numbers",
       script    : "app.js",
-      log_date_format: "YYYY-MM-DD HH:mm Z",
       interpreter: interpreter,
       env: {
         NODE_ENV: "development",

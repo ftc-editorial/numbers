@@ -1,37 +1,17 @@
-const pify = require('pify');
-const fs = require('fs-jetpack');
 const path = require('path');
-const loadJsonFile = require('load-json-file');
-const writeJsonFile = require('write-json-file');
-const inline = pify(require('inline-source'));
-const register = require('./server/filter.js');
-const nunjucks = require('nunjucks');
-const env = nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
-  noCache: true,
-  watch: false,
-  autoescape: false
-});
-register(env);
-const render = pify(nunjucks.render);
 const browserSync = require('browser-sync').create();
-const cssnext = require('postcss-cssnext');
 const gulp = require('gulp');
-const $ = require('gulp-load-plugins')();
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 
 const rollup = require('rollup').rollup;
 const bowerResolve = require('rollup-plugin-bower-resolve');
-const buble = require('rollup-plugin-buble');
-const uglify = require('rollup-plugin-uglify');
-let cache;
+const babel = require('rollup-plugin-babel');
 
-const footer = require('@ftchinese/ftc-footer')({theme: 'theme-light'});
-const projectName = path.basename(process.cwd());
-const deployDir = path.resolve(__dirname, `../ft-interact/static/${projectName}`);
+const buildPage = require('./utils/build-page.js');
+
 const tmpDir = path.resolve(__dirname, '.tmp');
-const chinaData = path.resolve(__dirname, './public/dashboard-china.json');
 
-process.env.NODE_ENV = 'development';
-// change NODE_ENV between tasks.
 gulp.task('prod', function() {
   return Promise.resolve(process.env.NODE_ENV = 'production');
 });
@@ -40,39 +20,8 @@ gulp.task('dev', function() {
   return Promise.resolve(process.env.NODE_ENV = 'development');
 });
 
-function buildPage(template, data) {
-  const env = {
-    isProduction: process.env.NODE_ENV === 'production'
-  };
-  const context = Object.assign(data, {env});
-  const dest = `${tmpDir}/numbers-china.html`;
-  return render(template, data)
-    .then(html => {
-      if (process.env.NODE_ENV === 'production') {
-        console.log(`Inline assets`);
-        return inline(html, {
-          compress: true,
-          rootpath: path.resolve(process.cwd(), '.tmp')
-        });
-      }    
-      return html;      
-    })
-    .then(html => {
-      return fs.writeAsync(dest, html);
-    })
-    .catch(err => {
-      throw err;
-    });
-}
-
 gulp.task('html', () => {
-    
-  return loadJsonFile(chinaData)
-    .then(json => {
-      return buildPage('dashboard.html', Object.assign(json, {
-        footer: footer
-      }));
-    })
+  return buildPage()
     .then(() => {
       browserSync.reload('*.html');
       return Promise.resolve();
@@ -84,45 +33,29 @@ gulp.task('html', () => {
 
 gulp.task('styles', function styles() {
   const dest = `${tmpDir}/styles`;
-
   return gulp.src('client/*.scss')
-    .pipe($.changed(dest))
-    .pipe($.plumber())
     .pipe($.sourcemaps.init({loadMaps:true}))
     .pipe($.sass({
-      outputStyle: process.env.NODE_ENV ? 'compressed' : 'expanded',
+      outputStyle: 'expanded',
       precision: 10,
       includePaths: ['bower_components']
-    }).on('error', $.sass.logError))
-    .pipe($.postcss([
-      cssnext({
-        features: {
-          colorRgba: false
-        }
-      })
-    ]))
+    }))
+    .on('error', (err) => {
+      console.log(err);
+    })
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });
 
+let cache;
 gulp.task('scripts', () => {
   return rollup({
     entry: 'client/main.js',
     plugins: [
       bowerResolve(),
-// buble's option is no documented. Refer here.
-      buble({
-        include: ['client/**', 'bower_components/ftc-share/**', 'bower_components/ftc-toggle/**'],
-        exclude: [
-          'node_modules/**'
-        ],
-        transforms: {
-          dangerousForOf: true
-        }
-      }),
-      uglify({
-        compress: process.env.NODE_ENV === 'production' ? {} : false
+      babel({
+        exclude: 'node_modules/**'
       })
     ],
     cache: cache
@@ -175,84 +108,7 @@ gulp.task('images', function () {
     .pipe(gulp.dest(dest));
 });
 
-// Put css, js  on static server.
-gulp.task('build', gulp.parallel('styles', 'scripts'));
-
-gulp.task('watch', gulp.parallel('build', () => {
+gulp.task('watch', gulp.parallel('styles', 'scripts', () => {
   gulp.watch('client/**/*.js', gulp.parallel('scripts'));
   gulp.watch('client/**/*.scss', gulp.parallel('styles'));
 }));
-
-gulp.task('copy:frontend', () => {
-  console.log(`Copy frontend assets to ${deployDir}`)
-  return gulp.src('.tmp/**/*.{css,js,map}')
-    .pipe(gulp.dest(deployDir))
-})
-
-gulp.task('deploy', gulp.series('prod', 'build', gulp.parallel('copy:frontend', 'images'), 'dev'));
-
-gulp.task('copy:html', () => {
-  const dest = path.resolve(__dirname, '../channel');
-  console.log(`Copy html to ${dest}`);
-  return gulp.src('.tmp/*.html')
-    .pipe(gulp.dest(dest));
-})
-
-gulp.task('deploy:static', gulp.series('prod', 'build', 'html', gulp.parallel('copy:html', 'images'), 'dev'))
-
-// generate partial html files to be used on homepage widget.
-// function buildWidgets(sections) {
-//   const promisedWidgets = sections.map(section => {
-//     const dest = `${tmpDir}/${project}-${section.id}.html`;
-//     return buildPage('widget.html', {section: section})
-//       .then(html => {
-//         return fs.writeAsync(dest, html);
-//       })
-//       .catch(err => {
-//         throw err;
-//       })
-//   });
-//   return Promise.all(promisedWidgets);
-// }
-
-// gulp.task('widgets', () => {
-//   return loadJsonFile(`data/${project}.json`)
-//     .then(json => {
-//       return buildWidgets(json.sections);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
-
-// gulp.task('deploy:widgets', () => {
-//   const DEST = path.resolve(__dirname, config.widgets);
-
-//   return gulp.src(`.tmp/${project}-*.html`)
-//     .pipe($.htmlmin({
-//       collapseWhitespace: true,
-//       removeAttributeQuotes: true
-//     }))
-//     .pipe(gulp.dest(DEST));  
-// });
-
-// Currently we give up webpack as it is hard to configure.
-/*
- * To use webpack you should install those modules:
- * `babel-core`, `babel-loader`, `babel-preset-latest`.
- * `babel-loader` needs to be above 7.0 which is not released yet.
- */
-// gulp.task('webpack', function() {
-//   if (process.env.NODE_ENV === 'production') {
-//     delete webpackConfig.watch;
-//   }
-//   return webpack(webpackConfig)
-//     .then(stats => {
-//       console.log(stats.toString({
-//         colors: true
-//       }));
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
