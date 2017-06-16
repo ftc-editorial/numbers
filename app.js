@@ -14,6 +14,7 @@ const home = require('./server/home.js');
 const economy = require('./server/economy.js');
 const showUrls = require('./server/show-urls.js');
 const refresh = require('./server/refresh.js');
+const inlineAndMinify = require('./server/inline-min.js');
 
 debug('booting Numbers');
 
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(handleErrors);
 app.use(envData);
+app.use(inlineAndMinify);
 
 router.use('/', home.routes());
 router.use('/economy', economy.routes());
