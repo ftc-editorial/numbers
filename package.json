@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/* .tmp/* public/*",
-    "postinstall": "npm run build-sass && npm run build-js",
+    "postinstall": "bower install && npm run build-sass && npm run build-js",
     "postversion": "git push && git push --tags",
     "models": "env DEBUG=nums* node ./test/get-all-data.js",
     "datasets": "env DEBUG=nums* node ./test/get-datasets.js",
