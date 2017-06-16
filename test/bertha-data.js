@@ -1,7 +1,7 @@
 const path = require('path');
 const got = require('got');
 const writeJsonFile = require('write-json-file');
-const urls = require('../server/urls.js');
+const urls = require('../model/urls.js');
 
 Promise.all(urls.docNames.map(name => {
   const url = urls.getUrlFor(name, true);

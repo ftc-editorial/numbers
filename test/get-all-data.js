@@ -1,6 +1,6 @@
 const path = require('path');
 const writeJsonFile = require('write-json-file');
-const models = require('../server/models');
+const models = require('../models');
 const destDir = path.resolve(__dirname, '../public');
 
 models.purgeBerthaCache();

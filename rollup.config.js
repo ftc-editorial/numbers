@@ -1,14 +1,20 @@
+const babili = require('rollup-plugin-babili');
+const babel = require('rollup-plugin-babel');
 const bowerResolve = require('rollup-plugin-bower-resolve');
-const buble = require('rollup-plugin-buble');
 
 export default {
-  entry: './client/main.js',
-  format: 'iife',
+  entry: 'client/main.js',
   plugins: [
     bowerResolve(),
-    buble()
+    babel({
+      exclude: 'node_modules/**'
+    }),
+    babili()
   ],
-  sourceMap: true,
-  sourceMapFile: 'main.js.map',
-  dest: './.tmp/scripts/main.js',
-}
+  targets: [
+    {
+      dest: 'public/scripts/main.js',
+      format: 'iife',
+    }
+  ]
+};

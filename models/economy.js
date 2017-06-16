@@ -3,7 +3,7 @@ const got = require('got');
 const Datasets = require('./datasets.js');
 const createDashboard = require('./dashboard.js');
 const urls = require('./urls.js');
-const errors = require('../errors.js');
+const errors = require('../utils/errors.js');
 
 const datasets = new Datasets();
 
