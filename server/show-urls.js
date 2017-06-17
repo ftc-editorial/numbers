@@ -1,14 +1,14 @@
 const debug = require('debug')('apn:home');
 const Router = require('koa-router');
 const router = new Router();
-const urls = require('../models/urls.js');
+const bertha = require('../model/bertha.js');
 
 router.get('/republish', async function (ctx, next) {
-  ctx.body = urls.getUrls(true);
+  ctx.body = bertha.getUrls(true);
 });
 
 router.get('/read', async function (ctx, next) {
-  ctx.body = urls.getUrls();
+  ctx.body = bertha.getUrls();
 });
 
 module.exports = router;

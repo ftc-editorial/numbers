@@ -14,10 +14,12 @@ class Model {
 
 // Clear local cache so that we could update data.
   purgeLocalCache () {
+    debug(`Clear local cache`);
     this.cache.clear();
   }
 // Change request url to bertha.
   purgeBerthaCache() {
+    debug(`Clear Bertha cache`);
     this.republish = true;
   }
 
@@ -101,6 +103,7 @@ class Model {
         name: rawSheet.name,
         numbers
       });
+      debug(`Cached data for dashboard ${rawSheet.name}`);
       this.cache.set(rawSheet.name, dashboard);
       return {name: rawSheet.name, data: dashboard};
     });

@@ -7,7 +7,7 @@ const router = new Router();
 const serve = require('koa-static');
 const logger = require('koa-logger');
 
-const models = require('./models');
+const model = require('./model');
 const envData = require('./server/env-data.js');
 const handleErrors = require('./server/handle-errors.js');
 const home = require('./server/home.js');
@@ -48,14 +48,16 @@ const server = app.listen(port);
 
 // Logging server error.
 server.on('error', (error) => {
-  debug('Server error');
+  debug(error);
 });
 
 // Listening event handler
 server.on('listening', () => {
   debug(`App listening on port ${port}`);
-// After server boot, ask it fetch data to bertha immediately and cache them.  
-  return models.ofAll()
+// After server boot, ask it fetch data to bertha immediately and cache them.
+// Set republish to true so that bertha retreives latest data from GSS rather than using cache.
+  model.republish = true;
+  return model.getAllDashboards()
     .catch(err => {
       console.log(err);
     });

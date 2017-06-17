@@ -1,11 +1,11 @@
 const debug = require('debug')('apn:home');
 const Router = require('koa-router');
 const router = new Router();
-const models = require('../models');
+const model = require('../model');
 
 router.get('/', async function (ctx, next) {
-  models.purgeLocalCache();
-  models.purgeBerthaCache();
+  model.purgeLocalCache();
+  model.purgeBerthaCache();
   await models.ofAll();
   ctx.body = 'Refresh data successful.';
 });
