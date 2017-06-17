@@ -3,7 +3,10 @@ const docs = {
   us: '10pU6IjKiPRxFICLuM-SnqDWH5Lwn2VbknAoFWR1F_-s'
 };
 
-class URL {
+/**
+ * Use GSS id to build bertha url
+ */
+class Bertha {
 /*
  * @param {Object} docs - see above `docs`.
  */
@@ -12,10 +15,16 @@ class URL {
       throw new Error('Argument required.');
     }
     this._docs = docs;
-    this.docNames = Object.keys(this._docs);
+  }
+/**
+ * @return {Array} - keys of `docs`
+ */
+  get docNames() {
+    return Object.keys(this._docs)
   }
 
 /* build a single url
+ * @param {String} name - The key in `docs`
  * @param {Boolean} republish - `true` to purge cache. Default `false`
  * @return {String | Null} - Bertha url for each country or null..
  */
@@ -32,11 +41,12 @@ class URL {
  * @return {Object}
  */
   getUrls(republish) {
-    return Object.keys(this._docs).reduce((o, name) => {
-      o[name] = this.getUrlFor(name, republish);
-      return o;
-    }, {});      
+    const docUrls = {};
+    for (let name of this.docNames) {
+      docUrls[name] = this.getUrlFor(name, republish);
+    }
+    return docUrls;    
   }
 }
 
-module.exports = new URL(docs);
+module.exports = new Bertha(docs);
