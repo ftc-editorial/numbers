@@ -1,8 +1,8 @@
 const debug = require('debug')('nums:model');
 const got = require('got');
-const datasets = require('./datasets.js');
+const autograph = require('./autograph-data.js');
 const createDashboard = require('./create-dashboard.js');
-const bertha = require('./bertha.js');
+const berthaUrl = require('./bertha-url.js');
 const errors = require('../utils/errors.js');
 
 class Model {
@@ -31,7 +31,7 @@ class Model {
  * @property {Object} data - GSS transformaed by bertha. Each key is the worksheet name and value is the worksheet's col and row.
  */
   async fetchSheet(name) {
-    const url = bertha.getUrlFor(name, this.republish);
+    const url = berthaUrl.getOneFor(name, this.republish);
     
     if (!url) {
       debug(`Economy for ${name} not found`);
@@ -52,7 +52,7 @@ class Model {
  * @return {Promise<Object[]>}
  */
   async fetchAllSheets() {
-    const promisedSheets = bertha.docNames.map(async name => {
+    const promisedSheets = berthaUrl.docNames.map(async name => {
       return await this.fetchSheet(name);
     });
     return await Promise.all(promisedSheets);
@@ -73,7 +73,7 @@ class Model {
 // Fetch `datasets` and a `spreadsheet` data in parallel
     const [rawSheet, numbers] = await Promise.all([
       this.fetchSheet(name),
-      datasets.getData
+      autograph.getData()
     ]);
 
     const dashboard = createDashboard({
@@ -91,7 +91,7 @@ class Model {
 
   async getAllDashboards() {
 // Here we need to fetch latest first, and then fetch spreadsheet in parallel
-    const numbers = await datasets.getData();
+    const numbers = await autograph.getData();
 
     debug('Fetching data for all dashboards');
 
@@ -120,7 +120,9 @@ if (require.main === module) {
     model.republish = true;
     const dashboards = await model.getAllDashboards();
     for (let dashboard of dashboards) {
-      await writeJsonFile(`${dest}/dashboard-${dashboard.name}.json`, dashboard.data)
+      const filename = `${dest}/dashboard-${dashboard.name}.json`
+      debug(`Saving data: ${filename}`);
+      await writeJsonFile(filename, dashboard.data)
     }
   }
 

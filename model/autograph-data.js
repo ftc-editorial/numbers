@@ -11,12 +11,10 @@ class Datasets {
   constructor() {
     this._rawData = null;
   }
-
+/**
+ * Get the raw data from Autograph
+ */
   async fetch() {
-    // if (this.cache) {
-    //   debug('Find cached datasets.')
-    //   return this.cache;
-    // }
     debug(`Fetching ${url}`);
     this._rawData = await got(url, {
         json: true
@@ -25,7 +23,9 @@ class Datasets {
         return response.body;
       });
   }
-
+/**
+ * Convert the array fetch from Autograph to a map using `id`
+ */
   convert() {
     if (!this._rawData) {
       throw errors('Autograph Datasets');

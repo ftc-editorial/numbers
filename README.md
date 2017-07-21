@@ -7,6 +7,12 @@ To see the original bertha data structure, run `npm run bertha`.
 
 To see the final data structure fed to template, run `npm run dashboard`.
 
+## Build and Deploy Static HTML
+```
+npm run build
+npm run deploy
+```
+
 ## Run
 
 Compile static assets first:

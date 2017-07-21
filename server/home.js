@@ -1,7 +1,7 @@
 const debug = require('debug')('apn:home');
 const Router = require('koa-router');
 const router = new Router();
-const render = require('../utils/render.js');
+const page = require('../utils/page.js');
 
 router.get('/', async function index(ctx, next) {
   Object.assign(ctx.state, {
@@ -10,7 +10,7 @@ router.get('/', async function index(ctx, next) {
     },
     pageGroup: 'index'
   });
-  ctx.body = await render('home.html', ctx.state);
+  ctx.body = await page.render('home.html', ctx.state);
   return await next();
 });
 

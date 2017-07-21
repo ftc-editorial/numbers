@@ -5,15 +5,10 @@ const loadJsonFile = require('load-json-file');
 const writeJsonFile = require('write-json-file');
 const inline = pify(require('inline-source'));
 const minify = require('html-minifier').minify;
-const register = require('./filter.js');
-const nunjucks = require('nunjucks');
-const env = nunjucks.configure(['views', 'node_modules/@ftchinese/ftc-footer'], {
-  noCache: true,
-  watch: false,
-  autoescape: false
-});
-register(env);
-const render = pify(nunjucks.render);
+
+const page = require('./page.js');
+page.loaderOptions = {noCache: true};
+
 const commonData = require('./common-data.js');
 
 async function buildPage({template='dashboard.html', input='dashboard-china', output='.tmp'}={}) {
@@ -23,10 +18,8 @@ async function buildPage({template='dashboard.html', input='dashboard-china', ou
   console.log(`Using data file: ${jsonFile}`);
   const data = await loadJsonFile(jsonFile);
   const context = Object.assign(commonData, data);
-  
-  console.log(`Building page for ${input}`);
 
-  let html = await render(template, context);
+  let html = await page.render(template, context);
   if (process.env.NODE_ENV === 'production') {
     console.log(`Inline js and css`);
     html = await inline(html, {
@@ -45,6 +38,7 @@ async function buildPage({template='dashboard.html', input='dashboard-china', ou
       minifyJS: true
     });
   }
+  console.log(`HTML file: ${destFile}`);
   await fs.writeAsync(destFile, html);
 }
 

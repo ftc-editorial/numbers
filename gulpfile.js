@@ -82,7 +82,7 @@ gulp.task('bs', () => {
   browserSync.init({
     server: {
       baseDir: [tmpDir, 'client'],
-      index: `numbers-china.html`,
+      index: `dashboard-china.html`,
       routes: {
         '/bower_components': 'bower_components'
       }

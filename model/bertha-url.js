@@ -6,7 +6,7 @@ const docs = {
 /**
  * Use GSS id to build bertha url
  */
-class Bertha {
+class BerthaUrl {
 /*
  * @param {Object} docs - see above `docs`.
  */
@@ -24,12 +24,12 @@ class Bertha {
   }
 
 /* build a single url
- * @param {String} name - The key in `docs`
+ * @param {String} key - The key in `docs`
  * @param {Boolean} republish - `true` to purge cache. Default `false`
  * @return {String | Null} - Bertha url for each country or null..
  */
-  getUrlFor(name, republish=false) {
-    const id = this._docs[name];
+  getOneFor(key, republish=false) {
+    const id = this._docs[key];
     if (id) {
       return `https://bertha.ig.ft.com/${republish ? 'republish' : 'view'}/publish/gss/${id}/data,credits,groups,options`;
     }
@@ -40,13 +40,13 @@ class Bertha {
  * @param {Boolean} republish
  * @return {Object}
  */
-  getUrls(republish) {
+  getAll(republish) {
     const docUrls = {};
-    for (let name of this.docNames) {
-      docUrls[name] = this.getUrlFor(name, republish);
+    for (let key of this.docNames) {
+      docUrls[key] = this.getUrlFor(key, republish);
     }
     return docUrls;    
   }
 }
 
-module.exports = new Bertha(docs);
+module.exports = new BerthaUrl(docs);

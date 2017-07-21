@@ -1,4 +1,4 @@
-const render = require('../utils/render.js');
+const page = require('../utils/page.js');
 
 const messages = {
   403: 'Forbidden',
@@ -21,7 +21,7 @@ async function handleErrors (ctx, next) {
       error: e
     };
     ctx.response.status = status;
-    ctx.body = await render('error.html', data);
+    ctx.body = await page.render('error.html', data);
   }
 }
 
