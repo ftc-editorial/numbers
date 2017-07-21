@@ -7,7 +7,10 @@ const filters = {
   replaceDate: function(str, date) {
     const mnt = moment(date);
     // Do not use moment().format(str) here as str is not predicatable and any character appeared may be replaced.
-    return str.replace('YYYY', mnt.year()).replace('QQ', mnt.quarter());
+    console.log(date);
+    const timeStr = str.replace('YYYY', mnt.year()).replace('QQ', mnt.quarter());
+    console.log(timeStr)
+    return timeStr;
   }
 }
 

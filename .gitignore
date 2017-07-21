@@ -39,3 +39,4 @@ dist
 bower_components
 scraper/ig.ft.com
 public
+package-lock.json

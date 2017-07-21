@@ -113,7 +113,7 @@ class Model {
 if (require.main === module) {
   const writeJsonFile = require('write-json-file');
   const path = require('path');
-  const dest = path.resolve(process.cwd, 'public');
+  const dest = path.resolve(process.cwd(), 'public');
 
   async function dashboardsData() {
     const model = new Model();

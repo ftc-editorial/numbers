@@ -20,6 +20,7 @@ async function buildPage({template='dashboard.html', input='dashboard-china', ou
   const jsonFile = path.resolve(__dirname, `../public/${input}.json`);
   const destFile = path.resolve(__dirname, `../${output}/${input}.html`);
 
+  console.log(`Using data file: ${jsonFile}`);
   const data = await loadJsonFile(jsonFile);
   const context = Object.assign(commonData, data);
   

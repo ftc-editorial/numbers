@@ -3,6 +3,7 @@ const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require('gulp-imagemin');
 
 const rollup = require('rollup').rollup;
 const bowerResolve = require('rollup-plugin-bower-resolve');
@@ -34,8 +35,8 @@ gulp.task('html', () => {
 gulp.task('styles', function styles() {
   const dest = `${tmpDir}/styles`;
   return gulp.src('client/*.scss')
-    .pipe($.sourcemaps.init({loadMaps:true}))
-    .pipe($.sass({
+    .pipe(sourcemaps.init({loadMaps:true}))
+    .pipe(sass({
       outputStyle: 'expanded',
       precision: 10,
       includePaths: ['bower_components']
@@ -43,7 +44,7 @@ gulp.task('styles', function styles() {
     .on('error', (err) => {
       console.log(err);
     })
-    .pipe($.sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });
@@ -100,7 +101,7 @@ gulp.task('images', function () {
   const dest = `${deployDir}/images`
   console.log(`Copy images to ${dest}`)
   return gulp.src('client/images/*.{svg,png,jpg,jpeg,gif}')
-    .pipe($.imagemin({
+    .pipe(imagemin({
       progressive: true,
       interlaced: true,
       svgoPlugins: [{cleanupIDs: false}]
