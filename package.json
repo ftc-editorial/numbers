@@ -16,7 +16,8 @@
     "build-sass": "node-sass --include-path=bower_components --output-style=compressed client/main.scss ./.tmp/styles/main.css",
     "build-js": "rollup -c",
     "build-html": "NODE_ENV=production node ./utils/build-page.js",
-    "build": "npm run build-sass && npm run build-js && npm run build-html",
+    "build": "npm run build-sass && npm run build-js",
+    "build-static": "npm run build-sass && npm run build-js && npm run build-html",
     "deploy": "cp .tmp/dashboard-china.html ../channel/numbers-china.html"
   },
   "devDependencies": {
