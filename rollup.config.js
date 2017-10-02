@@ -1,20 +1,18 @@
-const babili = require('rollup-plugin-babili');
+const minify = require('rollup-plugin-babel-minify');
 const babel = require('rollup-plugin-babel');
 const bowerResolve = require('rollup-plugin-bower-resolve');
 
 export default {
-  entry: 'client/main.js',
+  input: 'client/main.js',
   plugins: [
     bowerResolve(),
     babel({
       exclude: 'node_modules/**'
     }),
-    babili()
+    minify()
   ],
-  targets: [
-    {
-      dest: '.tmp/scripts/main.js',
-      format: 'iife',
-    }
-  ]
+  output: {
+    file: 'public/scripts/main.js',
+    format: 'iife',
+  }
 };

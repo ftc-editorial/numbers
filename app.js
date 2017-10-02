@@ -29,7 +29,7 @@ app.on('error', function (err, ctx) {
 app.use(logger());
 
 if (process.env.NODE_ENV !== 'production') {
-  app.use(serve(path.resolve(process.cwd(), '.tmp')));
+  app.use(serve(path.resolve(process.cwd(), 'public')));
 }
 
 app.use(handleErrors);
