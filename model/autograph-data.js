@@ -1,6 +1,6 @@
 const debug = require('debug')('nums:datasets');
 const got = require('got');
-const units = require('../translation/units.json');
+const units = require('../utils/units.json');
 const errors = require('../utils/errors.js');
 const url = process.env.LASTEST_DATA_URL ||  'https://ig.ft.com/autograph/data/latest.json';
 

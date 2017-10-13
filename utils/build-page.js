@@ -11,9 +11,9 @@ page.loaderOptions = {noCache: true};
 
 const commonData = require('./common-data.js');
 
-async function buildPage({template='dashboard.html', input='dashboard-china', output='.tmp'}={}) {
-  const jsonFile = path.resolve(__dirname, `../public/${input}.json`);
-  const destFile = path.resolve(__dirname, `../${output}/${input}.html`);
+async function buildPage({template='dashboard.html', input='dashboard-china', tmpDir='.tmp'}={}) {
+  const jsonFile = path.resolve(__dirname, `../${tmpDir}/${input}.json`);
+  const destFile = path.resolve(__dirname, `../${tmpDir}/${input}.html`);
 
   console.log(`Using data file: ${jsonFile}`);
   const data = await loadJsonFile(jsonFile);
@@ -24,7 +24,7 @@ async function buildPage({template='dashboard.html', input='dashboard-china', ou
     console.log(`Inline js and css`);
     html = await inline(html, {
       compress: false,
-      rootpath: path.resolve(__dirname, `../${output}`)
+      rootpath: path.resolve(__dirname, `../public`)
     });
 
     console.log(`Minify html`);
