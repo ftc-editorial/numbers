@@ -26,16 +26,16 @@
     "del": "^3.0.0",
     "fs-jetpack": "^1.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-imagemin": "^3.1.1",
+    "gulp-imagemin": "^3.4.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
-    "write-json-file": "^2.0.0"
+    "write-json-file": "^2.3.0"
   },
   "dependencies": {
     "@ftchinese/ftc-footer": "^0.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
-    "debug": "^2.6.9",
+    "debug": "^3.1.0",
     "got": "^7.1.0",
     "html-minifier": "^3.5.5",
     "inline-source": "^5.2.4",
@@ -44,13 +44,13 @@
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "load-json-file": "^3.0.0",
-    "moment": "^2.18.1",
+    "moment": "^2.19.1",
     "node-sass": "^4.5.3",
     "nunjucks": "^3.0.0",
     "pify": "^3.0.0",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-babel-minify": "^3.1.2",
-    "rollup-plugin-bower-resolve": "^0.4.0"
+    "rollup-plugin-bower-resolve": "^0.5.0"
   }
 }
