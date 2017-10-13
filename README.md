@@ -3,59 +3,26 @@
 https://bertha.ig.ft.com/view/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options
 ```
 
-To see the original bertha data structure, run `npm run bertha`.
-
-To see the final data structure fed to template, run `npm run dashboard`.
-
-## Build and Deploy Static HTML
+## Run Server Version
 ```
-npm run build
-npm run deploy
+npm run start
 ```
 
-## Run
+## NPM Commands
 
-Compile static assets first:
-```
-gulp watch
-```
-
-Then
-```
-DEBUG=nums:server nodemon app.js
-```
-
-Open browser `localhost:3000`
-
-## See the data structure
-
-Data produced by bertha:
-
-```
-npm run bertha
-```
-
-Data converted from bertha:
-
-```
-npm run models
-```
-
-Data used for big numbers:
-
-```
-npm run datasets
-```
-
-Final json file are put in `public` directory.
+* `npm run get-data` Fetch data from bertha, transform them and write to `.tmp/*.json`.
+* `npm run clean` Remove `.tmp` and `public` folder
+* `npm run build-sass` Build sass file to `public/styles/main.css`
+* `npm run build-js` Build es to `public/scripts/main.js`
+* `npm run build-html` Build static htm files for `china-dashboard` after run `build-sass` and `build-js`.
+* `npm run build` Run `build-sass && build-js`. This is used for server automation.
 
 ## Translate
 
-Put data in `translation/unit.json`.
+Put data in `utils/unit.json`.
 
 ## Legacy Static Page
 If you prefer to continue to maintain legacy static page, take the following steps:
 
 * Get data: `npm run models`
 * Preview: `gulp serve`
-* Deploy `gulp deploy:static`
