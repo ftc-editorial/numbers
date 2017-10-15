@@ -3,9 +3,16 @@
 https://bertha.ig.ft.com/view/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEhjnJoJA/data,credits,groups,options
 ```
 
-## Run Server Version
+## Run Server
+
+Production:
 ```
 npm run start
+```
+
+Development:
+```
+nodemon app.js
 ```
 
 ## NPM Commands
