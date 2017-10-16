@@ -6,13 +6,12 @@ https://bertha.ig.ft.com/view/publish/gss/1mzkZNKncQwrVuNw5GbwMYdY3rT54N8vaGXFEh
 ## Run Server
 
 Production:
-```
-npm run start
-```
+
+Refer to [node-deployer](https://gitlab.com/ftchinese/node-deployer)
 
 Development:
 ```
-nodemon app.js
+npm start
 ```
 
 ## NPM Commands
