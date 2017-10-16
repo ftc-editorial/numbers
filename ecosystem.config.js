@@ -1,4 +1,5 @@
 const path = require('path');
+const interpreter = path.resolve(process.env.HOME, 'n/n/versions/node/8.7.0/bin/node');
 
 module.exports = {
   /**
@@ -12,7 +13,7 @@ module.exports = {
       name      : "numbers",
       script    : "./app.js",
       cwd: __dirname,
-      interpreter: "node@8.7.0",
+      interpreter: interpreter,
       env: {
         NODE_ENV: "development",
         PORT: 4001,
