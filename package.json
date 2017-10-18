@@ -29,6 +29,7 @@
     "gulp-imagemin": "^3.4.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
+    "koa-static": "^4.0.1",
     "nodemon": "^1.12.1",
     "write-json-file": "^2.3.0"
   },
@@ -44,7 +45,7 @@
     "koa": "^2.3.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
-    "koa-static": "^4.0.1",
+    
     "load-json-file": "^3.0.0",
     "moment": "^2.19.1",
     "node-sass": "^4.5.3",

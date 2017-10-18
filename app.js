@@ -4,7 +4,7 @@ const Koa = require('koa');
 const app = new Koa();
 const Router = require('koa-router');
 const router = new Router();
-const serve = require('koa-static');
+const serve = 
 const logger = require('koa-logger');
 
 const model = require('./model');
@@ -29,7 +29,7 @@ app.on('error', function (err, ctx) {
 app.use(logger());
 
 if (process.env.NODE_ENV !== 'production') {
-  app.use(serve(path.resolve(process.cwd(), 'public')));
+  app.use(require('koa-static')(path.resolve(process.cwd(), 'public')));
 }
 
 app.use(handleErrors);
