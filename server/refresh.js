@@ -6,7 +6,7 @@ const model = require('../model');
 router.get('/', async function (ctx, next) {
   model.purgeLocalCache();
   model.purgeBerthaCache();
-  await models.ofAll();
+  await model.getAllDashboards();
   ctx.body = 'Refresh data successful.';
 });
 
