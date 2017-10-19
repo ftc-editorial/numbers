@@ -1,6 +1,6 @@
 {
   "name": "numbers",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "IG Numbers",
   "private": true,
   "engines": {
@@ -45,7 +45,6 @@
     "koa": "^2.3.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
-    
     "load-json-file": "^3.0.0",
     "moment": "^2.19.1",
     "node-sass": "^4.5.3",
