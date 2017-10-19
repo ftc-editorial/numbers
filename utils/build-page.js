@@ -1,3 +1,4 @@
+const debug = require('debug')('nums:build-page');
 const pify = require('pify');
 const path = require('path');
 const fs = require('fs-jetpack');
@@ -5,29 +6,29 @@ const loadJsonFile = require('load-json-file');
 const writeJsonFile = require('write-json-file');
 const inline = pify(require('inline-source'));
 const minify = require('html-minifier').minify;
+const store = require('./store');
 
 const page = require('./page.js');
 page.loaderOptions = {noCache: true};
 
 const commonData = require('./common-data.js');
 
-async function buildPage({template='dashboard.html', input='dashboard-china', tmpDir='.tmp'}={}) {
-  const jsonFile = path.resolve(__dirname, `../${tmpDir}/${input}.json`);
-  const destFile = path.resolve(__dirname, `../${tmpDir}/${input}.html`);
+async function buildPage({template='dashboard.html', economy='china', outDir=store.publicDir}={}) {
+  const destFile = `${outDir}/${economy}.html`;
 
-  console.log(`Using data file: ${jsonFile}`);
-  const data = await loadJsonFile(jsonFile);
+  debug(`Using data file: ${store.filenameFor(economy)}`);
+  const data = await store.getDataFor(economy);
   const context = Object.assign(commonData, data);
 
   let html = await page.render(template, context);
   if (process.env.NODE_ENV === 'production') {
-    console.log(`Inline js and css`);
+    debug(`Inline js and css`);
     html = await inline(html, {
       compress: false,
       rootpath: path.resolve(__dirname, `../public`)
     });
 
-    console.log(`Minify html`);
+    debug(`Minify html`);
     html = minify(html, {
       collapseBooleanAttributes: true,
       collapseInlineTagWhitespace: true,
@@ -38,7 +39,7 @@ async function buildPage({template='dashboard.html', input='dashboard-china', tm
       minifyJS: true
     });
   }
-  console.log(`HTML file: ${destFile}`);
+  debug(`HTML file: ${destFile}`);
   await fs.writeAsync(destFile, html);
 }
 

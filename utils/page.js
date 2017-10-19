@@ -1,3 +1,4 @@
+const debug = require('debug')('debug:render');
 const path = require('path');
 const nunjucks = require('nunjucks');
 const moment = require('moment');
@@ -9,9 +10,9 @@ function todate(date) {
 function replaceDate(str, date) {
   const mnt = moment(date);
   // Do not use moment().format(str) here as str is not predicatable and any character appeared may be replaced.
-  console.log(date);
+  debug(date);
   const timeStr = str.replace('YYYY', mnt.year()).replace('QQ', mnt.quarter());
-  console.log(timeStr)
+  debug(timeStr)
   return timeStr;
 }
 

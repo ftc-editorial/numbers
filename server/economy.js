@@ -1,12 +1,12 @@
-const debug = require('debug')('apn:home');
+const loadJsonFile = require('load-json-file');
 const Router = require('koa-router');
 const router = new Router();
-const model = require('../model');
 const page = require('../utils/page.js');
+const store = require('../utils/store');
 
 router.get('/:economy', async function (ctx, next) {
   const economy = ctx.params.economy;
-  const dashboard = await model.getDashboard(economy);
+  const dashboard = await store.getDataFor(economy);
   Object.assign(ctx.state, dashboard,  {
     pageGroup: 'dashboard'
   });

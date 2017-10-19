@@ -1,26 +1,17 @@
 const debug = require('debug')('nums:model');
 const got = require('got');
+const writeJsonFile = require('write-json-file');
+const path = require('path');
 const autograph = require('./autograph-data.js');
 const createDashboard = require('./create-dashboard.js');
 const berthaUrl = require('./bertha-url.js');
 const errors = require('../utils/errors.js');
+const store = require('../utils/store');
 
 class Model {
   constructor() {
-    this.cache = new Map();
 // By default use bertha's cached data.    
     this.republish = false;
-  }
-
-// Clear local cache so that we could update data.
-  purgeLocalCache () {
-    debug(`Clear local cache`);
-    this.cache.clear();
-  }
-// Change request url to bertha.
-  purgeBerthaCache() {
-    debug(`Clear Bertha cache`);
-    this.republish = true;
   }
 
 /**
@@ -63,13 +54,6 @@ class Model {
  * @return {Promise<Object>}
  */
   async getDashboard(name) {
-    const cached = this.cache.get(name);
-// Find local cached data, use it.
-    if (cached) {
-      debug(`Use cached data for ${name}`);
-      return cached;
-    }
-    
 // Fetch `datasets` and a `spreadsheet` data in parallel
     const [rawSheet, numbers] = await Promise.all([
       this.fetchSheet(name),
@@ -81,10 +65,6 @@ class Model {
       name,
       numbers
     });
-    
-    // cache data
-    debug(`Caching data for ${name}`);
-    this.cache.set(name, dashboard);
 
     return {name, data: dashboard};
   }
@@ -103,33 +83,28 @@ class Model {
         name: rawSheet.name,
         numbers
       });
-      debug(`Cached data for dashboard ${rawSheet.name}`);
-      this.cache.set(rawSheet.name, dashboard);
       return {name: rawSheet.name, data: dashboard};
     });
+  }
+
+  static async init() {
+    const model = new Model();
+    model.republish = true;
+    const dashboards = await model.getAllDashboards();
+    await Promise.all(dashboards.map(async (dashboard) => {
+      const filename = store.filenameFor(dashboard.name);
+      debug(`Saving file ${filename}`);
+      await writeJsonFile(filename, dashboard.data);
+    }));
+    return model;
   }
 }
 
 if (require.main === module) {
-  const writeJsonFile = require('write-json-file');
-  const path = require('path');
-  const dest = path.resolve(process.cwd(), '.tmp');
-
-  async function dashboardsData() {
-    const model = new Model();
-    model.republish = true;
-    const dashboards = await model.getAllDashboards();
-    for (let dashboard of dashboards) {
-      const filename = `${dest}/dashboard-${dashboard.name}.json`
-      debug(`Saving data: ${filename}`);
-      await writeJsonFile(filename, dashboard.data)
-    }
-  }
-
-  dashboardsData()
+  Model.init()
     .catch(err => {
-      debug(err);
+      console.log(err);
     });
 }
 
-module.exports = new Model();
+module.exports = Model;

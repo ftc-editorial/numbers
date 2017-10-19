@@ -1,4 +1,4 @@
-const debug = require('debug')('nums:common-data');
+const debug = require('debug')('debug:env-data');
 const commonData = require('../utils/common-data.js');
 
 module.exports = async function (ctx, next) {

@@ -12,7 +12,7 @@ const handleErrors = require('./server/handle-errors.js');
 const home = require('./server/home.js');
 const economy = require('./server/economy.js');
 const showUrls = require('./server/show-urls.js');
-const refresh = require('./server/refresh.js');
+const update = require('./server/update');
 const inlineAndMinify = require('./server/inline-min.js');
 
 debug('booting Numbers');
@@ -38,7 +38,7 @@ app.use(inlineAndMinify);
 router.use('/', home.routes());
 router.use('/economy', economy.routes());
 router.use('/urls', showUrls.routes());
-router.use('/__refresh', refresh.routes());
+router.use('/__update', update.routes());
 
 app.use(router.routes());
 
@@ -53,11 +53,4 @@ server.on('error', (error) => {
 // Listening event handler
 server.on('listening', () => {
   debug(`App listening on port ${port}`);
-// After server boot, ask it fetch data to bertha immediately and cache them.
-// Set republish to true so that bertha retreives latest data from GSS rather than using cache.
-  model.republish = true;
-  return model.getAllDashboards()
-    .catch(err => {
-      console.log(err);
-    });
 });

@@ -11,15 +11,15 @@
     "test": "node ./test/bertha-url.js && DEBUG=nums* node ./test/dashboards.js && DEBUG=nums* node ./test/sheet-to-dash.js",
     "postinstall": "bower install",
     "postversion": "git push && git push --tags",
-    "get-data": "env DEBUG=nums* node ./model",
+    "model": "DEBUG=nums* node ./model",
     "clean": "rm -rf .tmp/* public/*",
     "build-sass": "node-sass --include-path=bower_components --output-style=compressed client/main.scss ./public/styles/main.css",
     "build-js": "rollup -c",
-    "build-html": "NODE_ENV=production node ./utils/build-page.js",
+    "build-html": "NODE_ENV=production DEBUG=nums*,debug* node ./utils/build-page.js",
     "build-static": "npm run build-sass && npm run build-js && npm run build-html",
-    "deploy": "cp .tmp/dashboard-china.html ../channel/numbers-china.html",
+    "deploy": "cp public/dashboard-china.html ../channel/numbers-china.html",
     "build": "npm run build-sass && npm run build-js",
-    "start": "npm install && npm run build && nodemon app.js"
+    "start": "npm install && npm run build && npm run model && nodemon app.js"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
