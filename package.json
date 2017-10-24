@@ -30,8 +30,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "koa-static": "^4.0.1",
-    "nodemon": "^1.12.1",
-    "write-json-file": "^2.3.0"
+    "nodemon": "^1.12.1"
   },
   "dependencies": {
     "@ftchinese/ftc-footer": "^0.2.0",
@@ -53,6 +52,7 @@
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-babel-minify": "^3.1.2",
-    "rollup-plugin-bower-resolve": "^0.5.0"
+    "rollup-plugin-bower-resolve": "^0.5.0",
+    "write-json-file": "^2.3.0"
   }
 }

@@ -1,4 +1,6 @@
-const debug = require('debug')('nums:create-dashboard');
+const debug = require('debug');
+const log = debug('nums:create-dashboard');
+log.log = console.log.bind(console);
 const buildOptions = require('./build-options.js');
 const groupCards = require('./group-cards.js');
 const joinCards = require('./join-cards.js');
@@ -12,14 +14,14 @@ const joinCards = require('./join-cards.js');
  * @param {String} name - country name `china | us | uk | japan`
  */
 function createDashboard({spreadsheet, numbers, name}={}) {
-  debug(`Create dashboard for ${name}`);
-  debug(`Spreadsheet keys: ${Object.keys(spreadsheet)}`);
+  log(`Create dashboard for ${name}`);
+  log(`Spreadsheet keys: ${Object.keys(spreadsheet)}`);
 // Reduce array `spreadsheet.options` to an object,
 // using each array element's `name` as key.
   const options = buildOptions(spreadsheet.options);
 
   const cardsByGroup = groupCards(spreadsheet.data, numbers);
-  debug(`Cards names: ${Object.keys(cardsByGroup)}`);
+  log(`Cards names: ${Object.keys(cardsByGroup)}`);
 
 // Add each `spreadsheet.groups` element a key `cards`.
 // Find `card`'s value in `cards` identified by `id`.

@@ -1,4 +1,7 @@
-const debug = require('debug')('nums:model');
+const debug = require('debug');
+const error = debug('nums:model');
+const log = debug('nums:model');
+log.log = console.log.bind(console);
 const got = require('got');
 const writeJsonFile = require('write-json-file');
 const path = require('path');
@@ -25,11 +28,11 @@ class Model {
     const url = berthaUrl.getOneFor(name, this.republish);
     
     if (!url) {
-      debug(`Economy for ${name} not found`);
-       throw errors.notFound('Economy');
+      log(`Economy for ${name} not found`);
+      throw errors.notFound('Economy');
     }
 
-    debug(`Fetching ${url}`);
+    log(`Fetching ${url}`);
 
     const sheetData = await got(url, {json: true})
       .then(res => {
@@ -73,7 +76,7 @@ class Model {
 // Here we need to fetch latest first, and then fetch spreadsheet in parallel
     const numbers = await autograph.getData();
 
-    debug('Fetching data for all dashboards');
+    log('Fetching data for all dashboards');
 
     const rawSheets = await this.fetchAllSheets();
 
@@ -93,7 +96,7 @@ class Model {
     const dashboards = await model.getAllDashboards();
     await Promise.all(dashboards.map(async (dashboard) => {
       const filename = store.filenameFor(dashboard.name);
-      debug(`Saving file ${filename}`);
+      log(`Saving file ${filename}`);
       await writeJsonFile(filename, dashboard.data);
     }));
     return model;
@@ -103,7 +106,7 @@ class Model {
 if (require.main === module) {
   Model.init()
     .catch(err => {
-      console.log(err);
+      error(err);
     });
 }
 

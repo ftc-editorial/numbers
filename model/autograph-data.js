@@ -1,4 +1,6 @@
-const debug = require('debug')('nums:datasets');
+const debug = require('debug');
+const log = debug('nums:datasets');
+log.log = console.log.bind(console);
 const got = require('got');
 const units = require('../utils/units.json');
 const errors = require('../utils/errors.js');
@@ -15,7 +17,7 @@ class Datasets {
  * Get the raw data from Autograph
  */
   async fetch() {
-    debug(`Fetching ${url}`);
+    log(`Fetching ${url}`);
     this._rawData = await got(url, {
         json: true
       })

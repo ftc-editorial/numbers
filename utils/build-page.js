@@ -1,4 +1,6 @@
-const debug = require('debug')('nums:build-page');
+const debug = require('debug');
+const log = debug('nums:build-page');
+log.log = console.log.bind(console);
 const pify = require('pify');
 const path = require('path');
 const fs = require('fs-jetpack');

@@ -1,4 +1,7 @@
-const debug = require('debug')('nums:server');
+const debug = require('debug');
+const error = debug('nums:app');
+const log = debug('nums:app');
+log.log = console.log.bind(console);
 const path = require('path');
 const Koa = require('koa');
 const app = new Koa();
@@ -15,14 +18,14 @@ const showUrls = require('./server/show-urls.js');
 const update = require('./server/update');
 const inlineAndMinify = require('./server/inline-min.js');
 
-debug('booting Numbers');
+log('booting Numbers');
 
 const port = process.env.PORT || 3000;
 app.proxy = true;
 
 // App error logging
 app.on('error', function (err, ctx) {
-  debug(err);
+  error(err);
 });
 
 app.use(logger());
@@ -47,10 +50,10 @@ const server = app.listen(port);
 
 // Logging server error.
 server.on('error', (error) => {
-  debug(error);
+  error(error);
 });
 
 // Listening event handler
 server.on('listening', () => {
-  debug(`App listening on port ${port}`);
+  log(`App listening on port ${port}`);
 });
